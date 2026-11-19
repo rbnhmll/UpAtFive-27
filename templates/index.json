@@ -18,20 +18,48 @@
             "heading": "Go beyond growth. Ignite transformation.",
             "heading_size": "hxxl"
           }
-        },
-        "text_FFYeRJ": {
+        }
+      },
+      "block_order": [
+        "heading_wBnFQG"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "show_border_top": false,
+        "show_border_bottom": false,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "rich_text_tGFn8P": {
+      "type": "rich-text",
+      "blocks": {
+        "text_tYBJyD": {
           "type": "text",
           "settings": {
-            "text": "<p>As Chameleons, we are transformation experts who immerse and embed into your business, bringing leadership, execution, and team recruitment that energize change from within.</p><p>Chameleons blend in, so you stand out.</p>"
+            "text": "<p>As Chameleons, we are transformation experts who immerse and embed into your business, bringing leadership, execution, and team recruitment that energize change from within.</p><p><strong>Chameleons blend in, so you stand out.</strong></p>"
           }
         },
-        "button_pVTt6r": {
+        "column_break_XjaybD": {
+          "type": "column_break",
+          "settings": {
+            "show_divider": false,
+            "column_ratio": "67-33",
+            "vertical_alignment": "bottom",
+            "column_gap": 160
+          }
+        },
+        "button_nWazyt": {
           "type": "button",
           "settings": {
-            "button_label": "Button label",
+            "button_label": "See How",
             "button_link": "",
             "button_style_secondary": false,
-            "button_arrow": false,
+            "button_arrow": true,
             "button_label_2": "",
             "button_link_2": "",
             "button_style_secondary_2": false,
@@ -40,9 +68,9 @@
         }
       },
       "block_order": [
-        "heading_wBnFQG",
-        "text_FFYeRJ",
-        "button_pVTt6r"
+        "text_tYBJyD",
+        "column_break_XjaybD",
+        "button_nWazyt"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
@@ -50,7 +78,9 @@
         "content_alignment": "left",
         "color_scheme": "",
         "full_width": true,
-        "padding_top": 40,
+        "show_border_top": false,
+        "show_border_bottom": false,
+        "padding_top": 0,
         "padding_bottom": 52
       }
     },
@@ -60,8 +90,8 @@
         "metric_a1": {
           "type": "metric",
           "settings": {
-            "number": "100+",
-            "label": "Metric name"
+            "number": "10+",
+            "label": "Years Shopify experience"
           }
         },
         "metric_a2": {
@@ -283,6 +313,8 @@
         "content_alignment": "center",
         "color_scheme": "scheme-5",
         "full_width": true,
+        "show_border_top": true,
+        "show_border_bottom": true,
         "padding_top": 40,
         "padding_bottom": 52
       }
@@ -393,14 +425,73 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "rich_text_e4BDKy": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_VBKMW9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Get in touch",
+            "heading_size": "h1"
+          }
+        },
+        "column_break_3dfCDk": {
+          "type": "column_break",
+          "settings": {
+            "show_divider": true,
+            "column_ratio": "50-50",
+            "vertical_alignment": "center",
+            "column_gap": 104
+          }
+        },
+        "text_4FnVp4": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Ready to talk about how we can transform your business together? Start the conversation.</p>"
+          }
+        },
+        "button_hKH4am": {
+          "type": "button",
+          "settings": {
+            "button_label": "Contact Us",
+            "button_link": "shopify://pages/contact-us",
+            "button_style_secondary": false,
+            "button_arrow": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false,
+            "button_arrow_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_VBKMW9",
+        "column_break_3dfCDk",
+        "text_4FnVp4",
+        "button_hKH4am"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "show_border_top": true,
+        "show_border_bottom": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
     "rich_text_CJFzft",
+    "rich_text_tGFn8P",
     "metrics_Kq7mPx",
     "multicolumn_97cCXG",
     "multicolumn_4Xiy9f",
     "rich_text_teA8dU",
-    "logo_grid_a7BgxW"
+    "logo_grid_a7BgxW",
+    "rich_text_e4BDKy"
   ]
 }
