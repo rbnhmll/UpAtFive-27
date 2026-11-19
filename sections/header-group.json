@@ -39,7 +39,7 @@
     "header": {
       "type": "header",
       "custom_css": [
-        ".header__heading-logo-wrapper {border-top-right-radius: 10%; overflow: hidden;}"
+        ".header__heading-logo-wrapper {border-top-right-radius: 15%; overflow: hidden;}"
       ],
       "settings": {
         "logo_position": "middle-left",
