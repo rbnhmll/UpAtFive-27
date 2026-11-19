@@ -28,6 +28,26 @@
     .scrolled-past-header .header__heading-logo-wrapper {
       width: 75%;
     }
+
+    /* Shrink the contact button alongside the logo (same 75% and easing). */
+    @media screen and (min-width: 990px) {
+      .header__icons .header__contact-button {
+        transition: min-height 0.3s cubic-bezier(0.52, 0, 0.61, 0.99), padding 0.3s cubic-bezier(0.52, 0, 0.61, 0.99),
+          font-size 0.3s cubic-bezier(0.52, 0, 0.61, 0.99), box-shadow var(--duration-short) ease;
+      }
+
+      .scrolled-past-header .header__icons .header__contact-button {
+        min-height: calc(4.5rem * 0.75 + var(--buttons-border-width) * 2);
+        padding: 0 calc(3rem * 0.75);
+        font-size: calc(1.5rem * 0.75);
+        gap: 0.75rem;
+      }
+
+      .scrolled-past-header .header__icons .header__contact-button .svg-wrapper {
+        width: 1.05rem;
+        height: 0.75rem;
+      }
+    }
   {%- endif -%}
 
   {%- if section.settings.menu_type_desktop != "drawer" -%}
@@ -114,8 +134,18 @@
     transform: translateX(0.3rem);
   }
 
+  /* Keep the contact button directly under the menu links; the utility links
+     (localization/social) stay pinned to the bottom of the drawer. */
+  .menu-drawer__navigation-container:has(> .menu-drawer__contact) {
+    grid-template-rows: auto auto 1fr;
+  }
+
+  .menu-drawer__navigation-container:has(> .menu-drawer__contact) > .menu-drawer__utility-links {
+    align-self: end;
+  }
+
   .menu-drawer__contact {
-    padding: 2rem 3rem 3rem;
+    padding: 0 3rem 3rem;
   }
 
   .menu-drawer__contact .header__contact-button {
