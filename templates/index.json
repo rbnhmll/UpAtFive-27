@@ -31,9 +31,11 @@
             "button_label": "Button label",
             "button_link": "",
             "button_style_secondary": false,
+            "button_arrow": false,
             "button_label_2": "",
             "button_link_2": "",
-            "button_style_secondary_2": false
+            "button_style_secondary_2": false,
+            "button_arrow_2": false
           }
         }
       },
@@ -246,25 +248,27 @@
         "heading_reCbgi": {
           "type": "heading",
           "settings": {
-            "heading": "Talk about your brand",
+            "heading": "When you're good.We're gone.",
             "heading_size": "h1"
           }
         },
         "text_zrWLcn": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+            "text": "<p>Our transformational work creates a splash. But we're most proud of the ripple effects after our engagement ends, foundational changes that equip your business with the tools to continue thriving.</p>"
           }
         },
         "button_gBfYUG": {
           "type": "button",
           "settings": {
-            "button_label": "Button label",
-            "button_link": "",
+            "button_label": "Work with us",
+            "button_link": "shopify://pages/contact-us",
             "button_style_secondary": false,
+            "button_arrow": true,
             "button_label_2": "",
             "button_link_2": "",
-            "button_style_secondary_2": false
+            "button_style_secondary_2": false,
+            "button_arrow_2": false
           }
         }
       },
