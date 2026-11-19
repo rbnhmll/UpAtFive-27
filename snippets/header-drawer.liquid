@@ -145,6 +145,17 @@
               {%- endfor -%}
             </ul>
           </nav>
+          {%- if section.settings.show_contact_button and section.settings.contact_button_label != blank -%}
+            <div class="menu-drawer__contact">
+              <a
+                href="{{ section.settings.contact_button_link | default: '/pages/contact' }}"
+                class="header__contact-button button{% if section.settings.contact_button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+              >
+                {{- section.settings.contact_button_label | escape -}}
+                <span class="svg-wrapper" aria-hidden="true">{{ 'icon-arrow.svg' | inline_asset_content }}</span>
+              </a>
+            </div>
+          {%- endif -%}
           <div class="menu-drawer__utility-links">
             {%- if show_country_selector or show_language_selector -%}
               <div class="menu-drawer__localization header-localization">

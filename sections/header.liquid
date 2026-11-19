@@ -114,13 +114,24 @@
     transform: translateX(0.3rem);
   }
 
-  @media screen and (max-width: 749px) {
-    .header__contact-button {
-      min-width: 0;
-      min-height: calc(3.6rem + var(--buttons-border-width) * 2);
-      padding: 0 1.4rem;
-      font-size: 1.3rem;
-      gap: 0.6rem;
+  .menu-drawer__contact {
+    padding: 2rem 3rem 3rem;
+  }
+
+  .menu-drawer__contact .header__contact-button {
+    margin-left: 0;
+  }
+
+  /* Below desktop the button lives in the mobile menu instead of the header. */
+  @media screen and (max-width: 989px) {
+    .header--has-menu .header__icons .header__contact-button {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .menu-drawer__contact {
+      display: none;
     }
   }
 
