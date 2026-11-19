@@ -301,6 +301,33 @@
   }
 }
 
+.footer__content-bottom-wrapper--split {
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer__tagline {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .footer__content-bottom-wrapper--split {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 2rem;
+  }
+
+  .footer__content-bottom-wrapper.footer__content-bottom-wrapper--split .footer__copyright {
+    text-align: left;
+  }
+
+  .footer__tagline {
+    text-align: right;
+  }
+}
+
 @keyframes appear-down {
   0% {
     opacity: 0;

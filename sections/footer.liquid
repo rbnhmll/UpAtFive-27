@@ -297,7 +297,7 @@
         {%- endif -%}
       </div>
     </div>
-    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
+    <div class="footer__content-bottom-wrapper footer__content-bottom-wrapper--split page-width">
       <div class="footer__copyright caption">
         <small class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }} - {{ shop.name | link_to: routes.root_url -}}
@@ -317,6 +317,11 @@
           </ul>
         {%- endif -%}
       </div>
+      {%- if section.settings.tagline != blank -%}
+        <div class="footer__tagline caption">
+          <small class="copyright__content">{{ section.settings.tagline | escape }}</small>
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </footer>
@@ -491,6 +496,12 @@
       "default": true,
       "label": "t:sections.footer.settings.show_policy.label",
       "info": "t:sections.footer.settings.show_policy.info"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "default": "Built with intention in B.C. Canada",
+      "label": "Bottom-right text"
     },
     {
       "type": "header",
