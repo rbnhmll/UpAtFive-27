@@ -15,11 +15,40 @@
 {%- endstyle -%}
 
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
-  <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
+  <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %}{% unless section.settings.show_border_top %} rich-text--no-border-top{% endunless %}{% unless section.settings.show_border_bottom %} rich-text--no-border-bottom{% endunless %} section-{{ section.id }}-padding">
     <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
-      <div class="rich-text__blocks {{ section.settings.content_alignment }}">
+      {%- liquid
+        assign column_break = section.blocks | where: 'type', 'column_break' | first
+        if column_break
+          case column_break.settings.column_ratio
+            when '40-60'
+              assign split_columns = '2fr 3fr'
+            when '60-40'
+              assign split_columns = '3fr 2fr'
+            when '33-67'
+              assign split_columns = '1fr 2fr'
+            when '67-33'
+              assign split_columns = '2fr 1fr'
+            else
+              assign split_columns = '1fr 1fr'
+          endcase
+        endif
+      -%}
+      <div
+        class="rich-text__blocks {{ section.settings.content_alignment }}{% if column_break %} rich-text__blocks--split rich-text__blocks--valign-{{ column_break.settings.vertical_alignment }}{% if column_break.settings.show_divider %} rich-text__blocks--divider{% endif %}{% endif %}"
+        {% if column_break %}
+          style="--rich-text-columns: {{ split_columns }}; --rich-text-column-gap: {{ column_break.settings.column_gap }}px;"
+        {% endif %}
+      >
+        {%- if column_break -%}<div class="rich-text__column">{%- endif -%}
         {%- for block in section.blocks -%}
           {%- case block.type -%}
+            {%- when 'column_break' -%}
+              {%- if block.id == column_break.id -%}
+                </div>
+                <div class="rich-text__column rich-text__column--second">
+                <span class="rich-text__column-break" {{ block.shopify_attributes }}></span>
+              {%- endif -%}
             {%- when 'heading' -%}
               <h2
                 class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -95,6 +124,7 @@
               </div>
           {%- endcase -%}
         {%- endfor -%}
+        {%- if column_break -%}</div>{%- endif -%}
       </div>
     </div>
   </div>
@@ -162,6 +192,19 @@
       "label": "t:sections.rich-text.settings.full_width.label"
     },
     {
+      "type": "checkbox",
+      "id": "show_border_top",
+      "default": true,
+      "label": "Show top border",
+      "info": "Thickness is set in Theme settings > Content containers"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border_bottom",
+      "default": true,
+      "label": "Show bottom border"
+    },
+    {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
     },
@@ -187,6 +230,59 @@
     }
   ],
   "blocks": [
+    {
+      "type": "column_break",
+      "name": "Column break",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Splits the section into two columns on desktop: blocks above this go left, blocks below go right. Columns stack in the same order on mobile."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_divider",
+          "default": true,
+          "label": "Show divider between columns",
+          "info": "Hidden on mobile"
+        },
+        {
+          "type": "select",
+          "id": "column_ratio",
+          "options": [
+            { "value": "50-50", "label": "50 / 50" },
+            { "value": "40-60", "label": "40 / 60" },
+            { "value": "60-40", "label": "60 / 40" },
+            { "value": "33-67", "label": "33 / 67" },
+            { "value": "67-33", "label": "67 / 33" }
+          ],
+          "default": "50-50",
+          "label": "Column widths"
+        },
+        {
+          "type": "select",
+          "id": "vertical_alignment",
+          "options": [
+            { "value": "top", "label": "Top" },
+            { "value": "center", "label": "Middle" },
+            { "value": "bottom", "label": "Bottom" }
+          ],
+          "default": "top",
+          "label": "Vertical alignment"
+        },
+        {
+          "type": "range",
+          "id": "column_gap",
+          "min": 24,
+          "max": 160,
+          "step": 8,
+          "unit": "px",
+          "default": 80,
+          "label": "Space between columns",
+          "info": "The divider sits in the middle of this space"
+        }
+      ]
+    },
     {
       "type": "heading",
       "name": "t:sections.rich-text.blocks.heading.name",

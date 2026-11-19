@@ -2,6 +2,14 @@
   z-index: 1;
 }
 
+.rich-text.rich-text--no-border-top {
+  border-top: none;
+}
+
+.rich-text.rich-text--no-border-bottom {
+  border-bottom: none;
+}
+
 .rich-text__wrapper {
   display: flex;
   justify-content: center;
@@ -83,4 +91,69 @@
 
 .rich-text__blocks.right .rich-text__buttons {
   justify-content: flex-end;
+}
+
+/* Two-column layout, enabled by adding a Column break block. */
+.rich-text__blocks--split {
+  max-width: none;
+}
+
+.rich-text__blocks--split > .rich-text__column + .rich-text__column {
+  margin-top: 4rem;
+}
+
+.rich-text__column > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.rich-text__column > * + * {
+  margin-top: 2rem;
+}
+
+.rich-text__column-break {
+  display: block;
+  width: 0;
+  height: 0;
+}
+
+/* The break marker is the first child of column two; don't let it offset the next block. */
+.rich-text__column > .rich-text__column-break + * {
+  margin-top: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .rich-text__blocks.rich-text__blocks--split {
+    display: grid;
+    grid-template-columns: var(--rich-text-columns, 1fr 1fr);
+    max-width: none;
+  }
+
+  .rich-text__blocks--split > .rich-text__column + .rich-text__column {
+    margin-top: 0;
+  }
+
+  .rich-text__column {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding-right: calc(var(--rich-text-column-gap, 80px) / 2);
+  }
+
+  .rich-text__column--second {
+    padding-right: 0;
+    padding-left: calc(var(--rich-text-column-gap, 80px) / 2);
+  }
+
+  .rich-text__blocks--divider .rich-text__column--second {
+    border-left: 0.1rem solid rgba(var(--color-foreground), 0.2);
+  }
+
+  .rich-text__blocks--valign-center .rich-text__column {
+    justify-content: center;
+  }
+
+  .rich-text__blocks--valign-bottom .rich-text__column {
+    justify-content: flex-end;
+  }
 }
