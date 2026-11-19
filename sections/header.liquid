@@ -1,16 +1,18 @@
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
+{% comment %} <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'"> {% endcomment %}
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
+{% comment %}
 <link
   rel="stylesheet"
   href="{{ 'component-cart-notification.css' | asset_url }}"
   media="print"
   onload="this.media='all'"
 >
+{% endcomment %}
 
-{%- if settings.predictive_search_enabled -%}
+{% comment %} {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
-{%- endif -%}
+{%- endif -%} {% endcomment %}
 
 {%- if section.settings.menu_type_desktop == 'mega' -%}
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -124,7 +126,7 @@
   }
 {%- endstyle -%}
 
-<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+{% comment %} <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script> {% endcomment %}
 
 {%- liquid
   for block in section.blocks
@@ -166,18 +168,18 @@
   -%}
   <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if country_selector or language_selector %} header--has-localizations{% endif %}">
     {%- liquid
-      assign render_search_left = false
-      if section.settings.logo_position == 'top-center' or section.settings.menu == blank or shop.customer_accounts_enabled
-        assign render_search_left = true
-      endif
+      # assign render_search_left = false
+      # if section.settings.logo_position == 'top-center' or section.settings.menu == blank or shop.customer_accounts_enabled
+      #   assign render_search_left = true
+      # endif
 
       if section.settings.menu != blank
         render 'header-drawer', show_country_selector: country_selector, show_language_selector: language_selector, show_social_links: social_links
       endif
 
-      if render_search_left
-        render 'header-search', input_id: 'Search-In-Modal-1'
-      endif
+      # if render_search_left
+      #   render 'header-search', input_id: 'Search-In-Modal-1'
+      # endif
     -%}
 
     {%- if section.settings.logo_position != 'middle-center' -%}
@@ -280,7 +282,7 @@
           </localization-form>
         {%- endif -%}
       </div>
-      {% render 'header-search', input_id: 'Search-In-Modal' %}
+      {% comment %} {% render 'header-search', input_id: 'Search-In-Modal' %} {% endcomment %}
 
       {%- if shop.customer_accounts_enabled -%}
         <shopify-account
@@ -299,6 +301,7 @@
         {%- endcase -%}
       {%- endfor -%}
 
+      {% comment %}
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
           <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
@@ -315,16 +318,19 @@
           </div>
         {%- endif -%}
       </a>
+      {% endcomment %}
     </div>
   </header>
 </{{ header_tag }}>
 
+{% comment %}
 {%- if settings.cart_type == 'notification' -%}
   {%- render 'cart-notification',
     color_scheme: section.settings.color_scheme,
     desktop_menu_type: section.settings.menu_type_desktop
   -%}
 {%- endif -%}
+{% endcomment %}
 
 {% javascript %}
   class StickyHeader extends HTMLElement {
@@ -481,6 +487,7 @@
   }
 </script>
 
+{% comment %}
 {%- if request.page_type == 'index' -%}
   {% assign potential_action_target = request.origin | append: routes.search_url | append: '?q={search_term_string}' %}
   <script type="application/ld+json">
@@ -497,6 +504,7 @@
     }
   </script>
 {%- endif -%}
+{% endcomment %}
 
 {% schema %}
 {
