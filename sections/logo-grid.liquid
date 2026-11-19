@@ -1,0 +1,299 @@
+{{ 'section-logo-grid.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign logo_key = section.settings.logo_field | strip
+  assign name_key = section.settings.name_field | strip
+  assign link_key = section.settings.link_field | strip
+-%}
+
+<div class="logo-grid color-{{ section.settings.color_scheme }} gradient">
+  <div
+    class="page-width section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    {% if settings.animations_reveal_on_scroll %}
+      data-cascade
+    {% endif %}
+  >
+    {%- unless section.settings.title == blank -%}
+      <h2 class="logo-grid__title inline-richtext {{ section.settings.heading_size }} logo-grid__title--{{ section.settings.heading_alignment }}">
+        {{ section.settings.title }}
+      </h2>
+    {%- endunless -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul
+        class="logo-grid__list list-unstyled{% if section.settings.grayscale %} logo-grid__list--grayscale{% endif %}"
+        style="--logo-columns-desktop: {{ section.settings.columns_desktop }}; --logo-columns-mobile: {{ section.settings.columns_mobile }}; --logo-max-height: {{ section.settings.logo_height }}px; --logo-gap-x: {{ section.settings.gap_horizontal }}px; --logo-gap-y: {{ section.settings.gap_vertical }}px;"
+        role="list"
+      >
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign client = block.settings.client
+            assign logo = client[logo_key].value
+            assign client_name = client[name_key].value
+            assign client_link = client[link_key].value
+            assign logo_scale = block.settings.scale | divided_by: 100.0
+          -%}
+          <li
+            class="logo-grid__item"
+            style="--logo-scale: {{ logo_scale }}; --logo-offset-y: {{ block.settings.offset_y }}px;"
+            {{ block.shopify_attributes }}
+          >
+            {%- if logo != blank -%}
+              {%- if client_link != blank -%}
+                <a
+                  href="{{ client_link }}"
+                  class="logo-grid__link"
+                  {% if section.settings.open_new_tab %}
+                    target="_blank" rel="noopener"
+                  {% endif %}
+                >
+              {%- endif -%}
+              {{
+                logo
+                | image_url: width: 600
+                | image_tag:
+                  class: 'logo-grid__image',
+                  widths: '150, 300, 450, 600',
+                  sizes: '(min-width: 750px) 20vw, 40vw',
+                  loading: 'lazy',
+                  alt: client_name
+              }}
+              {%- if client_link != blank -%}
+                </a>
+              {%- endif -%}
+            {%- elsif request.design_mode -%}
+              <span class="logo-grid__placeholder">
+                {%- if client == blank -%}Choose a client{%- else -%}{{ client_name | default: 'Client' }} has no logo{%- endif -%}
+              </span>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Logo grid",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 50,
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__3.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left",
+      "label": "Heading alignment"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 5,
+      "label": "Columns on desktop"
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2,
+      "label": "Columns on mobile"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "min": 20,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 60,
+      "label": "Base logo height",
+      "info": "Each logo's scale is a percentage of this"
+    },
+    {
+      "type": "range",
+      "id": "gap_horizontal",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 32,
+      "label": "Horizontal gap between logos",
+      "info": "Mobile uses half this value"
+    },
+    {
+      "type": "range",
+      "id": "gap_vertical",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40,
+      "label": "Vertical gap between logos",
+      "info": "Mobile uses half this value"
+    },
+    {
+      "type": "checkbox",
+      "id": "grayscale",
+      "default": false,
+      "label": "Show logos in grayscale",
+      "info": "Full colour on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_new_tab",
+      "default": true,
+      "label": "Open client links in a new tab"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Client fields"
+    },
+    {
+      "type": "text",
+      "id": "logo_field",
+      "default": "logo",
+      "label": "Logo field key",
+      "info": "Must be a file (image) field"
+    },
+    {
+      "type": "text",
+      "id": "name_field",
+      "default": "name",
+      "label": "Name field key",
+      "info": "Used as the logo's alt text"
+    },
+    {
+      "type": "text",
+      "id": "link_field",
+      "default": "url",
+      "label": "Link field key",
+      "info": "Optional URL field"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "client",
+      "name": "Client logo",
+      "settings": [
+        {
+          "type": "metaobject",
+          "id": "client",
+          "metaobject_type": "client",
+          "label": "Client"
+        },
+        {
+          "type": "range",
+          "id": "scale",
+          "min": 25,
+          "max": 200,
+          "step": 5,
+          "unit": "%",
+          "default": 100,
+          "label": "Logo scale"
+        },
+        {
+          "type": "range",
+          "id": "offset_y",
+          "min": -20,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 0,
+          "label": "Vertical nudge",
+          "info": "Negative moves the logo up"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo grid",
+      "blocks": [
+        { "type": "client" },
+        { "type": "client" },
+        { "type": "client" },
+        { "type": "client" },
+        { "type": "client" }
+      ]
+    }
+  ]
+}
+{% endschema %}
