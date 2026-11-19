@@ -1,0 +1,80 @@
+.metrics__title {
+  margin: 0 0 3rem;
+}
+
+.metrics__list {
+  --metrics-border: 0.1rem solid rgba(var(--color-foreground), 0.2);
+  --metrics-gutter: 2.4rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  border-top: var(--metrics-border);
+}
+
+.metrics__list--center {
+  text-align: center;
+}
+
+.metrics__item {
+  padding: 3rem var(--metrics-gutter);
+}
+
+.metrics__number {
+  margin: 0;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
+  color: rgb(var(--color-foreground));
+  line-height: 1;
+}
+
+.metrics__label {
+  margin: 1.2rem 0 0;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+/* Mobile: two per row. Divider between the pair, and above the second row onward. */
+@media screen and (max-width: 749px) {
+  .metrics__item:nth-child(2n) {
+    border-left: var(--metrics-border);
+  }
+
+  .metrics__item:nth-child(n + 3) {
+    border-top: var(--metrics-border);
+  }
+
+  .metrics__list--left .metrics__item:nth-child(2n + 1) {
+    padding-left: 0;
+  }
+
+  .metrics__list--left .metrics__item:nth-child(2n) {
+    padding-right: 0;
+  }
+}
+
+/* Desktop: one row, every block the same width. */
+@media screen and (min-width: 750px) {
+  .metrics__list {
+    grid-template-columns: repeat(var(--metrics-count, 4), minmax(0, 1fr));
+  }
+
+  .metrics__item {
+    padding-top: 4rem;
+    padding-bottom: 0;
+  }
+
+  .metrics__item + .metrics__item {
+    border-left: var(--metrics-border);
+  }
+
+  .metrics__list--left .metrics__item:first-child {
+    padding-left: 0;
+  }
+}
+
+/* A single metric spans the full width on mobile too. */
+.metrics__list:has(> .metrics__item:only-child) {
+  grid-template-columns: minmax(0, 1fr);
+}
