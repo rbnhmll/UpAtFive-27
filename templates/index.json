@@ -141,7 +141,9 @@
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "Learn more",
-            "link": "#"
+            "link": "#",
+            "override_color_scheme": true,
+            "color_scheme": "scheme-3"
           }
         },
         "column_WcNViC": {
@@ -150,7 +152,9 @@
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "Learn more",
-            "link": "#"
+            "link": "#",
+            "override_color_scheme": true,
+            "color_scheme": "scheme-5"
           }
         },
         "column_8Dz7Xk": {
@@ -159,7 +163,9 @@
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "Learn more",
-            "link": "#"
+            "link": "#",
+            "override_color_scheme": true,
+            "color_scheme": "scheme-2"
           }
         }
       },
@@ -170,7 +176,7 @@
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "title": "Multicolumn",
+        "title": "We approach transformation in three ways.",
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
@@ -178,6 +184,7 @@
         "button_link": "",
         "columns_desktop": 3,
         "column_spacing": 24,
+        "show_border": true,
         "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "",
@@ -196,7 +203,9 @@
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
-            "link": ""
+            "link": "",
+            "override_color_scheme": false,
+            "color_scheme": ""
           }
         },
         "column_9t9aAR": {
@@ -205,7 +214,9 @@
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
-            "link": ""
+            "link": "",
+            "override_color_scheme": false,
+            "color_scheme": ""
           }
         },
         "column_PfiR6h": {
@@ -214,7 +225,9 @@
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
-            "link": ""
+            "link": "",
+            "override_color_scheme": false,
+            "color_scheme": ""
           }
         },
         "column_GWqyGH": {
@@ -223,7 +236,9 @@
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
-            "link": ""
+            "link": "",
+            "override_color_scheme": false,
+            "color_scheme": ""
           }
         },
         "column_mbF6QL": {
@@ -232,7 +247,9 @@
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
-            "link": ""
+            "link": "",
+            "override_color_scheme": false,
+            "color_scheme": ""
           }
         },
         "column_BNpWzm": {
@@ -241,7 +258,9 @@
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
-            "link": ""
+            "link": "",
+            "override_color_scheme": false,
+            "color_scheme": ""
           }
         }
       },
@@ -263,6 +282,7 @@
         "button_link": "",
         "columns_desktop": 3,
         "column_spacing": 0,
+        "show_border": true,
         "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "scheme-4",
