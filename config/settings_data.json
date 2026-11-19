@@ -10,13 +10,13 @@
 {
   "current": {
     "logo": "shopify://shop_images/upatfive_logo_large_d161d377-625d-45a6-9cc6-d6e36ad640ae.png",
-    "logo_width": 100,
+    "logo_width": 50,
     "type_header_font": "figtree_n5",
     "heading_scale": 125,
     "type_body_font": "anonymous_pro_n4",
     "body_scale": 105,
     "page_width": 1400,
-    "spacing_sections": 20,
+    "spacing_sections": 0,
     "spacing_grid_horizontal": 24,
     "spacing_grid_vertical": 24,
     "animations_reveal_on_scroll": true,
