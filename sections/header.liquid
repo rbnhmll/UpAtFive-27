@@ -93,6 +93,37 @@
     --shopify-account-dialog-position-top: var(--account-dialog-top, var(--header-height, 0px));
   }
 
+  .header__contact-button {
+    gap: 1rem;
+    margin-left: 1rem;
+    white-space: nowrap;
+  }
+
+  .header__contact-button .svg-wrapper {
+    width: 1.4rem;
+    height: 1rem;
+    transition: transform var(--duration-short) ease;
+  }
+
+  .header__contact-button .icon-arrow {
+    width: 100%;
+    height: 100%;
+  }
+
+  .header__contact-button:hover .svg-wrapper {
+    transform: translateX(0.3rem);
+  }
+
+  @media screen and (max-width: 749px) {
+    .header__contact-button {
+      min-width: 0;
+      min-height: calc(3.6rem + var(--buttons-border-width) * 2);
+      padding: 0 1.4rem;
+      font-size: 1.3rem;
+      gap: 0.6rem;
+    }
+  }
+
   shopify-account.header__icon:not(:defined) {
     display: flex;
     align-items: center;
@@ -319,6 +350,16 @@
         {%- endif -%}
       </a>
       {% endcomment %}
+
+      {%- if section.settings.show_contact_button and section.settings.contact_button_label != blank -%}
+        <a
+          href="{{ section.settings.contact_button_link | default: '/pages/contact' }}"
+          class="header__contact-button button{% if section.settings.contact_button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+        >
+          {{- section.settings.contact_button_label | escape -}}
+          <span class="svg-wrapper" aria-hidden="true">{{ 'icon-arrow.svg' | inline_asset_content }}</span>
+        </a>
+      {%- endif -%}
     </div>
   </header>
 </{{ header_tag }}>
@@ -646,6 +687,34 @@
     {
       "type": "paragraph",
       "content": "t:sections.header.settings.customer_account_menu.content"
+    },
+    {
+      "type": "header",
+      "content": "Contact button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact_button",
+      "default": true,
+      "label": "Show contact button"
+    },
+    {
+      "type": "text",
+      "id": "contact_button_label",
+      "default": "Let's chat",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "contact_button_link",
+      "label": "Button link",
+      "info": "Defaults to /pages/contact"
+    },
+    {
+      "type": "checkbox",
+      "id": "contact_button_style_secondary",
+      "default": false,
+      "label": "Use outline button style"
     },
     {
       "type": "header",
