@@ -22,7 +22,7 @@
         "text_FFYeRJ": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+            "text": "<p>As Chameleons, we are transformation experts who immerse and embed into your business, bringing leadership, execution, and team recruitment that energize change from within.</p><p>Chameleons blend in, so you stand out.</p>"
           }
         },
         "button_pVTt6r": {
@@ -282,6 +282,113 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "logo_grid_a7BgxW": {
+      "type": "logo-grid",
+      "blocks": {
+        "client_JNVYmM": {
+          "type": "client",
+          "settings": {
+            "client": "pascha",
+            "scale": 90,
+            "offset_y": 0
+          }
+        },
+        "client_4TketU": {
+          "type": "client",
+          "settings": {
+            "client": "yorkshire-valley-farms",
+            "scale": 115,
+            "offset_y": 0
+          }
+        },
+        "client_pitfY9": {
+          "type": "client",
+          "settings": {
+            "client": "lightburn-software",
+            "scale": 100,
+            "offset_y": 0
+          }
+        },
+        "client_pkzaEQ": {
+          "type": "client",
+          "settings": {
+            "client": "mockingbird",
+            "scale": 160,
+            "offset_y": 0
+          }
+        },
+        "client_axNNra": {
+          "type": "client",
+          "settings": {
+            "client": "skiis-biikes",
+            "scale": 150,
+            "offset_y": 0
+          }
+        },
+        "client_Bg6PLV": {
+          "type": "client",
+          "settings": {
+            "client": "jenny-bird",
+            "scale": 160,
+            "offset_y": 0
+          }
+        },
+        "client_pTyC9W": {
+          "type": "client",
+          "settings": {
+            "client": "wwf",
+            "scale": 120,
+            "offset_y": 0
+          }
+        },
+        "client_pLhmGK": {
+          "type": "client",
+          "settings": {
+            "client": "denver-modern",
+            "scale": 120,
+            "offset_y": 0
+          }
+        },
+        "client_EgWihf": {
+          "type": "client",
+          "settings": {
+            "client": "canada-learning-code",
+            "scale": 100,
+            "offset_y": 0
+          }
+        }
+      },
+      "block_order": [
+        "client_JNVYmM",
+        "client_4TketU",
+        "client_pitfY9",
+        "client_pkzaEQ",
+        "client_axNNra",
+        "client_Bg6PLV",
+        "client_pTyC9W",
+        "client_pLhmGK",
+        "client_EgWihf"
+      ],
+      "name": "Logo grid",
+      "settings": {
+        "title": "We're in good company",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "columns_desktop": 3,
+        "columns_mobile": 2,
+        "logo_height": 60,
+        "gap_horizontal": 20,
+        "gap_vertical": 20,
+        "grayscale": false,
+        "open_new_tab": true,
+        "color_scheme": "",
+        "logo_field": "logo",
+        "name_field": "name",
+        "link_field": "url",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -289,6 +396,7 @@
     "metrics_Kq7mPx",
     "multicolumn_97cCXG",
     "multicolumn_4Xiy9f",
-    "rich_text_teA8dU"
+    "rich_text_teA8dU",
+    "logo_grid_a7BgxW"
   ]
 }
