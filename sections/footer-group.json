@@ -13,9 +13,29 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "link_list_Et7AB8": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Quick links",
+            "menu": "footer"
+          }
+        },
+        "link_list_dqfh6C": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Our Expertise",
+            "menu": "main-menu"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_Et7AB8",
+        "link_list_dqfh6C"
+      ],
       "settings": {
         "color_scheme": "scheme-4",
-        "newsletter_enable": true,
+        "newsletter_enable": false,
         "newsletter_heading": "Subscribe to our emails",
         "enable_follow_on_shop": false,
         "show_social": false,

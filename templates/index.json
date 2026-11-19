@@ -15,7 +15,7 @@
         "heading_wBnFQG": {
           "type": "heading",
           "settings": {
-            "heading": "Go beyond growth.[br]Ignite transformation.",
+            "heading": "Go beyond growth. Ignite transformation.",
             "heading_size": "hxxl"
           }
         },
@@ -57,22 +57,39 @@
       "blocks": {
         "metric_a1": {
           "type": "metric",
-          "settings": { "number": "100+", "label": "Metric name" }
+          "settings": {
+            "number": "100+",
+            "label": "Metric name"
+          }
         },
         "metric_a2": {
           "type": "metric",
-          "settings": { "number": "100+", "label": "Metric name" }
+          "settings": {
+            "number": "100+",
+            "label": "Metric name"
+          }
         },
         "metric_a3": {
           "type": "metric",
-          "settings": { "number": "100+", "label": "Metric name" }
+          "settings": {
+            "number": "100+",
+            "label": "Metric name"
+          }
         },
         "metric_a4": {
           "type": "metric",
-          "settings": { "number": "100+", "label": "Metric name" }
+          "settings": {
+            "number": "100+",
+            "label": "Metric name"
+          }
         }
       },
-      "block_order": ["metric_a1", "metric_a2", "metric_a3", "metric_a4"],
+      "block_order": [
+        "metric_a1",
+        "metric_a2",
+        "metric_a3",
+        "metric_a4"
+      ],
       "settings": {
         "title": "",
         "heading_size": "h1",
