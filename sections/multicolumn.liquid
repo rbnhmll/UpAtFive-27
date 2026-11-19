@@ -1,6 +1,14 @@
 {{ 'section-multicolumn.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign columns_mobile_int = section.settings.columns_mobile | plus: 0
+  assign show_mobile_slider = false
+  if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
+    assign show_mobile_slider = true
+  endif
+-%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -13,15 +21,28 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-{%- endstyle -%}
 
-{%- liquid
-  assign columns_mobile_int = section.settings.columns_mobile | plus: 0
-  assign show_mobile_slider = false
-  if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
-    assign show_mobile_slider = true
-  endif
--%}
+  {%- assign column_spacing = section.settings.column_spacing -%}
+  {%- if column_spacing > 0 -%}
+    #Slider-{{ section.id }} {
+      --grid-desktop-horizontal-spacing: {{ column_spacing }}px;
+      --grid-desktop-vertical-spacing: {{ column_spacing }}px;
+      --grid-mobile-horizontal-spacing: {{ column_spacing | divided_by: 2 }}px;
+      --grid-mobile-vertical-spacing: {{ column_spacing | divided_by: 2 }}px;
+    }
+  {%- else -%}
+    {%- comment -%}
+      Negative spacing makes each column one border-width wider, so the
+      overlapping borders still fill the row exactly. See section-multicolumn.css.
+    {%- endcomment -%}
+    #Slider-{{ section.id }} {
+      --grid-desktop-horizontal-spacing: calc(var(--text-boxes-border-width) * -1);
+      --grid-desktop-vertical-spacing: 0px;
+      --grid-mobile-horizontal-spacing: {% if show_mobile_slider %}0px{% else %}calc(var(--text-boxes-border-width) * -1){% endif %};
+      --grid-mobile-vertical-spacing: 0px;
+    }
+  {%- endif -%}
+{%- endstyle -%}
 
 <div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
   <div
@@ -44,7 +65,7 @@
     {%- endunless -%}
     <slider-component class="slider-mobile-gutter">
       <ul
-        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
+        class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}{% if section.settings.column_spacing == 0 %} multicolumn-list--collapsed{% endif %}"
         id="Slider-{{ section.id }}"
         role="list"
       >
@@ -309,6 +330,17 @@
       "step": 1,
       "default": 3,
       "label": "t:sections.multicolumn.settings.columns_desktop.label"
+    },
+    {
+      "type": "range",
+      "id": "column_spacing",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 24,
+      "label": "Column spacing",
+      "info": "Set to 0 for a connected, calendar-style grid. Mobile uses half this value."
     },
     {
       "type": "select",

@@ -231,3 +231,36 @@
     display: list-item;
   }
 }
+
+/* Collapsed (0 spacing): neighbouring cards overlap by one border width so
+   shared edges draw once. Column widths are widened to match via the negative
+   --grid-*-horizontal-spacing set in the section's style block. */
+.multicolumn-list--collapsed {
+  column-gap: 0;
+  row-gap: 0;
+  padding-bottom: var(--text-boxes-border-width);
+}
+
+.multicolumn-list--collapsed .multicolumn-card {
+  height: 100%;
+  border-radius: 0;
+}
+
+.multicolumn-list--collapsed .multicolumn-card:after,
+.multicolumn-list--collapsed .multicolumn-card > .multicolumn-card__image-wrapper--full-width:not(.multicolumn-card-spacing) {
+  border-radius: 0;
+}
+
+@media screen and (max-width: 989px) {
+  .multicolumn-list--collapsed:not(.slider) .multicolumn-list__item:not(:only-child) {
+    margin-right: calc(var(--text-boxes-border-width) * -1);
+    margin-bottom: calc(var(--text-boxes-border-width) * -1);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .multicolumn-list--collapsed .multicolumn-list__item:not(:only-child) {
+    margin-right: calc(var(--text-boxes-border-width) * -1);
+    margin-bottom: calc(var(--text-boxes-border-width) * -1);
+  }
+}
