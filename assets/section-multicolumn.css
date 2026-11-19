@@ -232,6 +232,22 @@
   }
 }
 
+/* Per-column color scheme override: show the scheme's own background, without the
+   section's default tint. The color-* class re-scopes --color-background/foreground. */
+.multicolumn .multicolumn-card.multicolumn-card--scheme {
+  background: rgb(var(--color-background));
+}
+
+/* Lock border colour to the section's scheme. The var() is resolved on the list
+   (section scheme) and inherited as a value, so a card's own color-* class can't change it. */
+.multicolumn-list {
+  --multicolumn-border-rgb: var(--color-foreground);
+}
+
+.multicolumn-list .multicolumn-card {
+  border-color: rgba(var(--multicolumn-border-rgb), var(--text-boxes-border-opacity));
+}
+
 /* Collapsed (0 spacing): neighbouring cards overlap by one border width so
    shared edges draw once. Column widths are widened to match via the negative
    --grid-*-horizontal-spacing set in the section's style block. */
