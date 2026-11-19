@@ -72,6 +72,9 @@
                     class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
                   >
                     {{- block.settings.button_label | escape -}}
+                    {%- if block.settings.button_arrow -%}
+                      <span class="button__arrow svg-wrapper" aria-hidden="true">{{ 'icon-arrow.svg' | inline_asset_content }}</span>
+                    {%- endif -%}
                   </a>
                 {%- endif -%}
                 {%- if block.settings.button_label_2 != blank -%}
@@ -84,6 +87,9 @@
                     class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
                   >
                     {{- block.settings.button_label_2 | escape -}}
+                    {%- if block.settings.button_arrow_2 -%}
+                      <span class="button__arrow svg-wrapper" aria-hidden="true">{{ 'icon-arrow.svg' | inline_asset_content }}</span>
+                    {%- endif -%}
                   </a>
                 {%- endif -%}
               </div>
@@ -312,6 +318,12 @@
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_1.label"
         },
         {
+          "type": "checkbox",
+          "id": "button_arrow",
+          "default": false,
+          "label": "Show arrow"
+        },
+        {
          "type": "header",
          "content": "t:sections.rich-text.blocks.buttons.settings.header_button2.content"
         },          
@@ -331,6 +343,12 @@
           "id": "button_style_secondary_2",
           "default": false,
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_2.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_arrow_2",
+          "default": false,
+          "label": "Show arrow"
         }
       ]
     }
