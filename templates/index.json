@@ -322,8 +322,8 @@
         "content_alignment": "left",
         "color_scheme": "scheme-4",
         "full_width": true,
-        "show_border_top": true,
-        "show_border_bottom": true,
+        "show_border_top": false,
+        "show_border_bottom": false,
         "padding_top": 40,
         "padding_bottom": 52
       }
@@ -408,7 +408,7 @@
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "title": "Multicolumn",
+        "title": "",
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
@@ -422,7 +422,7 @@
         "color_scheme": "scheme-4",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "padding_top": 100,
+        "padding_top": 0,
         "padding_bottom": 100
       }
     },
@@ -471,6 +471,100 @@
         "show_border_bottom": true,
         "padding_top": 40,
         "padding_bottom": 52
+      }
+    },
+    "rich_text_iMPNbT": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_LFkgQg": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Case studies",
+            "text_size": "h4",
+            "show_dash": true
+          }
+        },
+        "heading_FUkWQF": {
+          "type": "heading",
+          "settings": {
+            "heading": "Proof, not promises.",
+            "heading_size": "h1"
+          }
+        },
+        "column_break_xecJzA": {
+          "type": "column_break",
+          "settings": {
+            "show_divider": false,
+            "column_ratio": "67-33",
+            "vertical_alignment": "bottom",
+            "column_gap": 80
+          }
+        },
+        "button_yW69HY": {
+          "type": "button",
+          "settings": {
+            "button_label": "All case studies",
+            "button_link": "shopify://pages/our-work",
+            "button_style_secondary": false,
+            "button_arrow": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false,
+            "button_arrow_2": false
+          }
+        }
+      },
+      "block_order": [
+        "subheading_LFkgQg",
+        "heading_FUkWQF",
+        "column_break_xecJzA",
+        "button_yW69HY"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "show_border_top": false,
+        "show_border_bottom": false,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "featured_blog_YYHjDT": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "source": "projects",
+        "blog": "",
+        "post_limit": 3,
+        "projects": [
+          "mockingbird",
+          "skiis-biikes",
+          "yorkshire-valley-farms"
+        ],
+        "projects_view_all_link": "",
+        "projects_view_all_label": "View all case studies",
+        "project_text_alignment": "left",
+        "project_image_ratio": "landscape",
+        "project_link_label": "Learn more",
+        "show_industry": true,
+        "heading": "",
+        "heading_size": "h1",
+        "columns_desktop": 3,
+        "show_view_all": true,
+        "show_image": true,
+        "show_date": true,
+        "show_author": false,
+        "color_scheme": "scheme-1",
+        "project_title_field": "title",
+        "project_image_field": "image_grid",
+        "project_excerpt_field": "",
+        "project_link_field": "store_url",
+        "project_industry_field": "industry",
+        "padding_top": 0,
+        "padding_bottom": 36
       }
     },
     "logo_grid_a7BgxW": {
@@ -648,6 +742,8 @@
     "rich_text_h8WXpL",
     "multicolumn_4Xiy9f",
     "rich_text_teA8dU",
+    "rich_text_iMPNbT",
+    "featured_blog_YYHjDT",
     "logo_grid_a7BgxW",
     "rich_text_e4BDKy"
   ]
