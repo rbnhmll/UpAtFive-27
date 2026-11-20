@@ -151,7 +151,8 @@
           "button": "#020912",
           "button_label": "#fcfcfc",
           "secondary_button_label": "#020912",
-          "shadow": "#020912"
+          "shadow": "#020912",
+          "accent": "#FFDFB8"
         }
       },
       "scheme-2": {
@@ -162,7 +163,8 @@
           "button": "#020912",
           "button_label": "#e4f6ff",
           "secondary_button_label": "#020912",
-          "shadow": "#020912"
+          "shadow": "#020912",
+          "accent": ""
         }
       },
       "scheme-3": {
@@ -173,7 +175,8 @@
           "button": "#020912",
           "button_label": "#dbe9e0",
           "secondary_button_label": "#020912",
-          "shadow": "#020912"
+          "shadow": "#020912",
+          "accent": ""
         }
       },
       "scheme-4": {
@@ -184,7 +187,8 @@
           "button": "#fcfcfc",
           "button_label": "#020912",
           "secondary_button_label": "#fcfcfc",
-          "shadow": "#020912"
+          "shadow": "#020912",
+          "accent": "#FFDFB8"
         }
       },
       "scheme-5": {
@@ -195,7 +199,8 @@
           "button": "#020912",
           "button_label": "#ffdfb8",
           "secondary_button_label": "#020912",
-          "shadow": "#020912"
+          "shadow": "#020912",
+          "accent": ""
         }
       }
     }

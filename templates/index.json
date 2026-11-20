@@ -132,6 +132,88 @@
         "padding_bottom": 36
       }
     },
+    "image_banner_QGiBQ9": {
+      "type": "image-banner",
+      "blocks": {
+        "text_qyddgM": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "text_qyddgM"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/apps-for-life.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "small",
+        "image_behavior": "none",
+        "desktop_content_position": "bottom-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": true,
+        "color_scheme": "scheme-1",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "rich_text_K4JRxB": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_MeyMU7": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Our approach",
+            "text_size": "h4",
+            "show_dash": true
+          }
+        },
+        "heading_NfVKFj": {
+          "type": "heading",
+          "settings": {
+            "heading": "We approach transformation in three ways.",
+            "heading_size": "h1"
+          }
+        },
+        "column_break_g6tQyC": {
+          "type": "column_break",
+          "settings": {
+            "show_divider": false,
+            "column_ratio": "67-33",
+            "vertical_alignment": "center",
+            "column_gap": 24
+          }
+        },
+        "text_aeYdkF": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Leverage our services in any one of these areas or combine them for greater effectiveness.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_MeyMU7",
+        "heading_NfVKFj",
+        "column_break_g6tQyC",
+        "text_aeYdkF"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "show_border_top": false,
+        "show_border_bottom": false,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "multicolumn_97cCXG": {
       "type": "multicolumn",
       "blocks": {
@@ -176,11 +258,11 @@
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "title": "We approach transformation in three ways.",
+        "title": "",
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
-        "button_label": "Button label",
+        "button_label": "",
         "button_link": "",
         "columns_desktop": 3,
         "column_spacing": 24,
@@ -192,6 +274,58 @@
         "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "rich_text_h8WXpL": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_HJ8Nfj": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Our practices",
+            "text_size": "h4",
+            "show_dash": true
+          }
+        },
+        "heading_9tUCaC": {
+          "type": "heading",
+          "settings": {
+            "heading": "Six practices. One seamless journey.",
+            "heading_size": "h1"
+          }
+        },
+        "column_break_39NC8t": {
+          "type": "column_break",
+          "settings": {
+            "show_divider": false,
+            "column_ratio": "50-50",
+            "vertical_alignment": "center",
+            "column_gap": 144
+          }
+        },
+        "text_DKKLCb": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_HJ8Nfj",
+        "heading_9tUCaC",
+        "column_break_39NC8t",
+        "text_DKKLCb"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "show_border_top": true,
+        "show_border_bottom": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     },
     "multicolumn_4Xiy9f": {
@@ -508,7 +642,10 @@
     "rich_text_CJFzft",
     "rich_text_tGFn8P",
     "metrics_Kq7mPx",
+    "image_banner_QGiBQ9",
+    "rich_text_K4JRxB",
     "multicolumn_97cCXG",
+    "rich_text_h8WXpL",
     "multicolumn_4Xiy9f",
     "rich_text_teA8dU",
     "logo_grid_a7BgxW",
