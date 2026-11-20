@@ -81,6 +81,12 @@
             "id": "shadow",
             "label": "t:settings_schema.colors.settings.shadow.label",
             "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "accent",
+            "label": "Accent",
+            "info": "Used for highlights such as subheading dashes. Falls back to the button color if blank."
           }
         ],
         "role": {

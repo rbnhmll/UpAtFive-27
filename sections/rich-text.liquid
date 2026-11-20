@@ -60,6 +60,17 @@
               >
                 {{ block.settings.heading }}
               </h2>
+            {%- when 'subheading' -%}
+              <h3
+                class="rich-text__subheading inline-richtext {{ block.settings.text_size }}{% if block.settings.show_dash %} rich-text__subheading--dash{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                <span>{{ block.settings.subheading }}</span>
+              </h3>
             {%- when 'caption' -%}
               <p
                 class="rich-text__caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -321,6 +332,38 @@
           ],
           "default": "h1",
           "label": "t:sections.all.heading_size.label"
+        }
+      ]
+    },
+    {
+      "type": "subheading",
+      "name": "Subheading",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "subheading",
+          "default": "Subheading",
+          "label": "Subheading"
+        },
+        {
+          "type": "select",
+          "id": "text_size",
+          "options": [
+            { "value": "h4", "label": "Extra small" },
+            { "value": "h3", "label": "Small" },
+            { "value": "h2", "label": "Medium" },
+            { "value": "h1", "label": "Large" },
+            { "value": "h0", "label": "Extra large" }
+          ],
+          "default": "h3",
+          "label": "Text size"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_dash",
+          "default": false,
+          "label": "Show leading dash",
+          "info": "Uses the color scheme's accent color"
         }
       ]
     },

@@ -93,6 +93,29 @@
   justify-content: flex-end;
 }
 
+/* Subheading block */
+.rich-text__subheading--dash {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.rich-text__subheading--dash::before {
+  content: '';
+  flex-shrink: 0;
+  width: 1.2em;
+  height: max(0.2rem, 0.08em);
+  background-color: rgb(var(--color-accent, var(--color-button)));
+}
+
+.rich-text__blocks.center .rich-text__subheading--dash {
+  justify-content: center;
+}
+
+.rich-text__blocks.right .rich-text__subheading--dash {
+  justify-content: flex-end;
+}
+
 /* Two-column layout, enabled by adding a Column break block. */
 .rich-text__blocks--split {
   max-width: none;
