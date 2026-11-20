@@ -103,7 +103,7 @@
 .rich-text__subheading--dash::before {
   content: '';
   flex-shrink: 0;
-  width: 1.2em;
+  width: 3rem;
   height: max(0.2rem, 0.08em);
   background-color: rgb(var(--color-accent, var(--color-button)));
 }
