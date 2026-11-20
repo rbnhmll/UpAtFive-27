@@ -536,7 +536,7 @@
       "type": "featured-blog",
       "name": "t:sections.featured-blog.presets.name",
       "settings": {
-        "source": "blog",
+        "source": "projects",
         "blog": "",
         "post_limit": 3,
         "projects": [
