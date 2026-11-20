@@ -125,7 +125,7 @@
       "settings": {
         "title": "",
         "heading_size": "h1",
-        "number_size": "hxl",
+        "number_size": "h0",
         "text_alignment": "left",
         "color_scheme": "",
         "padding_top": 36,
