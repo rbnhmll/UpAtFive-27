@@ -1,0 +1,109 @@
+{% doc %}
+  Renders a case study (project metaobject) as a bordered card, styled like the
+  multicolumn section's cards. Images are cropped to one aspect ratio so cards line up.
+
+  @param {object} project - The project metaobject entry.
+  @param {string} title_key - Field key for the title.
+  @param {string} image_key - Field key for the image (file reference).
+  @param {string} excerpt_key - Field key for the summary text.
+  @param {string} [link_key] - Field key for a URL field. Used when the project has no web page of its own.
+  @param {string} [industry_key] - Field key for the industry. Text, list of text, or (list of) metaobject reference.
+  @param {string} [link_label] - Text for the arrow link at the bottom of the card.
+  @param {string} [text_alignment] - `left`, `center` or `right`. Defaults to `left`.
+  @param {string} [image_ratio] - `landscape`, `wide`, `square` or `portrait`. Defaults to `landscape`.
+  @param {boolean} [show_image] - Whether to show the image. Defaults to `false`.
+  @param {boolean} [show_excerpt] - Whether to show the summary. Defaults to `false`.
+{% enddoc %}
+
+{%- if project and project != empty -%}
+  {%- liquid
+    assign title = project[title_key].value | default: project[title_key]
+    assign image = project[image_key].value
+    # metafield_text handles single-line, multi-line and rich text fields alike.
+    assign excerpt = project[excerpt_key] | metafield_text
+
+    # Prefer the project's own page (metaobject "Web pages" enabled); else an optional URL field.
+    assign url = project.system.url
+    if url == blank and link_key != blank
+      assign url = project[link_key].value
+    endif
+
+    # Industry badges. Supports text, list of text, and (list of) metaobject references;
+    # for references, the referenced entry's name/title/label field is used.
+    assign industries = ''
+    if industry_key != blank
+      assign industry_field = project[industry_key]
+      if industry_field != blank
+        assign is_reference = false
+        if industry_field.type contains 'metaobject_reference'
+          assign is_reference = true
+        endif
+
+        if industry_field.type contains 'list.'
+          for item in industry_field.value
+            if is_reference
+              assign label = item.name.value | default: item.title.value | default: item.label.value | default: item.system.handle
+            else
+              assign label = item
+            endif
+            if label != blank
+              assign industries = industries | append: label | append: '|~|'
+            endif
+          endfor
+        else
+          assign item = industry_field.value
+          if is_reference
+            assign label = item.name.value | default: item.title.value | default: item.label.value | default: item.system.handle
+          else
+            assign label = item
+          endif
+          if label != blank
+            assign industries = industries | append: label | append: '|~|'
+          endif
+        endif
+      endif
+    endif
+    assign industries = industries | split: '|~|'
+  -%}
+  <div class="project-card content-container project-card--{{ text_alignment | default: 'left' }}">
+    {%- if show_image and image != blank -%}
+      <div class="project-card__media project-card__media--{{ image_ratio | default: 'landscape' }}">
+        {{
+          image
+          | image_url: width: 1500
+          | image_tag:
+            widths: '360, 533, 720, 1000, 1500',
+            sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 90vw',
+            class: 'project-card__image motion-reduce',
+            loading: 'lazy',
+            alt: image.alt
+        }}
+      </div>
+    {%- endif -%}
+    <div class="project-card__info">
+      {%- if industries.size > 0 -%}
+        <ul class="project-card__badges list-unstyled" role="list">
+          {%- for industry in industries -%}
+            <li><span class="badge">{{ industry | escape }}</span></li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+      <h3 class="project-card__title h3">
+        {%- if url != blank -%}
+          <a href="{{ url }}" class="full-unstyled-link">{{ title | escape }}</a>
+        {%- else -%}
+          {{ title | escape }}
+        {%- endif -%}
+      </h3>
+      {%- if show_excerpt and excerpt != blank -%}
+        <p class="project-card__excerpt">{{ excerpt | strip_html | truncatewords: 30 }}</p>
+      {%- endif -%}
+      {%- if url != blank and link_label != blank -%}
+        <a href="{{ url }}" class="project-card__link link animate-arrow" aria-hidden="true" tabindex="-1">
+          {{- link_label | escape -}}
+          <span class="svg-wrapper"><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span>
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

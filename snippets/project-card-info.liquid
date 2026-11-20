@@ -1,0 +1,24 @@
+{% doc %}
+  Title + summary block for a project card. The card markup repeats this in two
+  places (inside and below the media) and CSS shows the right one per card style.
+
+  @param {string} title - The project title.
+  @param {string} [url] - Link for the title.
+  @param {string} [excerpt] - Summary text.
+  @param {boolean} [show_excerpt] - Whether to show the summary.
+{% enddoc %}
+
+<div class="card__information">
+  <h3 class="card__heading{% if show_excerpt %} h2{% endif %}">
+    {%- if url != blank -%}
+      <a href="{{ url }}" class="full-unstyled-link">{{ title | escape }}</a>
+    {%- else -%}
+      {{ title | escape }}
+    {%- endif -%}
+  </h3>
+  {%- if show_excerpt and excerpt != blank -%}
+    <p class="article-card__excerpt rte-width">
+      {{ excerpt | strip_html | truncatewords: 30 }}
+    </p>
+  {%- endif -%}
+</div>

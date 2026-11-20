@@ -2,6 +2,9 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-article-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-featured-blog.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.source == 'projects' -%}
+  {{ 'component-project-card.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -18,10 +21,35 @@
 {%- endstyle -%}
 
 {%- liquid
-  assign posts_displayed = section.settings.blog.articles_count
-  if section.settings.post_limit <= section.settings.blog.articles_count or section.settings.post_limit <= 4
-    assign posts_exceed_limit = true
-    assign posts_displayed = section.settings.post_limit
+  assign show_projects = false
+  if section.settings.source == 'projects'
+    assign show_projects = true
+  endif
+
+  if show_projects
+    assign projects = section.settings.projects
+    assign projects_count = section.settings.projects.count
+    assign posts_displayed = projects_count
+    assign slide_total = projects_count
+    if projects_count > 1
+      assign posts_exceed_limit = true
+    endif
+  else
+    assign slide_total = section.settings.post_limit
+    assign posts_displayed = section.settings.blog.articles_count
+    if section.settings.post_limit <= section.settings.blog.articles_count or section.settings.post_limit <= 4
+      assign posts_exceed_limit = true
+      assign posts_displayed = section.settings.post_limit
+    endif
+  endif
+
+  assign title_key = section.settings.project_title_field | strip
+  assign image_key = section.settings.project_image_field | strip
+  assign excerpt_key = section.settings.project_excerpt_field | strip
+  assign link_key = section.settings.project_link_field | strip
+  assign industry_key = ''
+  if section.settings.show_industry
+    assign industry_key = section.settings.project_industry_field | strip
   endif
 -%}
 <div class="blog color-{{ section.settings.color_scheme }} gradient{% if section.settings.heading == blank %} no-heading{% endif %}">
@@ -38,7 +66,16 @@
           {{ section.settings.heading }}
         </h2>
 
-        {%- if section.settings.blog != blank
+        {%- if show_projects -%}
+          {%- if section.settings.show_view_all and section.settings.projects_view_all_link != blank -%}
+            <a
+              href="{{ section.settings.projects_view_all_link }}"
+              class="link underlined-link large-up-hide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            >
+              {{ section.settings.projects_view_all_label | escape }}
+            </a>
+          {%- endif -%}
+        {%- elsif section.settings.blog != blank
           and section.settings.show_view_all
           and section.settings.post_limit < section.settings.blog.articles_count
         -%}
@@ -58,7 +95,38 @@
         class="blog__posts articles-wrapper contains-card contains-card--article{% if settings.blog_card_style == 'standard' %} contains-card--standard{% endif %} grid grid--peek grid--2-col-tablet grid--{{ section.settings.columns_desktop }}-col-desktop slider {% if posts_displayed > 2 %}slider--tablet{% else %}slider--mobile{% endif %}"
         role="list"
       >
-        {%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
+        {%- if show_projects and projects_count > 0 -%}
+          {%- for project in projects -%}
+            <li
+              id="Slide-{{ section.id }}-{{ forloop.index }}"
+              class="blog__post grid__item article slider__slide slider__slide--full-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+              {% endif %}
+            >
+              {% render 'project-card',
+                project: project,
+                title_key: title_key,
+                image_key: image_key,
+                excerpt_key: excerpt_key,
+                link_key: link_key,
+                link_label: section.settings.project_link_label,
+                industry_key: industry_key,
+                text_alignment: section.settings.project_text_alignment,
+                image_ratio: section.settings.project_image_ratio,
+                show_image: section.settings.show_image,
+                show_excerpt: true
+              %}
+            </li>
+          {%- endfor -%}
+        {%- elsif show_projects -%}
+          {%- if request.design_mode -%}
+            <li class="blog__post grid__item">
+              <p>Choose case studies in the section settings.</p>
+            </li>
+          {%- endif -%}
+        {%- elsif section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
           {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
             <li
               id="Slide-{{ section.id }}-{{ forloop.index }}"
@@ -139,7 +207,7 @@
         {%- endif -%}
       </ul>
       {%- if posts_exceed_limit -%}
-        <div class="slider-buttons{% if section.settings.post_limit < 3 %} medium-hide{% endif %}{% if section.settings.post_limit < 2 %} small-hide{% endif %}">
+        <div class="slider-buttons{% if slide_total < 3 %} medium-hide{% endif %}{% if slide_total < 2 %} small-hide{% endif %}">
           <button
             type="button"
             class="slider-button slider-button--prev"
@@ -154,7 +222,7 @@
             <span class="slider-counter--current">1</span>
             <span aria-hidden="true"> / </span>
             <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ section.settings.post_limit }}</span>
+            <span class="slider-counter--total">{{ slide_total }}</span>
           </div>
           <button
             type="button"
@@ -170,7 +238,21 @@
       {%- endif -%}
     </slider-component>
 
-    {%- if section.settings.show_view_all and section.settings.post_limit < section.settings.blog.articles_count -%}
+    {%- liquid
+      assign desktop_view_all_url = nil
+      assign desktop_view_all_label = 'sections.featured_blog.view_all' | t
+      if section.settings.show_view_all
+        if show_projects
+          if section.settings.projects_view_all_link != blank
+            assign desktop_view_all_url = section.settings.projects_view_all_link
+            assign desktop_view_all_label = section.settings.projects_view_all_label
+          endif
+        elsif section.settings.post_limit < section.settings.blog.articles_count
+          assign desktop_view_all_url = section.settings.blog.url
+        endif
+      endif
+    -%}
+    {%- if desktop_view_all_url != blank -%}
       <div
         class="blog__view-all center small-hide medium-hide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {% if settings.animations_reveal_on_scroll %}
@@ -178,12 +260,12 @@
         {% endif %}
       >
         <a
-          href="{{ section.settings.blog.url }}"
+          href="{{ desktop_view_all_url }}"
           id="ViewAll-{{ section.id }}"
           class="blog__button button"
           aria-labelledby="ViewAll-{{ section.id }} SectionHeading-{{ section.id }}"
         >
-          {{ 'sections.featured_blog.view_all' | t }}
+          {{ desktop_view_all_label | escape }}
         </a>
       </div>
     {%- endif -%}
@@ -199,9 +281,20 @@
   },
   "settings": [
     {
+      "type": "select",
+      "id": "source",
+      "options": [
+        { "value": "blog", "label": "Blog posts" },
+        { "value": "projects", "label": "Case studies" }
+      ],
+      "default": "blog",
+      "label": "Content source"
+    },
+    {
       "type": "blog",
       "id": "blog",
-      "label": "t:sections.featured-blog.settings.blog.label"
+      "label": "t:sections.featured-blog.settings.blog.label",
+      "visible_if": "{{ section.settings.source == 'blog' }}"
     },
     {
       "type": "range",
@@ -210,7 +303,71 @@
       "max": 4,
       "step": 1,
       "default": 3,
-      "label": "t:sections.featured-blog.settings.post_limit.label"
+      "label": "t:sections.featured-blog.settings.post_limit.label",
+      "visible_if": "{{ section.settings.source == 'blog' }}"
+    },
+    {
+      "type": "metaobject_list",
+      "id": "projects",
+      "metaobject_type": "project",
+      "limit": 12,
+      "label": "Case studies",
+      "info": "Shown in the order selected",
+      "visible_if": "{{ section.settings.source == 'projects' }}"
+    },
+    {
+      "type": "url",
+      "id": "projects_view_all_link",
+      "label": "\"View all\" link",
+      "visible_if": "{{ section.settings.source == 'projects' }}"
+    },
+    {
+      "type": "text",
+      "id": "projects_view_all_label",
+      "default": "View all case studies",
+      "label": "\"View all\" label",
+      "visible_if": "{{ section.settings.source == 'projects' }}"
+    },
+    {
+      "type": "select",
+      "id": "project_text_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left",
+      "label": "Card text alignment",
+      "visible_if": "{{ section.settings.source == 'projects' }}"
+    },
+    {
+      "type": "select",
+      "id": "project_image_ratio",
+      "options": [
+        { "value": "landscape", "label": "Landscape (3:2)" },
+        { "value": "wide", "label": "Wide (16:9)" },
+        { "value": "square", "label": "Square (1:1)" },
+        { "value": "portrait", "label": "Portrait (4:5)" }
+      ],
+      "default": "landscape",
+      "label": "Card image shape",
+      "info": "Images are cropped to fill this shape so every card lines up",
+      "visible_if": "{{ section.settings.source == 'projects' }}"
+    },
+    {
+      "type": "text",
+      "id": "project_link_label",
+      "default": "View case study",
+      "label": "Card link label",
+      "info": "Leave blank to hide",
+      "visible_if": "{{ section.settings.source == 'projects' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_industry",
+      "default": true,
+      "label": "Show industry badge",
+      "visible_if": "{{ section.settings.source == 'projects' }}"
     },
     {
       "type": "header",
@@ -280,13 +437,15 @@
       "type": "checkbox",
       "id": "show_date",
       "default": true,
-      "label": "t:sections.featured-blog.settings.show_date.label"
+      "label": "t:sections.featured-blog.settings.show_date.label",
+      "visible_if": "{{ section.settings.source == 'blog' }}"
     },
     {
       "type": "checkbox",
       "id": "show_author",
       "default": false,
-      "label": "t:sections.featured-blog.settings.show_author.label"
+      "label": "t:sections.featured-blog.settings.show_author.label",
+      "visible_if": "{{ section.settings.source == 'blog' }}"
     },
     {
       "type": "color_scheme",
@@ -295,6 +454,49 @@
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
     },    
+    {
+      "type": "header",
+      "content": "Case study fields"
+    },
+    {
+      "type": "text",
+      "id": "project_title_field",
+      "default": "title",
+      "label": "Title field key",
+      "visible_if": "{{ section.settings.source == 'projects' }}"
+    },
+    {
+      "type": "text",
+      "id": "project_image_field",
+      "default": "featured_image",
+      "label": "Image field key",
+      "info": "Must be a file (image) field",
+      "visible_if": "{{ section.settings.source == 'projects' }}"
+    },
+    {
+      "type": "text",
+      "id": "project_excerpt_field",
+      "default": "summary",
+      "label": "Summary field key",
+      "info": "Single-line, multi-line or rich text",
+      "visible_if": "{{ section.settings.source == 'projects' }}"
+    },
+    {
+      "type": "text",
+      "id": "project_link_field",
+      "default": "url",
+      "label": "Link field key",
+      "info": "Only used if the Project definition doesn't have web pages turned on",
+      "visible_if": "{{ section.settings.source == 'projects' }}"
+    },
+    {
+      "type": "text",
+      "id": "project_industry_field",
+      "default": "industry",
+      "label": "Industry field key",
+      "info": "Text, list of text, or a reference to another metaobject (its name, title or label field is shown)",
+      "visible_if": "{{ section.settings.source == 'projects' }}"
+    },
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
