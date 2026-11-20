@@ -1,0 +1,44 @@
+{% doc %}
+  Renders a file field value (image or video) for project sections.
+
+  @param {object} media - The file reference value (MediaImage, Video or GenericFile).
+  @param {string} [sizes] - The image `sizes` attribute.
+  @param {string} [class] - Class for the rendered element.
+  @param {boolean} [eager] - Load immediately (use for above-the-fold images).
+{% enddoc %}
+{%- if media != blank -%}
+  {%- if media.media_type == 'video' -%}
+    {{
+      media
+      | video_tag:
+        autoplay: true,
+        loop: true,
+        muted: true,
+        playsinline: true,
+        controls: false,
+        class: class,
+        image_size: '1500x'
+    }}
+  {%- elsif media.media_type == 'image' or media.preview_image -%}
+    {%- liquid
+      assign image = media
+      if media.media_type != 'image'
+        assign image = media.preview_image
+      endif
+      assign loading = 'lazy'
+      if eager
+        assign loading = 'eager'
+      endif
+    -%}
+    {{
+      image
+      | image_url: width: 2400
+      | image_tag:
+        widths: '375, 550, 750, 1100, 1500, 1800, 2400',
+        sizes: sizes,
+        class: class,
+        loading: loading,
+        alt: image.alt
+    }}
+  {%- endif -%}
+{%- endif -%}

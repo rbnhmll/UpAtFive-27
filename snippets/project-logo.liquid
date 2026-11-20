@@ -1,0 +1,58 @@
+{% doc %}
+  Renders a project's client logo (`image_logo` field). Alt text falls back to the
+  client name, then the project title, so the logo is never announced as blank.
+
+  Handles both kinds of file Shopify can return for a file field:
+  - MediaImage (PNG/JPG/WebP uploads): rendered responsively via image_url.
+  - GenericFile (SVG uploads are stored this way): image_url doesn't work on these,
+    so the file's own URL is used directly. SVGs scale cleanly, so no srcset is needed.
+
+  @param {object} project - The project metaobject entry.
+  @param {string} [sizes] - The image `sizes` attribute. Defaults to `240px`.
+  @param {boolean} [eager] - Load immediately (use above the fold).
+  @param {boolean} [decorative] - Empty alt text, for when the client name is already shown beside the logo.
+{% enddoc %}
+{%- liquid
+  assign logo = project.image_logo.value
+  assign logo_alt = logo.alt | default: project.client_name.value | default: project.title.value
+  if decorative
+    assign logo_alt = ''
+  endif
+  assign loading = 'lazy'
+  if eager
+    assign loading = 'eager'
+  endif
+-%}
+{%- if logo != blank -%}
+  {%- if logo.media_type == 'image' -%}
+    {{
+      logo
+      | image_url: width: 600
+      | image_tag:
+        widths: '120, 240, 360, 480, 600',
+        sizes: sizes | default: '240px',
+        class: 'project-logo__image',
+        loading: loading,
+        alt: logo_alt
+    }}
+  {%- elsif logo.url != blank -%}
+    <img
+      src="{{ logo.url }}"
+      class="project-logo__image"
+      alt="{{ logo_alt | escape }}"
+      loading="{{ loading }}"
+      {% if logo.preview_image %}
+        width="{{ logo.preview_image.width }}"
+        height="{{ logo.preview_image.height }}"
+      {% endif %}
+    >
+  {%- elsif request.design_mode -%}
+    <p class="project-logo__debug">
+      Logo field found but couldn't be displayed (type: {{ project.image_logo.type }}).
+    </p>
+  {%- endif -%}
+{%- elsif request.design_mode and project.image_logo != blank -%}
+  <p class="project-logo__debug">
+    Logo field has no file value (type: {{ project.image_logo.type }}).
+  </p>
+{%- endif -%}

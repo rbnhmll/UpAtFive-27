@@ -1,0 +1,171 @@
+{{ 'section-project.css' | asset_url | stylesheet_tag }}
+{% render 'project-section-padding' %}
+
+{%- assign features = metaobject.features.value -%}
+
+{%- if metaobject.features != blank and features.size > 0 -%}
+  <div {% render 'project-section-attrs', class: 'project-features', use_project_accent: section.settings.use_project_accent %}>
+    <div class="page-width">
+      {%- unless section.settings.title == blank -%}
+        <h2 class="project-section__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+      {%- endunless -%}
+
+      <ol class="project-features__list list-unstyled{% if section.settings.alternate %} project-features__list--alternate{% endif %}{% if section.settings.media_position == 'right' %} project-features__list--media-right{% endif %}" role="list">
+        {%- for feature in features -%}
+          {%- assign media = feature.media.value -%}
+          <li class="project-feature{% if media == blank %} project-feature--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {%- if media != blank -%}
+              <div class="project-feature__media project-ratio project-ratio--{{ section.settings.image_ratio }}">
+                {% render 'project-media',
+                  media: media,
+                  sizes: '(min-width: 990px) 50vw, 100vw',
+                  class: 'project-ratio__item'
+                %}
+              </div>
+            {%- endif -%}
+            <div class="project-feature__text">
+              {%- if section.settings.show_numbers -%}
+                <p class="project-feature__number caption-with-letter-spacing" aria-hidden="true">
+                  {{- forloop.index | prepend: '0' | slice: -2, 2 -}}
+                </p>
+              {%- endif -%}
+              {%- if feature.heading != blank -%}
+                <h3 class="project-feature__heading project-dash {{ section.settings.feature_heading_size }}">
+                  <span>{{ feature.heading.value | escape }}</span>
+                </h3>
+              {%- endif -%}
+              {%- if feature.body != blank -%}
+                <div class="project-feature__body rte">{{ feature.body | metafield_tag }}</div>
+              {%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ol>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Project features",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["metaobject"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the project's features as image and text rows. Hidden when a project has none."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "What we built",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__3.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "feature_heading_size",
+      "options": [
+        { "value": "h4", "label": "Extra small" },
+        { "value": "h3", "label": "Small" },
+        { "value": "h2", "label": "Medium" },
+        { "value": "h1", "label": "Large" }
+      ],
+      "default": "h2",
+      "label": "Feature heading size"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_numbers",
+      "default": true,
+      "label": "Number each feature"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left",
+      "label": "First image position",
+      "info": "Desktop only"
+    },
+    {
+      "type": "checkbox",
+      "id": "alternate",
+      "default": true,
+      "label": "Alternate image side on each row"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "adapt", "label": "Original" },
+        { "value": "landscape", "label": "Landscape (3:2)" },
+        { "value": "square", "label": "Square (1:1)" },
+        { "value": "portrait", "label": "Portrait (4:5)" }
+      ],
+      "default": "landscape",
+      "label": "Image shape"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_project_accent",
+      "default": true,
+      "label": "Use project colour as accent"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}

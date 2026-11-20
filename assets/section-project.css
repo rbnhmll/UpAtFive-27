@@ -1,0 +1,420 @@
+/* ==========================================================================
+   Project (case study) template sections
+   Accent colour: --color-accent (theme scheme accent, or the project's colour_1).
+   ========================================================================== */
+
+/* Shared ------------------------------------------------------------------ */
+.project-section__title {
+  margin: 0 0 4rem;
+}
+
+@media screen and (min-width: 750px) {
+  .project-section__title {
+    margin-bottom: 6rem;
+  }
+}
+
+/* Leading accent dash, same treatment as the Rich text subheading. */
+.project-dash,
+.project-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.project-dash::before,
+.project-eyebrow::before {
+  content: '';
+  flex-shrink: 0;
+  width: 3rem;
+  height: max(0.2rem, 0.08em);
+  background-color: rgb(var(--color-accent, var(--color-button)));
+}
+
+.project-eyebrow {
+  margin: 0 0 1.6rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.13rem;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+/* Fixed-shape media boxes. Images/videos are cropped to fill so rows line up. */
+.project-ratio {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--media-radius);
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.project-ratio--landscape { aspect-ratio: 3 / 2; }
+.project-ratio--wide { aspect-ratio: 16 / 9; }
+.project-ratio--cinema { aspect-ratio: 21 / 9; }
+.project-ratio--square { aspect-ratio: 1 / 1; }
+.project-ratio--portrait { aspect-ratio: 4 / 5; }
+
+.project-ratio__item {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.project-ratio:not(.project-ratio--adapt) .project-ratio__item {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Client logo (image_logo) ------------------------------------------------ */
+.project-logo {
+  display: flex;
+  margin-bottom: 2.4rem;
+}
+
+/* Fits within its parent; the Logo height setting caps how tall it can get. */
+.project-logo__image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  max-height: var(--project-logo-height, 48px);
+  object-fit: contain;
+  object-position: left center;
+}
+
+.project-hero__intro--center .project-logo__image,
+.project-testimonial__figure--center .project-logo__image {
+  object-position: center;
+}
+
+.project-logo__debug {
+  margin: 0;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.2rem;
+  border: 0.1rem dashed rgba(var(--color-foreground), 0.4);
+}
+
+.project-hero__intro--center .project-logo,
+.project-testimonial__figure--center .project-logo {
+  justify-content: center;
+}
+
+.project-testimonial__logo {
+  margin-bottom: 1.2rem;
+}
+
+.project-facts__logo {
+  margin-bottom: 0.8rem;
+}
+
+/* Hero -------------------------------------------------------------------- */
+.project-hero__intro {
+  max-width: 90rem;
+}
+
+.project-hero__intro--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.project-hero__intro--center .project-eyebrow {
+  justify-content: center;
+}
+
+.project-hero__title {
+  margin: 0;
+}
+
+.project-hero__summary {
+  margin-top: 2rem;
+  max-width: 64rem;
+  font-size: 1.8rem;
+  line-height: 1.6;
+}
+
+.project-hero__intro--center .project-hero__summary {
+  margin-inline: auto;
+}
+
+.project-hero__summary p {
+  margin: 0;
+}
+
+.project-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem 3rem;
+  margin-top: 3rem;
+}
+
+.project-hero__intro--center .project-hero__meta {
+  justify-content: center;
+}
+
+.project-hero__byline {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+.project-hero__byline span + span::before {
+  content: '·';
+  margin: 0 0.8rem;
+}
+
+.project-hero__media {
+  margin-top: 4rem;
+}
+
+@media screen and (min-width: 750px) {
+  .project-hero__media {
+    margin-top: 6rem;
+  }
+}
+
+/* Overview: facts + story ------------------------------------------------- */
+.project-overview__grid {
+  display: grid;
+  gap: 5rem;
+}
+
+@media screen and (min-width: 990px) {
+  .project-overview__grid {
+    grid-template-columns: minmax(24rem, 1fr) 2fr;
+    gap: 8rem;
+    align-items: start;
+  }
+
+  .project-overview__grid--story-only {
+    grid-template-columns: minmax(0, 72rem);
+    justify-content: center;
+  }
+
+  .project-facts--sticky {
+    position: sticky;
+    top: calc(var(--header-height, 0px) + 3rem);
+  }
+}
+
+.project-facts__list {
+  margin: 0;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.2);
+}
+
+.project-facts__item {
+  display: grid;
+  grid-template-columns: 11rem 1fr;
+  gap: 1.6rem;
+  padding: 1.6rem 0;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.2);
+}
+
+.project-facts__item dt {
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.65);
+  padding-top: 0.2rem;
+}
+
+.project-facts__item dd {
+  margin: 0;
+  color: rgb(var(--color-foreground));
+}
+
+.project-facts__links li + li {
+  margin-top: 0.4rem;
+}
+
+.project-facts__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.project-story__part + .project-story__part {
+  margin-top: 5rem;
+}
+
+.project-story__heading {
+  margin: 0 0 2rem;
+}
+
+.project-story__body > :first-child {
+  margin-top: 0;
+}
+
+.project-story__body > :last-child {
+  margin-bottom: 0;
+}
+
+/* Features ---------------------------------------------------------------- */
+.project-feature + .project-feature {
+  margin-top: 6rem;
+}
+
+.project-feature {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media screen and (min-width: 990px) {
+  .project-feature + .project-feature {
+    margin-top: 10rem;
+  }
+
+  .project-feature:not(.project-feature--no-media) {
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+  }
+
+  .project-features__list--media-right .project-feature .project-feature__media {
+    order: 2;
+  }
+
+  .project-features__list--alternate .project-feature:nth-child(even) .project-feature__media {
+    order: 2;
+  }
+
+  .project-features__list--alternate.project-features__list--media-right .project-feature:nth-child(even) .project-feature__media {
+    order: 0;
+  }
+
+  .project-feature--no-media .project-feature__text {
+    max-width: 72rem;
+  }
+}
+
+.project-feature__number {
+  margin: 0 0 1.2rem;
+  color: rgba(var(--color-foreground), 0.6);
+}
+
+.project-feature__heading {
+  margin: 0 0 2rem;
+}
+
+.project-feature__body > :first-child {
+  margin-top: 0;
+}
+
+.project-feature__body > :last-child {
+  margin-bottom: 0;
+}
+
+/* Gallery ----------------------------------------------------------------- */
+.project-gallery__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: calc(var(--gallery-gap, 16px) / 2);
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .project-gallery__grid {
+    grid-template-columns: repeat(var(--gallery-columns, 2), minmax(0, 1fr));
+    gap: var(--gallery-gap, 16px);
+  }
+
+  .project-gallery__grid--feature-first .project-gallery__item:first-child {
+    grid-column: 1 / -1;
+  }
+
+  /* A full-width first item at a fixed ratio would be very tall; widen its shape. */
+  .project-gallery__grid--feature-first .project-gallery__item:first-child:not(.project-ratio--adapt) {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* Testimonial ------------------------------------------------------------- */
+.project-testimonial__figure {
+  max-width: 96rem;
+  margin: 0;
+}
+
+.project-testimonial__figure--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.project-testimonial__mark {
+  display: block;
+  font-family: var(--font-heading-family);
+  font-size: 9rem;
+  line-height: 0.6;
+  height: 4.4rem;
+  color: rgb(var(--color-accent, var(--color-button)));
+}
+
+.project-testimonial__quote {
+  margin: 0;
+  font-family: var(--font-heading-family);
+}
+
+.project-testimonial__quote p {
+  margin: 0;
+}
+
+.project-testimonial__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 3rem;
+}
+
+.project-testimonial__author {
+  font-style: normal;
+  font-weight: 600;
+  color: rgb(var(--color-foreground));
+}
+
+.project-testimonial__role {
+  color: rgba(var(--color-foreground), 0.7);
+}
+
+/* Related ----------------------------------------------------------------- */
+.project-related__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.6rem 3rem;
+  margin-bottom: 4rem;
+}
+
+.project-related__header .project-section__title {
+  margin: 0;
+}
+
+.project-related__view-all {
+  text-decoration: none;
+}
+
+.project-related__view-all .icon-wrap {
+  margin-left: 0.8rem;
+}
+
+.project-related__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--grid-mobile-vertical-spacing);
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .project-related__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--grid-desktop-vertical-spacing) var(--grid-desktop-horizontal-spacing);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .project-related__grid {
+    grid-template-columns: repeat(var(--related-columns, 3), minmax(0, 1fr));
+  }
+}

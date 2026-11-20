@@ -9,29 +9,130 @@
  */
 {
   "sections": {
-    "rich_text_yKaDnP": {
+    "hero": {
+      "type": "main-project-hero",
+      "settings": {
+        "heading_size": "hxl",
+        "text_alignment": "left",
+        "show_store_button": true,
+        "button_label": "Visit the site",
+        "button_style_secondary": false,
+        "show_image": true,
+        "image_ratio": "wide",
+        "color_scheme": "scheme-1",
+        "use_project_accent": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "metrics": {
+      "type": "main-project-metrics",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "number_size": "hxl",
+        "text_alignment": "left",
+        "color_scheme": "scheme-1",
+        "padding_top": 24,
+        "padding_bottom": 48
+      }
+    },
+    "overview": {
+      "type": "main-project-overview",
+      "settings": {
+        "sticky_facts": true,
+        "date_format": "%B %Y",
+        "story_heading_size": "h3",
+        "color_scheme": "scheme-1",
+        "use_project_accent": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "features": {
+      "type": "main-project-features",
+      "settings": {
+        "title": "What we built",
+        "heading_size": "h1",
+        "feature_heading_size": "h2",
+        "show_numbers": true,
+        "media_position": "left",
+        "alternate": true,
+        "image_ratio": "landscape",
+        "color_scheme": "scheme-1",
+        "use_project_accent": true,
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "gallery": {
+      "type": "main-project-gallery",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "columns": 2,
+        "feature_first": true,
+        "image_ratio": "landscape",
+        "gap": 16,
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "testimonial": {
+      "type": "main-project-testimonial",
+      "settings": {
+        "quote_size": "h1",
+        "text_alignment": "center",
+        "color_scheme": "scheme-1",
+        "use_project_accent": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "related": {
+      "type": "main-project-related",
+      "settings": {
+        "title": "More work",
+        "heading_size": "h1",
+        "view_all_link": "",
+        "view_all_label": "All case studies",
+        "limit": 3,
+        "columns": 3,
+        "text_alignment": "left",
+        "image_ratio": "landscape",
+        "show_summary": true,
+        "card_link_label": "View case study",
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "cta": {
       "type": "rich-text",
       "blocks": {
-        "heading_L7JfjG": {
+        "cta_subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Have a project in mind?",
+            "text_size": "h4",
+            "show_dash": true
+          }
+        },
+        "cta_heading": {
           "type": "heading",
           "settings": {
-            "heading": "Talk about your brand",
-            "heading_size": "h1"
+            "heading": "Let's build what's next.",
+            "heading_size": "h0"
           }
         },
-        "text_z4DzbY": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
-          }
-        },
-        "button_VdXdcf": {
+        "cta_button": {
           "type": "button",
           "settings": {
-            "button_label": "Button label",
-            "button_link": "",
+            "button_label": "Let's chat",
+            "button_link": "/pages/contact",
             "button_style_secondary": false,
-            "button_arrow": false,
+            "button_arrow": true,
             "button_label_2": "",
             "button_link_2": "",
             "button_style_secondary_2": false,
@@ -39,25 +140,18 @@
           }
         }
       },
-      "block_order": [
-        "heading_L7JfjG",
-        "text_z4DzbY",
-        "button_VdXdcf"
-      ],
-      "name": "t:sections.rich-text.presets.name",
+      "block_order": ["cta_subheading", "cta_heading", "cta_button"],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "color_scheme": "",
+        "color_scheme": "scheme-1",
         "full_width": true,
         "show_border_top": true,
-        "show_border_bottom": true,
-        "padding_top": 40,
-        "padding_bottom": 52
+        "show_border_bottom": false,
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     }
   },
-  "order": [
-    "rich_text_yKaDnP"
-  ]
+  "order": ["hero", "metrics", "overview", "features", "gallery", "testimonial", "related", "cta"]
 }

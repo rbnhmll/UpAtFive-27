@@ -1,0 +1,183 @@
+{{ 'section-project.css' | asset_url | stylesheet_tag }}
+{% render 'project-section-padding' %}
+
+{%- liquid
+  assign project = metaobject
+  assign launch_year = ''
+  if project.launch_date != blank
+    assign launch_year = project.launch_date.value | date: '%Y'
+  endif
+-%}
+
+<div {% render 'project-section-attrs', class: 'project-hero', use_project_accent: section.settings.use_project_accent %}>
+  <div class="page-width">
+    <div class="project-hero__intro project-hero__intro--{{ section.settings.text_alignment }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      {%- if project.industry != blank -%}
+        <p class="project-eyebrow">{{ project.industry.value | escape }}</p>
+      {%- endif -%}
+
+      <h1 class="project-hero__title {{ section.settings.heading_size }}">{{ project.title.value | escape }}</h1>
+
+      {%- if project.summary != blank -%}
+        <div class="project-hero__summary">{{ project.summary | metafield_tag }}</div>
+      {%- endif -%}
+
+      {%- if project.client_name != blank or launch_year != blank or project.store_url != blank -%}
+        <div class="project-hero__meta">
+          {%- if project.client_name != blank or launch_year != blank -%}
+            <p class="project-hero__byline caption-with-letter-spacing">
+              {%- if project.client_name != blank -%}
+                <span>{{ project.client_name.value | escape }}</span>
+              {%- endif -%}
+              {%- if launch_year != blank -%}
+                <span>{{ launch_year }}</span>
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+          {%- if section.settings.show_store_button and project.store_url != blank -%}
+            <a
+              href="{{ project.store_url.value }}"
+              class="button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+              target="_blank"
+              rel="noopener"
+            >
+              {{- section.settings.button_label | escape -}}
+              <span class="button__arrow svg-wrapper" aria-hidden="true">{{ 'icon-arrow.svg' | inline_asset_content }}</span>
+              <span class="visually-hidden">(opens in a new tab)</span>
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_image and project.image_main != blank -%}
+      <div class="project-hero__media project-ratio project-ratio--{{ section.settings.image_ratio }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {% render 'project-media',
+          media: project.image_main.value,
+          sizes: '(min-width: 1600px) 1500px, 100vw',
+          class: 'project-ratio__item',
+          eager: true
+        %}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Project hero",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["metaobject"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the project's industry, title, summary, client, launch year, store link and main image."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" },
+        { "value": "hxl", "label": "Extra large" },
+        { "value": "hxxl", "label": "Extra extra large" }
+      ],
+      "default": "hxl",
+      "label": "Title size"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left",
+      "label": "Text alignment"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_store_button",
+      "default": true,
+      "label": "Show live site button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Visit the site",
+      "label": "Button label",
+      "visible_if": "{{ section.settings.show_store_button }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary",
+      "default": false,
+      "label": "Use outline button style",
+      "visible_if": "{{ section.settings.show_store_button }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "Show main image"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "adapt", "label": "Original" },
+        { "value": "wide", "label": "Wide (16:9)" },
+        { "value": "cinema", "label": "Cinematic (21:9)" },
+        { "value": "landscape", "label": "Landscape (3:2)" }
+      ],
+      "default": "wide",
+      "label": "Image shape",
+      "visible_if": "{{ section.settings.show_image }}"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_project_accent",
+      "default": true,
+      "label": "Use project colour as accent",
+      "info": "Uses the project's colour_1 field for the eyebrow dash"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}

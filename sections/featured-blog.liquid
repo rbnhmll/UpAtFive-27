@@ -468,7 +468,7 @@
     {
       "type": "text",
       "id": "project_image_field",
-      "default": "featured_image",
+      "default": "image_main",
       "label": "Image field key",
       "info": "Must be a file (image) field",
       "visible_if": "{{ section.settings.source == 'projects' }}"
@@ -484,7 +484,6 @@
     {
       "type": "text",
       "id": "project_link_field",
-      "default": "url",
       "label": "Link field key",
       "info": "Only used if the Project definition doesn't have web pages turned on",
       "visible_if": "{{ section.settings.source == 'projects' }}"

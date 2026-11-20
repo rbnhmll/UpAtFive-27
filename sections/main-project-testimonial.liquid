@@ -1,0 +1,130 @@
+{{ 'section-project.css' | asset_url | stylesheet_tag }}
+{% render 'project-section-padding' %}
+
+{%- if metaobject.testimonial_quote != blank -%}
+  <div {% render 'project-section-attrs', class: 'project-testimonial', use_project_accent: section.settings.use_project_accent %}>
+    <div class="page-width">
+      <figure class="project-testimonial__figure project-testimonial__figure--{{ section.settings.text_alignment }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <span class="project-testimonial__mark" aria-hidden="true">&ldquo;</span>
+        <blockquote class="project-testimonial__quote {{ section.settings.quote_size }}">
+          <p>{{ metaobject.testimonial_quote.value | escape | newline_to_br }}</p>
+        </blockquote>
+        {%- liquid
+          assign show_logo = false
+          if section.settings.show_logo and metaobject.image_logo != blank
+            assign show_logo = true
+          endif
+        -%}
+        {%- if metaobject.testimonial_author != blank or metaobject.testimonial_role != blank or show_logo -%}
+          <figcaption class="project-testimonial__caption">
+            {%- if show_logo -%}
+              <div class="project-logo project-testimonial__logo" style="--project-logo-height: {{ section.settings.logo_height }}px;">
+                {% render 'project-logo', project: metaobject, sizes: '200px' %}
+              </div>
+            {%- endif -%}
+            {%- if metaobject.testimonial_author != blank -%}
+              <cite class="project-testimonial__author">{{ metaobject.testimonial_author.value | escape }}</cite>
+            {%- endif -%}
+            {%- if metaobject.testimonial_role != blank -%}
+              <span class="project-testimonial__role">{{ metaobject.testimonial_role.value | escape }}</span>
+            {%- endif -%}
+          </figcaption>
+        {%- endif -%}
+      </figure>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Project testimonial",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["metaobject"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the project's testimonial quote, author and role. Hidden when a project has no quote."
+    },
+    {
+      "type": "select",
+      "id": "quote_size",
+      "options": [
+        { "value": "h3", "label": "Small" },
+        { "value": "h2", "label": "Medium" },
+        { "value": "h1", "label": "Large" },
+        { "value": "h0", "label": "Extra large" }
+      ],
+      "default": "h1",
+      "label": "Quote size"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "center",
+      "label": "Text alignment"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_logo",
+      "default": true,
+      "label": "Show client logo",
+      "info": "Uses the project's image_logo field"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "min": 16,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32,
+      "label": "Logo height",
+      "visible_if": "{{ section.settings.show_logo }}"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_project_accent",
+      "default": true,
+      "label": "Use project colour as accent",
+      "info": "Colours the quotation mark"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 60
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,178 @@
+{{ 'section-project.css' | asset_url | stylesheet_tag }}
+{{ 'component-project-card.css' | asset_url | stylesheet_tag }}
+{% render 'project-section-padding' %}
+
+{%- assign related = metaobject.related_projects.value -%}
+
+{%- if metaobject.related_projects != blank and related.size > 0 -%}
+  <div {% render 'project-section-attrs', class: 'project-related', use_project_accent: false %}>
+    <div class="page-width">
+      <div class="project-related__header">
+        {%- unless section.settings.title == blank -%}
+          <h2 class="project-section__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+        {%- endunless -%}
+        {%- if section.settings.view_all_link != blank and section.settings.view_all_label != blank -%}
+          <a href="{{ section.settings.view_all_link }}" class="link animate-arrow project-related__view-all">
+            {{- section.settings.view_all_label | escape -}}
+            <span class="svg-wrapper"><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span>
+          </a>
+        {%- endif -%}
+      </div>
+      <ul
+        class="project-related__grid list-unstyled"
+        style="--related-columns: {{ section.settings.columns }};"
+        role="list"
+      >
+        {%- for project in related limit: section.settings.limit -%}
+          <li class="project-related__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {% render 'project-card',
+              project: project,
+              title_key: 'title',
+              image_key: 'image_main',
+              excerpt_key: 'summary',
+              industry_key: 'industry',
+              link_label: section.settings.card_link_label,
+              text_alignment: section.settings.text_alignment,
+              image_ratio: section.settings.image_ratio,
+              show_image: true,
+              show_excerpt: section.settings.show_summary
+            %}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Related projects",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["metaobject"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the project's related projects as case study cards. Hidden when a project has none."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "default": "More work",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__3.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "\"View all\" link"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "default": "All case studies",
+      "label": "\"View all\" label"
+    },
+    {
+      "type": "header",
+      "content": "Cards"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3,
+      "label": "Maximum projects"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Columns on desktop"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left",
+      "label": "Card text alignment"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "landscape", "label": "Landscape (3:2)" },
+        { "value": "wide", "label": "Wide (16:9)" },
+        { "value": "square", "label": "Square (1:1)" },
+        { "value": "portrait", "label": "Portrait (4:5)" }
+      ],
+      "default": "landscape",
+      "label": "Card image shape"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_summary",
+      "default": true,
+      "label": "Show summary"
+    },
+    {
+      "type": "text",
+      "id": "card_link_label",
+      "default": "View case study",
+      "label": "Card link label",
+      "info": "Leave blank to hide"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}

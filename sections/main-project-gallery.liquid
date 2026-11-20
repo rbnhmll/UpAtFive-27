@@ -1,0 +1,132 @@
+{{ 'section-project.css' | asset_url | stylesheet_tag }}
+{% render 'project-section-padding' %}
+
+{%- assign gallery = metaobject.gallery.value -%}
+
+{%- if metaobject.gallery != blank and gallery.size > 0 -%}
+  <div {% render 'project-section-attrs', class: 'project-gallery', use_project_accent: false %}>
+    <div class="page-width">
+      {%- unless section.settings.title == blank -%}
+        <h2 class="project-section__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+      {%- endunless -%}
+      <ul
+        class="project-gallery__grid list-unstyled{% if section.settings.feature_first %} project-gallery__grid--feature-first{% endif %}"
+        style="--gallery-columns: {{ section.settings.columns }}; --gallery-gap: {{ section.settings.gap }}px;"
+        role="list"
+      >
+        {%- for file in gallery -%}
+          <li class="project-gallery__item project-ratio project-ratio--{{ section.settings.image_ratio }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {% render 'project-media',
+              media: file,
+              sizes: '(min-width: 990px) 50vw, 100vw',
+              class: 'project-ratio__item'
+            %}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Project gallery",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["metaobject"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the project's gallery images and videos. Hidden when a project has none."
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__3.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2,
+      "label": "Columns on desktop",
+      "info": "Mobile always shows one column"
+    },
+    {
+      "type": "checkbox",
+      "id": "feature_first",
+      "default": true,
+      "label": "Make the first item full width"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "adapt", "label": "Original" },
+        { "value": "landscape", "label": "Landscape (3:2)" },
+        { "value": "wide", "label": "Wide (16:9)" },
+        { "value": "square", "label": "Square (1:1)" },
+        { "value": "portrait", "label": "Portrait (4:5)" }
+      ],
+      "default": "landscape",
+      "label": "Image shape",
+      "info": "A fixed shape keeps the grid even; Original keeps each image uncropped"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 16,
+      "label": "Gap between images"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

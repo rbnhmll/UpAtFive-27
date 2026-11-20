@@ -1,0 +1,249 @@
+{{ 'section-project.css' | asset_url | stylesheet_tag }}
+{% render 'project-section-padding' %}
+
+{%- liquid
+  assign project = metaobject
+  assign show_logo = false
+  if section.settings.show_logo and project.image_logo != blank
+    assign show_logo = true
+  endif
+  assign has_facts = false
+  if show_logo or project.client_name != blank or project.industry != blank or project.launch_date != blank or project.services != blank or project.tech_stack != blank
+    assign has_facts = true
+  endif
+  assign has_story = false
+  if project.challenge != blank or project.approach != blank or project.results != blank
+    assign has_story = true
+  endif
+-%}
+
+{%- if has_facts or has_story -%}
+  <div {% render 'project-section-attrs', class: 'project-overview', use_project_accent: section.settings.use_project_accent %}>
+    <div class="page-width">
+      <div class="project-overview__grid{% unless has_facts %} project-overview__grid--story-only{% endunless %}">
+        {%- if has_facts -%}
+          <aside class="project-facts{% if section.settings.sticky_facts %} project-facts--sticky{% endif %}" aria-label="{{ section.settings.facts_label | escape }}">
+            <dl class="project-facts__list">
+              {%- if project.client_name != blank or show_logo -%}
+                <div class="project-facts__item">
+                  <dt>{{ section.settings.label_client | escape }}</dt>
+                  <dd>
+                    {%- if show_logo -%}
+                      <div class="project-logo project-facts__logo" style="--project-logo-height: {{ section.settings.logo_height }}px;">
+                        {%- liquid
+                          # Decorative when the name is shown beside it, so it isn't read twice.
+                          assign logo_decorative = false
+                          if project.client_name != blank
+                            assign logo_decorative = true
+                          endif
+                        -%}
+                        {% render 'project-logo', project: project, sizes: '160px', decorative: logo_decorative %}
+                      </div>
+                    {%- endif -%}
+                    {%- if project.client_name != blank -%}
+                      {{ project.client_name.value | escape }}
+                    {%- endif -%}
+                  </dd>
+                </div>
+              {%- endif -%}
+              {%- if project.industry != blank -%}
+                <div class="project-facts__item">
+                  <dt>{{ section.settings.label_industry | escape }}</dt>
+                  <dd>{{ project.industry.value | escape }}</dd>
+                </div>
+              {%- endif -%}
+              {%- if project.launch_date != blank -%}
+                <div class="project-facts__item">
+                  <dt>{{ section.settings.label_launched | escape }}</dt>
+                  <dd>
+                    <time datetime="{{ project.launch_date.value | date: '%Y-%m-%d' }}">
+                      {{- project.launch_date.value | date: section.settings.date_format -}}
+                    </time>
+                  </dd>
+                </div>
+              {%- endif -%}
+              {%- if project.services != blank -%}
+                <div class="project-facts__item">
+                  <dt>{{ section.settings.label_services | escape }}</dt>
+                  <dd>
+                    <ul class="project-facts__links list-unstyled" role="list">
+                      {%- for service in project.services.value -%}
+                        <li>
+                          {%- if service.system.url != blank -%}
+                            <a href="{{ service.system.url }}" class="link">{{ service.title.value | escape }}</a>
+                          {%- else -%}
+                            {{ service.title.value | escape }}
+                          {%- endif -%}
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </dd>
+                </div>
+              {%- endif -%}
+              {%- if project.tech_stack != blank -%}
+                <div class="project-facts__item">
+                  <dt>{{ section.settings.label_tech | escape }}</dt>
+                  <dd>
+                    <ul class="project-facts__tags list-unstyled" role="list">
+                      {%- for item in project.tech_stack.value -%}
+                        <li><span class="badge color-{{ settings.industry_badge_color_scheme }}">{{ item | escape }}</span></li>
+                      {%- endfor -%}
+                    </ul>
+                  </dd>
+                </div>
+              {%- endif -%}
+            </dl>
+          </aside>
+        {%- endif -%}
+
+        {%- if has_story -%}
+          <div class="project-story">
+            {%- liquid
+              assign story_keys = 'challenge,approach,results' | split: ','
+            -%}
+            {%- for key in story_keys -%}
+              {%- liquid
+                assign field = project[key]
+                case key
+                  when 'challenge'
+                    assign story_heading = section.settings.label_challenge
+                  when 'approach'
+                    assign story_heading = section.settings.label_approach
+                  when 'results'
+                    assign story_heading = section.settings.label_results
+                endcase
+              -%}
+              {%- if field != blank -%}
+                <section class="project-story__part{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+                  <h2 class="project-story__heading project-dash {{ section.settings.story_heading_size }}">
+                    <span>{{ story_heading | escape }}</span>
+                  </h2>
+                  <div class="project-story__body rte">{{ field | metafield_tag }}</div>
+                </section>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Project overview",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["metaobject"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Project facts (client, industry, launch date, services, tech stack) beside the challenge, approach and results."
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky_facts",
+      "default": true,
+      "label": "Keep facts in view while scrolling",
+      "info": "Desktop only"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_logo",
+      "default": true,
+      "label": "Show client logo",
+      "info": "Shown in the Client row, from the project's image_logo field"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "min": 16,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 28,
+      "label": "Logo height",
+      "visible_if": "{{ section.settings.show_logo }}"
+    },
+    {
+      "type": "select",
+      "id": "date_format",
+      "options": [
+        { "value": "%B %Y", "label": "Month and year" },
+        { "value": "%Y", "label": "Year only" },
+        { "value": "%B %-d, %Y", "label": "Full date" }
+      ],
+      "default": "%B %Y",
+      "label": "Launch date format"
+    },
+    {
+      "type": "select",
+      "id": "story_heading_size",
+      "options": [
+        { "value": "h4", "label": "Extra small" },
+        { "value": "h3", "label": "Small" },
+        { "value": "h2", "label": "Medium" },
+        { "value": "h1", "label": "Large" }
+      ],
+      "default": "h3",
+      "label": "Story heading size"
+    },
+    {
+      "type": "header",
+      "content": "Labels"
+    },
+    { "type": "text", "id": "facts_label", "default": "Project details", "label": "Facts panel (screen readers)" },
+    { "type": "text", "id": "label_client", "default": "Client", "label": "Client" },
+    { "type": "text", "id": "label_industry", "default": "Industry", "label": "Industry" },
+    { "type": "text", "id": "label_launched", "default": "Launched", "label": "Launch date" },
+    { "type": "text", "id": "label_services", "default": "Services", "label": "Services" },
+    { "type": "text", "id": "label_tech", "default": "Tech stack", "label": "Tech stack" },
+    { "type": "text", "id": "label_challenge", "default": "The challenge", "label": "Challenge" },
+    { "type": "text", "id": "label_approach", "default": "Our approach", "label": "Approach" },
+    { "type": "text", "id": "label_results", "default": "The results", "label": "Results" },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_project_accent",
+      "default": true,
+      "label": "Use project colour as accent",
+      "info": "Uses the project's colour_1 field for the heading dashes"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}

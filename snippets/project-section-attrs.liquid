@@ -1,0 +1,23 @@
+{% doc %}
+  Shared opening attributes for project template sections: colour scheme class, padding
+  class, and (optionally) the project's own colour as this section's accent.
+
+  The project's `colour_1` overrides `--color-accent`, so anything using the theme accent
+  (subheading dashes, eyebrow lines, quote marks) picks up each project's brand colour.
+
+  @param {string} class - Extra classes for the wrapper.
+  @param {boolean} [use_project_accent] - Use the project's colour as the accent.
+
+  @example
+  <div {% render 'project-section-attrs', class: 'project-hero', use_project_accent: true %}>
+{% enddoc %}
+{%- liquid
+  assign accent = nil
+  if use_project_accent and metaobject.colour_1 != blank
+    assign accent = metaobject.colour_1.value
+  endif
+-%}
+class="{{ class }} color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding"
+{% if accent %}
+  style="--color-accent: {{ accent.red }},{{ accent.green }},{{ accent.blue }};"
+{% endif %}
