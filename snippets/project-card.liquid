@@ -84,7 +84,7 @@
       {%- if industries.size > 0 -%}
         <ul class="project-card__badges list-unstyled" role="list">
           {%- for industry in industries -%}
-            <li><span class="badge">{{ industry | escape }}</span></li>
+            <li><span class="badge color-{{ settings.industry_badge_color_scheme }}">{{ industry | escape }}</span></li>
           {%- endfor -%}
         </ul>
       {%- endif -%}
