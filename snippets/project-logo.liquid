@@ -22,6 +22,9 @@
   if eager
     assign loading = 'eager'
   endif
+  # Resolved here: a filter inside image_tag's arguments would end image_tag early
+  # and pass the remaining arguments (class, alt...) to that filter instead.
+  assign logo_sizes = sizes | default: '240px'
 -%}
 {%- if logo != blank -%}
   {%- if logo.media_type == 'image' -%}
@@ -30,7 +33,7 @@
       | image_url: width: 600
       | image_tag:
         widths: '120, 240, 360, 480, 600',
-        sizes: sizes | default: '240px',
+        sizes: logo_sizes,
         class: 'project-logo__image',
         loading: loading,
         alt: logo_alt
