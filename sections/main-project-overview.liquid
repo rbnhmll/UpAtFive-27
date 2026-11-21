@@ -27,7 +27,7 @@
   endif
 
   assign has_facts = false
-  if show_logo or platform != '' or project.client_name != blank or project.location != blank or project.industry != blank or project.launch_date != blank or project.services != blank or project.tech_stack != blank
+  if show_logo or platform != '' or project.client_name != blank or project.location != blank or project.store_url != blank or project.industry != blank or project.launch_date != blank or project.services != blank or project.tech_stack != blank
     assign has_facts = true
   endif
   assign has_story = false
@@ -96,6 +96,21 @@
                 <div class="project-facts__item">
                   <dt>{{ section.settings.label_location | escape }}</dt>
                   <dd>{{ project.location.value | escape }}</dd>
+                </div>
+              {%- endif -%}
+              {%- if project.store_url != blank -%}
+                {%- liquid
+                  # Show a tidy domain (e.g. example.com) rather than the full URL.
+                  assign site_label = project.store_url.value | remove_first: 'https://' | remove_first: 'http://' | remove_first: 'www.' | split: '/' | first
+                -%}
+                <div class="project-facts__item">
+                  <dt>{{ section.settings.label_website | escape }}</dt>
+                  <dd>
+                    <a href="{{ project.store_url.value }}" class="link" target="_blank" rel="noopener">
+                      {{- site_label | escape -}}
+                      <span class="visually-hidden"> (opens in a new tab)</span>
+                    </a>
+                  </dd>
                 </div>
               {%- endif -%}
               {%- if project.industry != blank -%}
@@ -307,6 +322,7 @@
     { "type": "text", "id": "label_client", "default": "Client", "label": "Client" },
     { "type": "text", "id": "label_platform", "default": "Platform", "label": "Platform" },
     { "type": "text", "id": "label_location", "default": "Location", "label": "Location" },
+    { "type": "text", "id": "label_website", "default": "Website", "label": "Website" },
     { "type": "text", "id": "label_industry", "default": "Industry", "label": "Industry" },
     { "type": "text", "id": "label_launched", "default": "Launched", "label": "Launch date" },
     { "type": "text", "id": "label_services", "default": "Services", "label": "Services" },
