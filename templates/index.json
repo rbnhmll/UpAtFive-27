@@ -559,7 +559,7 @@
         "show_author": false,
         "color_scheme": "scheme-1",
         "project_title_field": "title",
-        "project_image_field": "image_grid",
+        "project_image_field": "image_main",
         "project_excerpt_field": "",
         "project_link_field": "store_url",
         "project_industry_field": "industry",
