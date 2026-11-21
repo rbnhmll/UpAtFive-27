@@ -307,15 +307,31 @@
 }
 
 .footer__tagline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
   text-align: center;
   margin-top: 1.5rem;
+}
+
+/* Shopify Partners logo, used as supplied (brand rule: no recolouring). Width follows its proportions. */
+.footer__partner-link {
+  display: inline-block;
+}
+
+.footer__partner-logo {
+  display: block;
+  width: auto;
+  height: var(--footer-partner-height, 24px);
+  max-width: 100%;
 }
 
 @media screen and (min-width: 750px) {
   .footer__content-bottom-wrapper--split {
     flex-direction: row;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: flex-end;
     gap: 2rem;
   }
 
@@ -324,6 +340,7 @@
   }
 
   .footer__tagline {
+    align-items: flex-end;
     text-align: right;
   }
 }

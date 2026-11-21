@@ -317,9 +317,23 @@
           </ul>
         {%- endif -%}
       </div>
-      {%- if section.settings.tagline != blank -%}
+      {%- if section.settings.show_partner_badge or section.settings.tagline != blank -%}
         <div class="footer__tagline caption">
-          <small class="copyright__content">{{ section.settings.tagline | escape }}</small>
+          {%- if section.settings.show_partner_badge -%}
+            <div class="footer__partner" style="--footer-partner-height: {{ section.settings.partner_badge_height }}px;">
+              {%- if section.settings.partner_badge_link != blank -%}
+                <a href="{{ section.settings.partner_badge_link }}" class="footer__partner-link" target="_blank" rel="noopener">
+                  {%- render 'icon-shopify-partners-inverted', class: 'footer__partner-logo', decorative: true -%}
+                  <span class="visually-hidden">Shopify Partners (opens in a new tab)</span>
+                </a>
+              {%- else -%}
+                {%- render 'icon-shopify-partners-inverted', class: 'footer__partner-logo' -%}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+          {%- if section.settings.tagline != blank -%}
+            <small class="copyright__content">{{ section.settings.tagline | escape }}</small>
+          {%- endif -%}
         </div>
       {%- endif -%}
     </div>
@@ -502,6 +516,31 @@
       "id": "tagline",
       "default": "Built with intention in B.C. Canada",
       "label": "Bottom-right text"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_partner_badge",
+      "default": true,
+      "label": "Show Shopify Partners logo",
+      "info": "Shown bottom right, above the text"
+    },
+    {
+      "type": "url",
+      "id": "partner_badge_link",
+      "label": "Shopify Partners logo link",
+      "info": "Optional, e.g. your Shopify Partner Directory profile. Opens in a new tab.",
+      "visible_if": "{{ section.settings.show_partner_badge }}"
+    },
+    {
+      "type": "range",
+      "id": "partner_badge_height",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24,
+      "label": "Shopify Partners logo height",
+      "visible_if": "{{ section.settings.show_partner_badge }}"
     },
     {
       "type": "header",
