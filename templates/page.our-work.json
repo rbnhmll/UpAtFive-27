@@ -42,10 +42,59 @@
         "padding_top": 36,
         "padding_bottom": 60
       }
+    },
+    "cta": {
+      "type": "rich-text",
+      "blocks": {
+        "cta_subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Have a project in mind?",
+            "text_size": "h4",
+            "show_dash": true
+          }
+        },
+        "cta_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Let's build what's next.",
+            "heading_size": "h0"
+          }
+        },
+        "cta_button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Let's chat",
+            "button_link": "/contact-us",
+            "button_style_secondary": false,
+            "button_arrow": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false,
+            "button_arrow_2": false
+          }
+        }
+      },
+      "block_order": [
+        "cta_subheading",
+        "cta_heading",
+        "cta_button"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "show_border_top": true,
+        "show_border_bottom": false,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
     "main",
-    "project_grid"
+    "project_grid",
+    "cta"
   ]
 }

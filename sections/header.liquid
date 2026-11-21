@@ -394,7 +394,7 @@
 
       {%- if section.settings.show_contact_button and section.settings.contact_button_label != blank -%}
         <a
-          href="{{ section.settings.contact_button_link | default: '/pages/contact' }}"
+          href="{{ section.settings.contact_button_link | default: '/contact-us' }}"
           class="header__contact-button button{% if section.settings.contact_button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
         >
           {{- section.settings.contact_button_label | escape -}}
@@ -749,7 +749,7 @@
       "type": "url",
       "id": "contact_button_link",
       "label": "Button link",
-      "info": "Defaults to /pages/contact"
+      "info": "Defaults to /contact-us"
     },
     {
       "type": "checkbox",

@@ -148,7 +148,7 @@
           {%- if section.settings.show_contact_button and section.settings.contact_button_label != blank -%}
             <div class="menu-drawer__contact">
               <a
-                href="{{ section.settings.contact_button_link | default: '/pages/contact' }}"
+                href="{{ section.settings.contact_button_link | default: '/contact-us' }}"
                 class="header__contact-button button{% if section.settings.contact_button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
               >
                 {{- section.settings.contact_button_label | escape -}}

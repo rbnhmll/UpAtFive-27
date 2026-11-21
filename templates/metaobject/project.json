@@ -141,7 +141,7 @@
           "type": "button",
           "settings": {
             "button_label": "Let's chat",
-            "button_link": "/pages/contact",
+            "button_link": "/contact-us",
             "button_style_secondary": false,
             "button_arrow": true,
             "button_label_2": "",
