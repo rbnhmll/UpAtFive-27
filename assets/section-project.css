@@ -159,6 +159,11 @@
   justify-content: center;
 }
 
+/* Left-aligned: byline on the left, live-site button pushed to the right. */
+.project-hero__intro:not(.project-hero__intro--center) .project-hero__meta .button {
+  margin-left: auto;
+}
+
 .project-hero__byline {
   display: flex;
   flex-wrap: wrap;

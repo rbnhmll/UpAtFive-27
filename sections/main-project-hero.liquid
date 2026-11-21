@@ -22,12 +22,15 @@
         <div class="project-hero__summary">{{ project.summary | metafield_tag }}</div>
       {%- endif -%}
 
-      {%- if project.client_name != blank or launch_year != blank or project.store_url != blank -%}
+      {%- if project.client_name != blank or project.location != blank or launch_year != blank or project.store_url != blank -%}
         <div class="project-hero__meta">
-          {%- if project.client_name != blank or launch_year != blank -%}
+          {%- if project.client_name != blank or project.location != blank or launch_year != blank -%}
             <p class="project-hero__byline caption-with-letter-spacing">
               {%- if project.client_name != blank -%}
                 <span>{{ project.client_name.value | escape }}</span>
+              {%- endif -%}
+              {%- if project.location != blank -%}
+                <span>{{ project.location.value | escape }}</span>
               {%- endif -%}
               {%- if launch_year != blank -%}
                 <span>{{ launch_year }}</span>
@@ -74,7 +77,7 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Shows the project's industry, title, summary, client, launch year, store link and main image."
+      "content": "Shows the project's industry, title, summary, client, location, launch year, store link and main image."
     },
     {
       "type": "select",

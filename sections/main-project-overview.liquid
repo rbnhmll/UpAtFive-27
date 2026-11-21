@@ -27,11 +27,11 @@
   endif
 
   assign has_facts = false
-  if show_logo or platform != '' or project.client_name != blank or project.industry != blank or project.launch_date != blank or project.services != blank or project.tech_stack != blank
+  if show_logo or platform != '' or project.client_name != blank or project.location != blank or project.industry != blank or project.launch_date != blank or project.services != blank or project.tech_stack != blank
     assign has_facts = true
   endif
   assign has_story = false
-  if project.challenge != blank or project.approach != blank or project.results != blank
+  if project.client_summary != blank or project.challenge != blank or project.approach != blank or project.results != blank
     assign has_story = true
   endif
 -%}
@@ -92,6 +92,12 @@
                   </dd>
                 </div>
               {%- endif -%}
+              {%- if project.location != blank -%}
+                <div class="project-facts__item">
+                  <dt>{{ section.settings.label_location | escape }}</dt>
+                  <dd>{{ project.location.value | escape }}</dd>
+                </div>
+              {%- endif -%}
               {%- if project.industry != blank -%}
                 <div class="project-facts__item">
                   <dt>{{ section.settings.label_industry | escape }}</dt>
@@ -144,6 +150,29 @@
 
         {%- if has_story -%}
           <div class="project-story">
+            {%- if project.client_summary != blank -%}
+              <section class="project-story__part project-story__part--client{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+                {%- liquid
+                  assign client_label = project.client_name.value | strip
+                  if client_label == blank
+                    assign client_label = section.settings.client_fallback
+                  endif
+                  assign client_heading = section.settings.label_client_summary | replace: '[client]', client_label
+                -%}
+                {%- if client_heading != blank -%}
+                  <h2 class="project-story__heading project-dash {{ section.settings.story_heading_size }}">
+                    <span>{{ client_heading | escape }}</span>
+                  </h2>
+                {%- endif -%}
+                <div class="project-story__body project-story__client rte">
+                  {%- if project.client_summary.type == 'rich_text_field' -%}
+                    {{ project.client_summary | metafield_tag }}
+                  {%- else -%}
+                    <p>{{ project.client_summary.value | escape | newline_to_br }}</p>
+                  {%- endif -%}
+                </div>
+              </section>
+            {%- endif -%}
             {%- liquid
               assign story_keys = 'challenge,approach,results' | split: ','
             -%}
@@ -186,7 +215,7 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Project facts (client, industry, launch date, services, tech stack) beside the challenge, approach and results."
+      "content": "Project facts (client, platform, location, industry, launch date, services, tech stack) beside the client summary, challenge, approach and results."
     },
     {
       "type": "checkbox",
@@ -277,10 +306,13 @@
     { "type": "text", "id": "facts_label", "default": "Project details", "label": "Facts panel (screen readers)" },
     { "type": "text", "id": "label_client", "default": "Client", "label": "Client" },
     { "type": "text", "id": "label_platform", "default": "Platform", "label": "Platform" },
+    { "type": "text", "id": "label_location", "default": "Location", "label": "Location" },
     { "type": "text", "id": "label_industry", "default": "Industry", "label": "Industry" },
     { "type": "text", "id": "label_launched", "default": "Launched", "label": "Launch date" },
     { "type": "text", "id": "label_services", "default": "Services", "label": "Services" },
     { "type": "text", "id": "label_tech", "default": "Tech stack", "label": "Tech stack" },
+    { "type": "text", "id": "label_client_summary", "default": "About [client]", "label": "Client summary heading", "info": "[client] is replaced with the client name. Leave blank to hide the heading." },
+    { "type": "text", "id": "client_fallback", "default": "the client", "label": "Client name fallback", "info": "Used for [client] when a project has no client name" },
     { "type": "text", "id": "label_challenge", "default": "The challenge", "label": "Challenge" },
     { "type": "text", "id": "label_approach", "default": "Our approach", "label": "Approach" },
     { "type": "text", "id": "label_results", "default": "The results", "label": "Results" },
