@@ -16,7 +16,7 @@
         "text_alignment": "left",
         "show_store_button": true,
         "button_label": "Visit the site",
-        "button_style_secondary": false,
+        "button_style_secondary": true,
         "show_image": true,
         "image_ratio": "wide",
         "color_scheme": "scheme-1",
@@ -43,6 +43,15 @@
         "sticky_facts": true,
         "date_format": "%B %Y",
         "story_heading_size": "h3",
+        "facts_label": "Project details",
+        "label_client": "Client",
+        "label_industry": "Industry",
+        "label_launched": "Launched",
+        "label_services": "Services",
+        "label_tech": "Tech stack",
+        "label_challenge": "The challenge",
+        "label_approach": "Our approach",
+        "label_results": "The results",
         "color_scheme": "scheme-1",
         "use_project_accent": true,
         "padding_top": 48,
@@ -84,6 +93,8 @@
       "settings": {
         "quote_size": "h1",
         "text_alignment": "center",
+        "show_logo": true,
+        "logo_height": 32,
         "color_scheme": "scheme-1",
         "use_project_accent": true,
         "padding_top": 60,
@@ -140,7 +151,11 @@
           }
         }
       },
-      "block_order": ["cta_subheading", "cta_heading", "cta_button"],
+      "block_order": [
+        "cta_subheading",
+        "cta_heading",
+        "cta_button"
+      ],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
@@ -153,5 +168,14 @@
       }
     }
   },
-  "order": ["hero", "metrics", "overview", "features", "gallery", "testimonial", "related", "cta"]
+  "order": [
+    "hero",
+    "metrics",
+    "overview",
+    "features",
+    "gallery",
+    "testimonial",
+    "related",
+    "cta"
+  ]
 }
