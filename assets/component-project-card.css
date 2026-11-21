@@ -40,6 +40,9 @@
   flex-direction: column;
   flex-grow: 1;
   padding: 2.5rem;
+  /* Keeps a comfortable gap between title and link when there's no summary.
+     Cards with longer content simply grow past it. */
+  min-height: var(--project-card-info-min-height, 20rem);
 }
 
 .project-card--center .project-card__info {
@@ -80,7 +83,7 @@
 /* Pushed to the bottom so links line up across cards of different text lengths. */
 .project-card__link {
   margin-top: auto;
-  padding-top: 1.5rem;
+  padding-top: 3rem;
   text-decoration: none;
   font-size: inherit;
 }
