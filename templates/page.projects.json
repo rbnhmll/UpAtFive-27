@@ -19,6 +19,16 @@
     "project_grid": {
       "type": "project-grid",
       "settings": {
+        "projects": [
+          "halo-bar",
+          "yorkshire-valley-farms",
+          "mockingbird",
+          "skiis-biikes",
+          "miracle-10",
+          "jenny-bird"
+        ],
+        "title": "",
+        "text": "",
         "heading_size": "h1",
         "heading_alignment": "left",
         "columns": 3,
