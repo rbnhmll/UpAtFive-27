@@ -426,3 +426,48 @@
     grid-template-columns: repeat(var(--related-columns, 3), minmax(0, 1fr));
   }
 }
+
+/* Project grid (listing page) --------------------------------------------- */
+.project-grid__header {
+  max-width: 72rem;
+  margin-bottom: 4rem;
+}
+
+.project-grid__header--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+@media screen and (min-width: 750px) {
+  .project-grid__header {
+    margin-bottom: 6rem;
+  }
+}
+
+.project-grid__title {
+  margin: 0;
+}
+
+.project-grid__text {
+  margin-top: 1.6rem;
+}
+
+.project-grid__text > :last-child {
+  margin-bottom: 0;
+}
+
+.project-grid__empty {
+  margin: 0;
+  color: rgba(var(--color-foreground), 0.75);
+}
+
+/* Shopify Plus row in the facts panel. Fixed height so the wordmark reads at a
+   consistent, modest size; width follows its proportions. */
+.project-plus__image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: var(--project-plus-height, 22px);
+  object-fit: contain;
+  object-position: left center;
+}

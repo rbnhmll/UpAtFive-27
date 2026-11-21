@@ -1,0 +1,223 @@
+{{ 'section-project.css' | asset_url | stylesheet_tag }}
+{{ 'component-project-card.css' | asset_url | stylesheet_tag }}
+{% render 'project-section-padding' %}
+
+{%- liquid
+  # Hand-picked projects (in the order chosen) win; with none picked, show every project.
+  if section.settings.projects != blank and section.settings.projects.count > 0
+    assign projects = section.settings.projects
+    assign project_count = section.settings.projects.count
+  else
+    assign projects = shop.metaobjects.project.values
+    assign project_count = projects.size
+  endif
+
+  assign industry_key = ''
+  if section.settings.show_industry
+    assign industry_key = 'industry'
+  endif
+-%}
+
+<div class="project-grid color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    {%- if section.settings.title != blank or section.settings.text != blank -%}
+      <div class="project-grid__header project-grid__header--{{ section.settings.heading_alignment }}">
+        {%- unless section.settings.title == blank -%}
+          <h2 class="project-grid__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+        {%- endunless -%}
+        {%- unless section.settings.text == blank -%}
+          <div class="project-grid__text rte">{{ section.settings.text }}</div>
+        {%- endunless -%}
+      </div>
+    {%- endif -%}
+
+    {%- if project_count > 0 -%}
+      <ul
+        class="project-related__grid project-grid__list list-unstyled"
+        style="--related-columns: {{ section.settings.columns }};"
+        role="list"
+      >
+        {%- for project in projects limit: 50 -%}
+          <li class="project-related__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ forloop.index }};"
+            {% endif %}
+          >
+            {% render 'project-card',
+              project: project,
+              title_key: 'title',
+              image_key: 'image_main',
+              excerpt_key: 'summary',
+              industry_key: industry_key,
+              link_label: section.settings.card_link_label,
+              text_alignment: section.settings.text_alignment,
+              image_ratio: section.settings.image_ratio,
+              show_image: section.settings.show_image,
+              show_excerpt: section.settings.show_summary
+            %}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- elsif request.design_mode -%}
+      <p class="project-grid__empty">
+        No projects found. Check that the Project metaobject definition has Storefronts access turned on.
+      </p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Project grid",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "metaobject_list",
+      "id": "projects",
+      "metaobject_type": "project",
+      "limit": 50,
+      "label": "Projects",
+      "info": "Shown in this order; drag to reorder. Leave empty to show every project."
+    },
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Intro text"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__3.label" },
+        { "value": "hxl", "label": "t:sections.all.heading_size.options__4.label" }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left",
+      "label": "Heading alignment"
+    },
+    {
+      "type": "header",
+      "content": "Cards"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Columns on desktop",
+      "info": "Tablet shows 2, mobile shows 1"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left",
+      "label": "Card text alignment"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "Show image"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "landscape", "label": "Landscape (3:2)" },
+        { "value": "wide", "label": "Wide (16:9)" },
+        { "value": "square", "label": "Square (1:1)" },
+        { "value": "portrait", "label": "Portrait (4:5)" }
+      ],
+      "default": "landscape",
+      "label": "Card image shape",
+      "visible_if": "{{ section.settings.show_image }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_industry",
+      "default": true,
+      "label": "Show industry badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_summary",
+      "default": true,
+      "label": "Show summary"
+    },
+    {
+      "type": "text",
+      "id": "card_link_label",
+      "default": "View case study",
+      "label": "Card link label",
+      "info": "Leave blank to hide"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Project grid"
+    }
+  ]
+}
+{% endschema %}

@@ -7,8 +7,27 @@
   if section.settings.show_logo and project.image_logo != blank
     assign show_logo = true
   endif
+  # Platform row, from the project's `platform` choice field:
+  #   "Shopify Plus" -> Shopify Plus logo
+  #   "Shopify"      -> Shopify logo
+  #   anything else  -> shown as text (so a future option still displays)
+  #   empty          -> no row
+  assign platform = ''
+  assign platform_text = project.platform.value | strip
+  if section.settings.show_platform and platform_text != blank
+    assign platform_key = platform_text | downcase
+    case platform_key
+      when 'shopify plus'
+        assign platform = 'plus'
+      when 'shopify'
+        assign platform = 'shopify'
+      else
+        assign platform = 'other'
+    endcase
+  endif
+
   assign has_facts = false
-  if show_logo or project.client_name != blank or project.industry != blank or project.launch_date != blank or project.services != blank or project.tech_stack != blank
+  if show_logo or platform != '' or project.client_name != blank or project.industry != blank or project.launch_date != blank or project.services != blank or project.tech_stack != blank
     assign has_facts = true
   endif
   assign has_story = false
@@ -43,6 +62,33 @@
                     {%- if project.client_name != blank -%}
                       {{ project.client_name.value | escape }}
                     {%- endif -%}
+                  </dd>
+                </div>
+              {%- endif -%}
+              {%- if platform != '' -%}
+                <div class="project-facts__item">
+                  <dt>{{ section.settings.label_platform | escape }}</dt>
+                  <dd>
+                    <div class="project-plus" style="--project-plus-height: {{ section.settings.plus_logo_height }}px;">
+                      {%- if platform == 'other' -%}
+                        {{ platform_text | escape }}
+                      {%- elsif platform == 'shopify' -%}
+                        {%- render 'icon-shopify', class: 'project-plus__image' -%}
+                      {%- elsif section.settings.plus_logo != blank -%}
+                        {{
+                          section.settings.plus_logo
+                          | image_url: width: 480
+                          | image_tag:
+                            widths: '160, 240, 320, 480',
+                            sizes: '160px',
+                            class: 'project-plus__image',
+                            loading: 'lazy',
+                            alt: 'Shopify Plus'
+                        }}
+                      {%- else -%}
+                        {%- render 'icon-shopify-plus', class: 'project-plus__image' -%}
+                      {%- endif -%}
+                    </div>
                   </dd>
                 </div>
               {%- endif -%}
@@ -169,6 +215,39 @@
       "visible_if": "{{ section.settings.show_logo }}"
     },
     {
+      "type": "header",
+      "content": "Platform"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_platform",
+      "default": true,
+      "label": "Show platform row",
+      "info": "Uses the project's Platform field: Shopify or Shopify Plus show their logo; other values show as text"
+    },
+    {
+      "type": "image_picker",
+      "id": "plus_logo",
+      "label": "Shopify Plus logo",
+      "info": "Optional. Defaults to the built-in logo, which uses the section's text colour.",
+      "visible_if": "{{ section.settings.show_platform }}"
+    },
+    {
+      "type": "range",
+      "id": "plus_logo_height",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 22,
+      "label": "Platform logo height",
+      "visible_if": "{{ section.settings.show_platform }}"
+    },
+    {
+      "type": "header",
+      "content": "Display"
+    },
+    {
       "type": "select",
       "id": "date_format",
       "options": [
@@ -197,6 +276,7 @@
     },
     { "type": "text", "id": "facts_label", "default": "Project details", "label": "Facts panel (screen readers)" },
     { "type": "text", "id": "label_client", "default": "Client", "label": "Client" },
+    { "type": "text", "id": "label_platform", "default": "Platform", "label": "Platform" },
     { "type": "text", "id": "label_industry", "default": "Industry", "label": "Industry" },
     { "type": "text", "id": "label_launched", "default": "Launched", "label": "Launch date" },
     { "type": "text", "id": "label_services", "default": "Services", "label": "Services" },
