@@ -1,0 +1,119 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "main-service-hero",
+      "settings": {
+        "eyebrow": "Services",
+        "heading_size": "hxl",
+        "text_alignment": "left",
+        "show_icon": true,
+        "icon_size": 56,
+        "button_label": "",
+        "button_link": "",
+        "button_style_secondary": false,
+        "show_image": true,
+        "image_ratio": "wide",
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "details": {
+      "type": "main-service-body",
+      "settings": {
+        "body_heading": "Overview",
+        "heading_size": "h3",
+        "show_deliverables": true,
+        "deliverables_heading": "What's included",
+        "deliverables_position": "right",
+        "sticky": true,
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "projects": {
+      "type": "main-service-projects",
+      "settings": {
+        "auto_match": true,
+        "heading": "Selected work",
+        "heading_size": "h1",
+        "view_all_label": "View all work",
+        "view_all_link": "/pages/our-work",
+        "limit": 3,
+        "columns": 3,
+        "text_alignment": "left",
+        "image_ratio": "landscape",
+        "show_industry": true,
+        "show_summary": false,
+        "card_link_label": "View case study",
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 60
+      }
+    },
+    "cta": {
+      "type": "rich-text",
+      "blocks": {
+        "cta_subheading": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Have a project in mind?",
+            "text_size": "h4",
+            "show_dash": true
+          }
+        },
+        "cta_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Let's build what's next.",
+            "heading_size": "h0"
+          }
+        },
+        "cta_button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Let's chat",
+            "button_link": "/contact-us",
+            "button_style_secondary": false,
+            "button_arrow": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false,
+            "button_arrow_2": false
+          }
+        }
+      },
+      "block_order": [
+        "cta_subheading",
+        "cta_heading",
+        "cta_button"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "show_border_top": true,
+        "show_border_bottom": false,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "details",
+    "projects",
+    "cta"
+  ]
+}

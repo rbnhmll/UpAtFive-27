@@ -1,0 +1,202 @@
+{{ 'section-project.css' | asset_url | stylesheet_tag }}
+{{ 'section-service.css' | asset_url | stylesheet_tag }}
+{% render 'project-section-padding' %}
+
+{%- liquid
+  assign service = metaobject
+  # `icon` is a list field; the first file is used.
+  assign icon = service.icon.value | first
+-%}
+
+<div {% render 'project-section-attrs', class: 'service-hero' %}>
+  <div class="page-width">
+    <div class="project-hero__intro project-hero__intro--{{ section.settings.text_alignment }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      {%- if section.settings.show_icon and icon != blank -%}
+        <div class="service-hero__icon" style="--service-icon-size: {{ section.settings.icon_size }}px;">
+          {%- if icon.media_type == 'image' -%}
+            {{ icon | image_url: width: 240 | image_tag: class: 'service-hero__icon-image', loading: 'eager', alt: '' }}
+          {%- elsif icon.url != blank -%}
+            <img src="{{ icon.url }}" class="service-hero__icon-image" alt="" loading="eager">
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="project-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      <h1 class="project-hero__title {{ section.settings.heading_size }}">{{ service.title.value | escape }}</h1>
+
+      {%- if service.summary != blank -%}
+        <div class="project-hero__summary">
+          <p>{{ service.summary.value | escape | newline_to_br }}</p>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+        <div class="project-hero__meta">
+          <a
+            href="{{ section.settings.button_link }}"
+            class="button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+          >
+            {{- section.settings.button_label | escape -}}
+            <span class="button__arrow svg-wrapper" aria-hidden="true">{{ 'icon-arrow.svg' | inline_asset_content }}</span>
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_image and service.hero_image != blank -%}
+      <div class="project-hero__media project-ratio project-ratio--{{ section.settings.image_ratio }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {% render 'project-media',
+          media: service.hero_image.value,
+          sizes: '(min-width: 1600px) 1500px, 100vw',
+          class: 'project-ratio__item',
+          eager: true
+        %}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Service hero",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["metaobject"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the service's icon, title, summary and hero image."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "Services",
+      "label": "Eyebrow text",
+      "info": "Small label above the title. Leave blank to hide."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" },
+        { "value": "hxl", "label": "Extra large" },
+        { "value": "hxxl", "label": "Extra extra large" }
+      ],
+      "default": "hxl",
+      "label": "Title size"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left",
+      "label": "Text alignment"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "default": true,
+      "label": "Show icon"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 24,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56,
+      "label": "Icon size",
+      "visible_if": "{{ section.settings.show_icon }}"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Let's chat",
+      "label": "Button label",
+      "info": "Leave blank to hide"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary",
+      "default": false,
+      "label": "Use outline button style"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "Show hero image"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "adapt", "label": "Original" },
+        { "value": "wide", "label": "Wide (16:9)" },
+        { "value": "cinema", "label": "Cinematic (21:9)" },
+        { "value": "landscape", "label": "Landscape (3:2)" }
+      ],
+      "default": "wide",
+      "label": "Image shape",
+      "visible_if": "{{ section.settings.show_image }}"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}

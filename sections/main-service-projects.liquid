@@ -1,0 +1,249 @@
+{{ 'section-project.css' | asset_url | stylesheet_tag }}
+{{ 'component-project-card.css' | asset_url | stylesheet_tag }}
+{% render 'project-section-padding' %}
+
+{%- liquid
+  assign service = metaobject
+  assign max = section.settings.limit
+
+  # 1. The service's own Related Projects, in the order picked.
+  assign projects = service.related_projects.value
+  assign project_count = 0
+  if projects != blank
+    assign project_count = projects.count
+  endif
+
+  # 2. Otherwise, projects whose Services field includes this service.
+  assign matched_handles = ''
+  if project_count == 0 and section.settings.auto_match
+    for project in shop.metaobjects.project.values
+      for project_service in project.services.value
+        if project_service.system.id == service.system.id
+          assign matched_handles = matched_handles | append: project.system.handle | append: ','
+          break
+        endif
+      endfor
+    endfor
+    assign matched_handles = matched_handles | split: ','
+    assign project_count = matched_handles.size
+  endif
+
+  assign industry_key = ''
+  if section.settings.show_industry
+    assign industry_key = 'industry'
+  endif
+-%}
+
+{%- if project_count > 0 -%}
+  <div {% render 'project-section-attrs', class: 'project-related service-projects' %}>
+    <div class="page-width">
+      <div class="project-related__header">
+        {%- if section.settings.heading != blank -%}
+          <h2 class="project-section__title project-dash {{ section.settings.heading_size }}">
+            <span>{{ section.settings.heading | escape }}</span>
+          </h2>
+        {%- endif -%}
+        {%- if section.settings.view_all_label != blank and section.settings.view_all_link != blank -%}
+          <a href="{{ section.settings.view_all_link }}" class="project-related__view-all link animate-arrow">
+            {{- section.settings.view_all_label | escape -}}
+            <span class="svg-wrapper"><span class="icon-wrap">{{ 'icon-arrow.svg' | inline_asset_content }}</span></span>
+          </a>
+        {%- endif -%}
+      </div>
+
+      <ul class="project-related__grid list-unstyled" style="--related-columns: {{ section.settings.columns }};" role="list">
+        {%- if matched_handles != blank -%}
+          {%- for handle in matched_handles limit: max -%}
+            {%- assign project = shop.metaobjects.project[handle] -%}
+            <li class="project-related__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}data-cascade style="--animation-order: {{ forloop.index }};"{% endif %}
+            >
+              {% render 'project-card',
+                project: project,
+                title_key: 'title',
+                image_key: 'image_main',
+                excerpt_key: 'summary',
+                industry_key: industry_key,
+                link_label: section.settings.card_link_label,
+                text_alignment: section.settings.text_alignment,
+                image_ratio: section.settings.image_ratio,
+                show_image: true,
+                show_excerpt: section.settings.show_summary
+              %}
+            </li>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for project in projects limit: max -%}
+            <li class="project-related__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}data-cascade style="--animation-order: {{ forloop.index }};"{% endif %}
+            >
+              {% render 'project-card',
+                project: project,
+                title_key: 'title',
+                image_key: 'image_main',
+                excerpt_key: 'summary',
+                industry_key: industry_key,
+                link_label: section.settings.card_link_label,
+                text_alignment: section.settings.text_alignment,
+                image_ratio: section.settings.image_ratio,
+                show_image: true,
+                show_excerpt: section.settings.show_summary
+              %}
+            </li>
+          {%- endfor -%}
+        {%- endif -%}
+      </ul>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Service projects",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["metaobject"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Case studies from the service's Related Projects field. Hidden when there are none to show."
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_match",
+      "default": true,
+      "label": "Fill in automatically",
+      "info": "When Related Projects is empty, show projects whose Services include this service"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Selected work",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "default": "View all work",
+      "label": "View all label",
+      "info": "Leave blank to hide"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View all link"
+    },
+    {
+      "type": "header",
+      "content": "Cards"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 3,
+      "label": "Maximum projects"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Columns on desktop"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left",
+      "label": "Card text alignment"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "landscape", "label": "Landscape (3:2)" },
+        { "value": "wide", "label": "Wide (16:9)" },
+        { "value": "square", "label": "Square (1:1)" },
+        { "value": "portrait", "label": "Portrait (4:5)" }
+      ],
+      "default": "landscape",
+      "label": "Card image shape"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_industry",
+      "default": true,
+      "label": "Show industry badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_summary",
+      "default": false,
+      "label": "Show summary"
+    },
+    {
+      "type": "text",
+      "id": "card_link_label",
+      "default": "View case study",
+      "label": "Card link label",
+      "info": "Leave blank to hide"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 60
+    }
+  ]
+}
+{% endschema %}

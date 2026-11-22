@@ -1,0 +1,153 @@
+{{ 'section-project.css' | asset_url | stylesheet_tag }}
+{{ 'section-service.css' | asset_url | stylesheet_tag }}
+{% render 'project-section-padding' %}
+
+{%- liquid
+  assign service = metaobject
+  assign show_deliverables = false
+  if section.settings.show_deliverables and service.deliverables != blank
+    assign show_deliverables = true
+  endif
+-%}
+
+{%- if service.body != blank or show_deliverables -%}
+  <div {% render 'project-section-attrs', class: 'service-body' %}>
+    <div class="page-width">
+      <div class="service-body__grid{% unless show_deliverables %} service-body__grid--body-only{% endunless %}{% if section.settings.deliverables_position == 'left' %} service-body__grid--aside-left{% endif %}">
+        {%- if service.body != blank -%}
+          <div class="service-body__content{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {%- if section.settings.body_heading != blank -%}
+              <h2 class="service-body__heading project-dash {{ section.settings.heading_size }}">
+                <span>{{ section.settings.body_heading | escape }}</span>
+              </h2>
+            {%- endif -%}
+            <div class="service-body__text rte">{{ service.body | metafield_tag }}</div>
+          </div>
+        {%- endif -%}
+
+        {%- if show_deliverables -%}
+          <aside
+            class="service-deliverables{% if section.settings.sticky %} service-deliverables--sticky{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            aria-labelledby="ServiceDeliverables-{{ section.id }}"
+          >
+            <h2 class="service-deliverables__heading caption-with-letter-spacing" id="ServiceDeliverables-{{ section.id }}">
+              {{- section.settings.deliverables_heading | escape -}}
+            </h2>
+            <ul class="service-deliverables__list list-unstyled" role="list">
+              {%- for item in service.deliverables.value -%}
+                <li class="service-deliverables__item">{{ item | escape }}</li>
+              {%- endfor -%}
+            </ul>
+          </aside>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Service details",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["metaobject"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "The service's body text, beside its list of deliverables."
+    },
+    {
+      "type": "text",
+      "id": "body_heading",
+      "default": "Overview",
+      "label": "Body heading",
+      "info": "Leave blank to hide"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h4", "label": "Extra small" },
+        { "value": "h3", "label": "Small" },
+        { "value": "h2", "label": "Medium" },
+        { "value": "h1", "label": "Large" }
+      ],
+      "default": "h3",
+      "label": "Heading size"
+    },
+    {
+      "type": "header",
+      "content": "Deliverables"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_deliverables",
+      "default": true,
+      "label": "Show deliverables"
+    },
+    {
+      "type": "text",
+      "id": "deliverables_heading",
+      "default": "What's included",
+      "label": "Deliverables heading",
+      "visible_if": "{{ section.settings.show_deliverables }}"
+    },
+    {
+      "type": "select",
+      "id": "deliverables_position",
+      "options": [
+        { "value": "right", "label": "Right" },
+        { "value": "left", "label": "Left" }
+      ],
+      "default": "right",
+      "label": "Deliverables position",
+      "info": "Desktop. On mobile, deliverables follow the body text.",
+      "visible_if": "{{ section.settings.show_deliverables }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "default": true,
+      "label": "Keep deliverables in view while scrolling",
+      "info": "Desktop only",
+      "visible_if": "{{ section.settings.show_deliverables }}"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}
