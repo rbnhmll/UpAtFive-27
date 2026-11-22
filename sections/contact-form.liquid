@@ -61,8 +61,13 @@
             name="contact[{{ 'templates.contact.form.name' | t }}]"
             value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
             placeholder="{{ 'templates.contact.form.name' | t }}"
+            required
+            aria-required="true"
           >
-          <label class="field__label" for="ContactForm-name">{{ 'templates.contact.form.name' | t }}</label>
+          <label class="field__label" for="ContactForm-name">
+            {{- 'templates.contact.form.name' | t }}
+            <span aria-hidden="true">*</span></label
+          >
         </div>
         <div class="field field--with-error">
           <input
@@ -99,31 +104,120 @@
           {%- endif -%}
         </div>
       </div>
-      <div class="field">
-        <input
-          type="tel"
-          id="ContactForm-phone"
-          class="field__input"
-          autocomplete="tel"
-          name="contact[{{ 'templates.contact.form.phone' | t }}]"
-          pattern="[0-9\-]*"
-          value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
-          placeholder="{{ 'templates.contact.form.phone' | t }}"
-        >
-        <label class="field__label" for="ContactForm-phone">{{ 'templates.contact.form.phone' | t }}</label>
-      </div>
+      {%- liquid
+        # Shopify emails every contact[...] field as "Key: value". Keys are fixed (not the
+        # on-page labels) so the notification email stays consistent if the wording changes.
+        # Project types come from the Service metaobjects: the ones picked in the section
+        # settings (in that order), or every service if none are picked.
+        if section.settings.services != blank and section.settings.services.count > 0
+          assign services = section.settings.services
+        else
+          assign services = shop.metaobjects.service.values
+        endif
+        assign extra_project_types = section.settings.extra_project_types | newline_to_br | split: '<br />'
+        assign budget_options = section.settings.budget_options | newline_to_br | split: '<br />'
+        assign timeline_options = section.settings.timeline_options | newline_to_br | split: '<br />'
+      -%}
+
+      {%- if section.settings.show_company -%}
+        <div class="field">
+          <input
+            type="text"
+            id="ContactForm-company"
+            class="field__input"
+            autocomplete="organization"
+            name="contact[Company]"
+            placeholder="{{ section.settings.label_company | escape }}"
+          >
+          <label class="field__label" for="ContactForm-company">{{ section.settings.label_company | escape }}</label>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_project_type -%}
+        <div class="contact__select-field contact__project-type">
+          <label class="form__label" for="ContactForm-project-type">
+            {{- section.settings.label_project_type | escape -}}
+            {%- if section.settings.require_project_type %} <span aria-hidden="true">*</span>{% endif -%}
+          </label>
+          <div class="select">
+            <select
+              id="ContactForm-project-type"
+              class="select__select"
+              name="contact[Project type]"
+              {% if section.settings.require_project_type %}required aria-required="true"{% endif %}
+            >
+              <option value="">{{ section.settings.select_placeholder | escape }}</option>
+              {%- for service in services -%}
+                {%- assign option_label = service.title.value | strip -%}
+                {%- if option_label != blank -%}
+                  <option value="{{ option_label | escape }}">{{ option_label | escape }}</option>
+                {%- endif -%}
+              {%- endfor -%}
+              {%- for option in extra_project_types -%}
+                {%- assign option_label = option | strip -%}
+                {%- if option_label != blank -%}
+                  <option value="{{ option_label | escape }}">{{ option_label | escape }}</option>
+                {%- endif -%}
+              {%- endfor -%}
+            </select>
+            <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_budget or section.settings.show_timeline -%}
+        <div class="contact__fields contact__selects">
+          {%- if section.settings.show_budget and section.settings.budget_options != blank -%}
+            <div class="contact__select-field">
+              <label class="form__label" for="ContactForm-budget">{{ section.settings.label_budget | escape }}</label>
+              <div class="select">
+                <select id="ContactForm-budget" class="select__select" name="contact[Budget]">
+                  <option value="">{{ section.settings.select_placeholder | escape }}</option>
+                  {%- for option in budget_options -%}
+                    {%- assign option_label = option | strip -%}
+                    {%- if option_label != blank -%}
+                      <option value="{{ option_label | escape }}">{{ option_label | escape }}</option>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </select>
+                <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </div>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.show_timeline and section.settings.timeline_options != blank -%}
+            <div class="contact__select-field">
+              <label class="form__label" for="ContactForm-timeline">{{ section.settings.label_timeline | escape }}</label>
+              <div class="select">
+                <select id="ContactForm-timeline" class="select__select" name="contact[Timeline]">
+                  <option value="">{{ section.settings.select_placeholder | escape }}</option>
+                  {%- for option in timeline_options -%}
+                    {%- assign option_label = option | strip -%}
+                    {%- if option_label != blank -%}
+                      <option value="{{ option_label | escape }}">{{ option_label | escape }}</option>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </select>
+                <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
       <div class="field">
         <textarea
-          rows="10"
+          rows="8"
           id="ContactForm-body"
           class="text-area field__input"
           name="contact[{{ 'templates.contact.form.comment' | t }}]"
-          placeholder="{{ 'templates.contact.form.comment' | t }}"
+          placeholder="{{ section.settings.label_message | escape }}"
+          {% if section.settings.require_message %}required aria-required="true"{% endif %}
         >
           {{- form.body -}}
         </textarea>
         <label class="form__label field__label" for="ContactForm-body">
-          {{- 'templates.contact.form.comment' | t -}}
+          {{- section.settings.label_message | escape -}}
+          {%- if section.settings.require_message %} <span aria-hidden="true">*</span>{% endif -%}
         </label>
       </div>
       <div class="contact__button">
@@ -177,6 +271,128 @@
       ],
       "default": "h1",
       "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "header",
+      "content": "Form fields"
+    },
+    {
+      "type": "paragraph",
+      "content": "Answers arrive in the contact notification email as Company, Project type, Budget and Timeline."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_company",
+      "default": true,
+      "label": "Show company field"
+    },
+    {
+      "type": "text",
+      "id": "label_company",
+      "default": "Company or website",
+      "label": "Company label",
+      "visible_if": "{{ section.settings.show_company }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_project_type",
+      "default": true,
+      "label": "Show project type"
+    },
+    {
+      "type": "text",
+      "id": "label_project_type",
+      "default": "What can we help with?",
+      "label": "Project type label",
+      "visible_if": "{{ section.settings.show_project_type }}"
+    },
+    {
+      "type": "metaobject_list",
+      "id": "services",
+      "metaobject_type": "service",
+      "limit": 25,
+      "label": "Services",
+      "info": "Listed as project type options, in this order. Leave empty to list every service.",
+      "visible_if": "{{ section.settings.show_project_type }}"
+    },
+    {
+      "type": "textarea",
+      "id": "extra_project_types",
+      "default": "Something else",
+      "label": "Extra options",
+      "info": "Added after the services, one per line",
+      "visible_if": "{{ section.settings.show_project_type }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "require_project_type",
+      "default": true,
+      "label": "Require project type",
+      "visible_if": "{{ section.settings.show_project_type }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_budget",
+      "default": false,
+      "label": "Show budget"
+    },
+    {
+      "type": "text",
+      "id": "label_budget",
+      "default": "Budget",
+      "label": "Budget label",
+      "visible_if": "{{ section.settings.show_budget }}"
+    },
+    {
+      "type": "textarea",
+      "id": "budget_options",
+      "default": "Under $10k\n$10k–$25k\n$25k–$50k\n$50k–$100k\n$100k+\nNot sure yet",
+      "label": "Budget options",
+      "info": "One per line",
+      "visible_if": "{{ section.settings.show_budget }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_timeline",
+      "default": false,
+      "label": "Show timeline"
+    },
+    {
+      "type": "text",
+      "id": "label_timeline",
+      "default": "Timeline",
+      "label": "Timeline label",
+      "visible_if": "{{ section.settings.show_timeline }}"
+    },
+    {
+      "type": "textarea",
+      "id": "timeline_options",
+      "default": "As soon as possible\n1–3 months\n3–6 months\n6+ months\nFlexible",
+      "label": "Timeline options",
+      "info": "One per line",
+      "visible_if": "{{ section.settings.show_timeline }}"
+    },
+    {
+      "type": "text",
+      "id": "select_placeholder",
+      "default": "Select one",
+      "label": "Dropdown placeholder"
+    },
+    {
+      "type": "text",
+      "id": "label_message",
+      "default": "Tell us about your project",
+      "label": "Message label"
+    },
+    {
+      "type": "checkbox",
+      "id": "require_message",
+      "default": false,
+      "label": "Require message"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.colors.label"
     },
     {
       "type": "color_scheme",

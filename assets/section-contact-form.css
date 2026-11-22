@@ -37,3 +37,39 @@
     grid-column-gap: 2rem;
   }
 }
+
+/* Project type, budget and timeline dropdowns ------------------------------ */
+.contact__selects {
+  margin-bottom: 1.5rem;
+}
+
+.contact__project-type {
+  margin-bottom: 2.4rem;
+}
+
+.contact__select-field {
+  margin-bottom: 1.5rem;
+}
+
+.contact__select-field .form__label {
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.contact__select-field .select__select {
+  height: 4.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .contact .contact__project-type {
+    margin-bottom: 3rem;
+  }
+
+  .contact__selects {
+    margin-bottom: 2rem;
+  }
+
+  .contact__select-field {
+    margin-bottom: 0;
+  }
+}
