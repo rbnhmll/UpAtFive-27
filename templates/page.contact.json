@@ -11,9 +11,63 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
+        "full_width": true,
         "padding_top": 20,
         "padding_bottom": 0
+      }
+    },
+    "rich_text_WQU7GE": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_VGeepm": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Contact Us",
+            "text_size": "h4",
+            "show_dash": true
+          }
+        },
+        "heading_WdcbjP": {
+          "type": "heading",
+          "settings": {
+            "heading": "Get in touch.",
+            "heading_size": "h0"
+          }
+        },
+        "text_3yyUwV": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Ready to talk about what transformation can do for your business, or just looking for more information? Start here.</p>"
+          }
+        },
+        "column_break_UybyBC": {
+          "type": "column_break",
+          "settings": {
+            "show_divider": false,
+            "column_ratio": "50-50",
+            "vertical_alignment": "top",
+            "column_gap": 80
+          }
+        }
+      },
+      "block_order": [
+        "subheading_VGeepm",
+        "heading_WdcbjP",
+        "text_3yyUwV",
+        "column_break_UybyBC"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "scheme-5",
+        "full_width": true,
+        "show_border_top": true,
+        "show_border_bottom": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     },
     "form": {
@@ -21,14 +75,31 @@
       "settings": {
         "heading": "",
         "heading_size": "h1",
+        "show_company": true,
+        "label_company": "Company or website",
+        "show_project_type": true,
+        "label_project_type": "What can we help with?",
+        "services": [],
+        "extra_project_types": "Something else",
+        "require_project_type": true,
+        "show_budget": false,
+        "label_budget": "Budget",
+        "budget_options": "Under $10k\n$10k–$25k\n$25k–$50k\n$50k–$100k\n$100k+\nNot sure yet",
+        "show_timeline": false,
+        "label_timeline": "Timeline",
+        "timeline_options": "As soon as possible\n1–3 months\n3–6 months\n6+ months\nFlexible",
+        "select_placeholder": "Select one",
+        "label_message": "Tell us about your project",
+        "require_message": false,
         "color_scheme": "scheme-1",
-        "padding_top": 0,
-        "padding_bottom": 36
+        "padding_top": 100,
+        "padding_bottom": 100
       }
     }
   },
   "order": [
     "main",
+    "rich_text_WQU7GE",
     "form"
   ]
 }
