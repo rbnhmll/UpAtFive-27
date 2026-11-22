@@ -56,8 +56,17 @@
   margin-bottom: 0.8rem;
 }
 
+/* Match the text inputs: Dawn's default select is a small 1.2rem caption style
+   with the caret flush against the right edge. */
 .contact__select-field .select__select {
   height: 4.5rem;
+  letter-spacing: 0.04rem;
+  color: rgb(var(--color-foreground));
+  padding: 0 calc(var(--inputs-border-width) + 5rem) 0 calc(var(--inputs-border-width) + 2rem);
+}
+
+.contact__select-field .select .svg-wrapper {
+  right: calc(var(--inputs-border-width) + 2rem);
 }
 
 @media screen and (min-width: 750px) {
