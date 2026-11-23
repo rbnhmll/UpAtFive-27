@@ -346,7 +346,7 @@
             "title": "Shopify themes",
             "text": "<p>Theme setup, custom themes, custom functionality. Whatever you business needs, we are well versed.</p>",
             "link_label": "",
-            "link": "",
+            "link": "shopify://metaobjects/service/custom-shopify-themes",
             "override_color_scheme": false,
             "color_scheme": ""
           }
@@ -357,7 +357,7 @@
             "title": "Shopify apps",
             "text": "<p>When your needs are ahead of the bunch, you need custom solutions. We can help you make your vision a reality.</p>",
             "link_label": "",
-            "link": "",
+            "link": "shopify://metaobjects/service/custom-shopify-app",
             "override_color_scheme": false,
             "color_scheme": ""
           }
@@ -368,7 +368,7 @@
             "title": "Shopify UI Extensions",
             "text": "<p>When you don't need a full-blown app, UI Shopify extensions fill the gap. We can help with that.</p>",
             "link_label": "",
-            "link": "",
+            "link": "shopify://metaobjects/service/shopify-ui-extention",
             "override_color_scheme": false,
             "color_scheme": ""
           }
@@ -390,7 +390,7 @@
             "title": "Accessibility",
             "text": "<p>Web accessibility is not just about reducing your liability. It's also about providing the best shopping experience for the greatest number of shoppers.</p>",
             "link_label": "",
-            "link": "",
+            "link": "shopify://metaobjects/service/accessibility-remediation",
             "override_color_scheme": false,
             "color_scheme": ""
           }
