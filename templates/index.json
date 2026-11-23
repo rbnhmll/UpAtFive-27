@@ -474,7 +474,7 @@
         "heading_reCbgi": {
           "type": "heading",
           "settings": {
-            "heading": "What is this section for? Decide.",
+            "heading": "Empowering you to take the reins<strong>.</strong>",
             "heading_size": "h1",
             "heading_tag": "h2",
             "accent_strong": true
@@ -483,7 +483,7 @@
         "text_zrWLcn": {
           "type": "text",
           "settings": {
-            "text": "<p>Our transformational work creates a splash. But we're most proud of the ripple effects after our engagement ends, foundational changes that equip your business with the tools to continue thriving.</p>",
+            "text": "<p>As much as possible, it is our mission to make you the keeper of your own domain, so you can continue to build your business.&nbsp;This means building everything in such a way that you can self manage, so we can step away and let you ride into the runset.</p>",
             "accent_strong": false
           }
         },
