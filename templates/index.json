@@ -255,7 +255,7 @@
           "type": "column",
           "settings": {
             "title": "Brief",
-            "text": "<p>Tell us about your goals, or what needs fixing.</p>",
+            "text": "<p>Tell us about your goals, your dreams or what needs fixing.</p>",
             "link_label": "",
             "link": "",
             "corner_text": "01",
@@ -269,7 +269,7 @@
           "type": "column",
           "settings": {
             "title": "Proposal",
-            "text": "<p>Detailed and transparent scope, timeline and price. No surprises.</p>",
+            "text": "<p>Detailed and transparent scope, timeline and price. No surprises. Just deliverables.</p>",
             "link_label": "",
             "link": "",
             "corner_text": "02",
@@ -283,7 +283,7 @@
           "type": "column",
           "settings": {
             "title": "Build",
-            "text": "<p>Feedback early and often, with room to be nimble.</p>",
+            "text": "<p>And now the fun part. Create. Feedback early and often, with room to be nimble.</p>",
             "link_label": "",
             "link": "",
             "corner_text": "03",
