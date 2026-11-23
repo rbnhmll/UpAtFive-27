@@ -129,6 +129,9 @@
     "show_cart_note": false,
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-1",
+    "seo_projects_page": "our-work",
+    "seo_services_page": "services",
+    "seo_linkedin_link": "https://ca.linkedin.com/company/up-at-five",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",

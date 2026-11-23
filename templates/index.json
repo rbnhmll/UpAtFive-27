@@ -26,8 +26,7 @@
           "settings": {
             "heading": "Small shop<strong>.</strong> Big impact<strong>.</strong>",
             "heading_size": "hxxl",
-            "accent_strong": true,
-            "heading_tag": "h1"
+            "accent_strong": true
           }
         },
         "column_break_hpaPMy": {
