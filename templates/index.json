@@ -15,8 +15,9 @@
         "heading_wBnFQG": {
           "type": "heading",
           "settings": {
-            "heading": "Go beyond growth. Ignite transformation.",
-            "heading_size": "hxxl"
+            "heading": "Go beyond growth<strong>.</strong> Ignite transformation<strong>.</strong>",
+            "heading_size": "hxxl",
+            "accent_strong": true
           }
         }
       },
@@ -41,7 +42,8 @@
         "text_tYBJyD": {
           "type": "text",
           "settings": {
-            "text": "<p>As Chameleons, we are transformation experts who immerse and embed into your business, bringing leadership, execution, and team recruitment that energize change from within.</p><p><strong>Chameleons blend in, so you stand out.</strong></p>"
+            "text": "<p>As Chameleons, we are transformation experts who immerse and embed into your business, bringing leadership, execution, and team recruitment that energize change from within.</p><p><strong>Chameleons blend in, so you stand out.</strong></p>",
+            "accent_strong": false
           }
         },
         "column_break_XjaybD": {
@@ -170,14 +172,16 @@
           "settings": {
             "subheading": "Our approach",
             "text_size": "h4",
-            "show_dash": true
+            "show_dash": true,
+            "accent_strong": false
           }
         },
         "heading_NfVKFj": {
           "type": "heading",
           "settings": {
-            "heading": "We approach transformation in three ways.",
-            "heading_size": "h1"
+            "heading": "We approach transformation in three ways<strong>.</strong>",
+            "heading_size": "h1",
+            "accent_strong": true
           }
         },
         "column_break_g6tQyC": {
@@ -192,7 +196,8 @@
         "text_aeYdkF": {
           "type": "text",
           "settings": {
-            "text": "<p>Leverage our services in any one of these areas or combine them for greater effectiveness.</p>"
+            "text": "<p>Leverage our services in any one of these areas or combine them for greater effectiveness.</p>",
+            "accent_strong": false
           }
         }
       },
@@ -284,14 +289,16 @@
           "settings": {
             "subheading": "Our practices",
             "text_size": "h4",
-            "show_dash": true
+            "show_dash": true,
+            "accent_strong": false
           }
         },
         "heading_9tUCaC": {
           "type": "heading",
           "settings": {
-            "heading": "Six practices. One seamless journey.",
-            "heading_size": "h1"
+            "heading": "Six practices. One seamless journey<strong>.</strong>",
+            "heading_size": "h1",
+            "accent_strong": true
           }
         },
         "column_break_39NC8t": {
@@ -306,7 +313,8 @@
         "text_DKKLCb": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "accent_strong": false
           }
         }
       },
@@ -433,13 +441,15 @@
           "type": "heading",
           "settings": {
             "heading": "When you're good.We're gone.",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "accent_strong": false
           }
         },
         "text_zrWLcn": {
           "type": "text",
           "settings": {
-            "text": "<p>Our transformational work creates a splash. But we're most proud of the ripple effects after our engagement ends, foundational changes that equip your business with the tools to continue thriving.</p>"
+            "text": "<p>Our transformational work creates a splash. But we're most proud of the ripple effects after our engagement ends, foundational changes that equip your business with the tools to continue thriving.</p>",
+            "accent_strong": false
           }
         },
         "button_gBfYUG": {
@@ -481,14 +491,16 @@
           "settings": {
             "subheading": "Case studies",
             "text_size": "h4",
-            "show_dash": true
+            "show_dash": true,
+            "accent_strong": false
           }
         },
         "heading_FUkWQF": {
           "type": "heading",
           "settings": {
-            "heading": "Proof, not promises.",
-            "heading_size": "h1"
+            "heading": "Proof, not promises<strong>.</strong>",
+            "heading_size": "h1",
+            "accent_strong": true
           }
         },
         "column_break_xecJzA": {
@@ -681,7 +693,8 @@
           "type": "heading",
           "settings": {
             "heading": "Get in touch",
-            "heading_size": "h1"
+            "heading_size": "h1",
+            "accent_strong": false
           }
         },
         "column_break_3dfCDk": {
@@ -696,7 +709,8 @@
         "text_4FnVp4": {
           "type": "text",
           "settings": {
-            "text": "<p>Ready to talk about how we can transform your business together? Start the conversation.</p>"
+            "text": "<p>Ready to talk about how we can transform your business together? Start the conversation.</p>",
+            "accent_strong": false
           }
         },
         "button_hKH4am": {
