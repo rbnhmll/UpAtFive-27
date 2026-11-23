@@ -335,3 +335,75 @@
     transition: none;
   }
 }
+
+/* Corner text (e.g. a step number) -------------------------------------------
+   Pinned to a top corner of the card, inset to match the card's text padding.
+   Right: the title keeps clear of it. Left: the text below starts under it. */
+.multicolumn-card--corner {
+  position: relative;
+  --corner-inset: 2.5rem;
+}
+
+.background-none .multicolumn-card--corner {
+  --corner-inset: 0rem;
+}
+
+.multicolumn-card__corner {
+  position: absolute;
+  top: var(--corner-inset);
+  z-index: 2;
+  pointer-events: none;
+  color: rgba(var(--color-foreground), 0.6);
+  line-height: 1;
+}
+
+.multicolumn-card--corner-right .multicolumn-card__corner {
+  right: var(--corner-inset);
+}
+
+.multicolumn-card--corner-left .multicolumn-card__corner {
+  left: var(--corner-inset);
+}
+
+.multicolumn-card__corner--small {
+  font-size: 1.3rem;
+  letter-spacing: 0.13rem;
+  text-transform: uppercase;
+}
+
+.multicolumn-card__corner--large {
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: calc(var(--font-heading-scale) * 2.8rem);
+  letter-spacing: calc(var(--font-heading-scale) * 0.06rem);
+}
+
+/* Keep the title out from under the corner text. */
+.multicolumn-card--corner-right:not(.multicolumn-card--corner-on-image) .multicolumn-card__info > h3 {
+  padding-right: 5rem;
+}
+
+.multicolumn-card--corner-left:not(.multicolumn-card--corner-on-image) .multicolumn-card__info {
+  padding-top: calc(var(--corner-inset) + 3.6rem);
+}
+
+.multicolumn-card--corner-left:not(.multicolumn-card--corner-on-image):has(.multicolumn-card__corner--large) .multicolumn-card__info {
+  padding-top: calc(var(--corner-inset) + 5.6rem);
+}
+
+/* Over an image: sit on a small backing so it stays legible. */
+.multicolumn-card--corner-on-image .multicolumn-card__corner {
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.4rem;
+  background: rgba(var(--color-background), 0.85);
+  color: rgb(var(--color-foreground));
+}
+
+.multicolumn-card--corner-on-image .multicolumn-card__corner--small {
+  top: calc(var(--corner-inset) - 0.6rem);
+}
+
+.center .multicolumn-card--corner-right:not(.multicolumn-card--corner-on-image) .multicolumn-card__info > h3 {
+  padding-left: 5rem;
+}

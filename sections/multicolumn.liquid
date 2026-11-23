@@ -118,7 +118,12 @@
                 endif
               endif
             -%}
-            <div class="multicolumn-card content-container{% if block.settings.override_color_scheme %} multicolumn-card--scheme color-{{ block.settings.color_scheme }}{% endif %}{% if card_linked %} multicolumn-card--linked{% endif %}">
+            <div class="multicolumn-card content-container{% if block.settings.override_color_scheme %} multicolumn-card--scheme color-{{ block.settings.color_scheme }}{% endif %}{% if card_linked %} multicolumn-card--linked{% endif %}{% if block.settings.corner_text != blank %} multicolumn-card--corner multicolumn-card--corner-{{ block.settings.corner_position }}{% if block.settings.image != blank %} multicolumn-card--corner-on-image{% endif %}{% endif %}">
+              {%- if block.settings.corner_text != blank -%}
+                <span class="multicolumn-card__corner multicolumn-card__corner--{{ block.settings.corner_style }}">
+                  {{- block.settings.corner_text | escape -}}
+                </span>
+              {%- endif -%}
               {%- if block.settings.image != blank -%}
                 {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
                   {% assign spaced_image = true %}
@@ -534,6 +539,34 @@
           "type": "url",
           "id": "link",
           "label": "t:sections.multicolumn.blocks.column.settings.link.label"
+        },
+        {
+          "type": "text",
+          "id": "corner_text",
+          "label": "Corner text",
+          "info": "Short text in a top corner of the card, e.g. a number like 01"
+        },
+        {
+          "type": "select",
+          "id": "corner_position",
+          "options": [
+            { "value": "right", "label": "Top right" },
+            { "value": "left", "label": "Top left" }
+          ],
+          "default": "right",
+          "label": "Corner text position",
+          "visible_if": "{{ block.settings.corner_text != blank }}"
+        },
+        {
+          "type": "select",
+          "id": "corner_style",
+          "options": [
+            { "value": "small", "label": "Small" },
+            { "value": "large", "label": "Large" }
+          ],
+          "default": "small",
+          "label": "Corner text size",
+          "visible_if": "{{ block.settings.corner_text != blank }}"
         },
         {
           "type": "checkbox",
