@@ -71,15 +71,17 @@
         "heading_VEheYK": {
           "type": "heading",
           "settings": {
-            "heading": "About Up at Five.",
-            "heading_size": "h1"
+            "heading": "About Up at Five<strong>.</strong>",
+            "heading_size": "h1",
+            "accent_strong": true
           }
         },
         "text_WCfQwN": {
           "type": "text",
           "settings": {
             "text": "<p><strong>Up at Five is Robin Hamill, which means you are connected with the source from step one.</strong></p><p>No handing you off to another team once the contract is signed. We work together directly, using real human intelligence and communication, so that your vision is never lost in translation.</p>",
-            "text_style": "body"
+            "text_style": "body",
+            "accent_strong": false
           }
         },
         "button_mgheYE": {
@@ -109,8 +111,8 @@
         "mobile_content_alignment": "left",
         "section_color_scheme": "",
         "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36,
+        "padding_top": 100,
+        "padding_bottom": 100,
         "anchor_id": ""
       }
     },
@@ -175,7 +177,7 @@
       "settings": {
         "desktop_content_position": "left",
         "content_alignment": "left",
-        "color_scheme": "scheme-4",
+        "color_scheme": "scheme-5",
         "full_width": true,
         "show_border_top": true,
         "show_border_bottom": true,
