@@ -68,7 +68,7 @@
           >
             {%- for block in section.blocks -%}
               <div
-                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if block.settings.accent_strong %} accent-strong{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -362,6 +362,13 @@
           "id": "menu",
           "default": "footer",
           "label": "t:sections.footer.blocks.link_list.settings.menu.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "accent_strong",
+          "default": false,
+          "label": "Use accent color for bold text",
+          "info": "Bold text in this block uses the color scheme's accent color"
         }
       ]
     },
@@ -379,6 +386,13 @@
           "default": true,
           "label": "t:sections.footer.blocks.brand_information.settings.show_social.label",
           "info": "t:sections.footer.blocks.brand_information.settings.show_social.info"
+        },
+        {
+          "type": "checkbox",
+          "id": "accent_strong",
+          "default": false,
+          "label": "Use accent color for bold text",
+          "info": "Bold text in this block uses the color scheme's accent color"
         }
       ]
     },
@@ -397,6 +411,13 @@
           "id": "subtext",
           "default": "t:sections.footer.blocks.text.settings.subtext.default",
           "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "accent_strong",
+          "default": false,
+          "label": "Use accent color for bold text",
+          "info": "Bold text in this block uses the color scheme's accent color"
         }
       ]
     },
