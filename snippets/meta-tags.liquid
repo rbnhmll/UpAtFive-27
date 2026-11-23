@@ -1,14 +1,17 @@
 {%- doc -%}
   Renders Open Graph and Twitter metadata for the current page.
 
+  @param {string} [title] - Overrides page_title (e.g. a metaobject's SEO title).
+  @param {string} [description] - Overrides page_description.
+
   @example
   {% render 'meta-tags' %}
 {%- enddoc -%}
 {%- liquid
-  assign og_title = page_title | default: shop.name
+  assign og_title = title | default: page_title | default: shop.name
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
-  assign og_description = page_description | default: shop.description | default: shop.name
+  assign og_description = description | default: page_description | default: shop.description | default: shop.name
 
   # Share image: the page's own image, or for metaobject pages (services, projects)
   # their share_image field, falling back to the main/hero image.
@@ -22,7 +25,7 @@
 
   if request.page_type == 'product'
     assign og_type = 'product'
-  elsif request.page_type == 'article'
+  elsif request.page_type == 'article' or metaobject.system.type == 'project'
     assign og_type = 'article'
   elsif request.page_type == 'password'
     assign og_url = request.origin
@@ -48,7 +51,11 @@
 {%- endif -%}
 
 {%- if settings.social_twitter_link != blank -%}
-  <meta name="twitter:site" content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}">
+  {%- liquid
+    # Handle from a twitter.com or x.com profile link, without any query string or trailing slash.
+    assign twitter_handle = settings.social_twitter_link | replace: 'x.com/', 'twitter.com/' | split: 'twitter.com/' | last | split: '?' | first | remove: '/' | remove: '@'
+  -%}
+  <meta name="twitter:site" content="@{{ twitter_handle }}">
 {%- endif -%}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title | escape }}">

@@ -51,7 +51,8 @@
                 <span class="rich-text__column-break" {{ block.shopify_attributes }}></span>
               {%- endif -%}
             {%- when 'heading' -%}
-              <h2
+              {%- assign heading_tag = block.settings.heading_tag | default: 'h2' -%}
+              <{{ heading_tag }}
                 class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if block.settings.accent_strong %} accent-strong{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
@@ -60,7 +61,7 @@
                 {% endif %}
               >
                 {{ block.settings.heading }}
-              </h2>
+              </{{ heading_tag }}>
             {%- when 'subheading' -%}
               <h3
                 class="rich-text__subheading inline-richtext {{ block.settings.text_size }}{% if block.settings.show_dash %} rich-text__subheading--dash{% endif %}{% if block.settings.accent_strong %} accent-strong{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -343,6 +344,18 @@
           ],
           "default": "h1",
           "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "options": [
+            { "value": "h1", "label": "H1 (main page heading)" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" }
+          ],
+          "default": "h2",
+          "label": "Heading level",
+          "info": "For SEO and screen readers. Use H1 once per page, for its main heading. Size is set separately above."
         },
         {
           "type": "checkbox",

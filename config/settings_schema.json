@@ -1464,5 +1464,32 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "SEO",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Used for search engine structured data (breadcrumbs and your organisation's profile links)."
+      },
+      {
+        "type": "page",
+        "id": "seo_projects_page",
+        "label": "Projects listing page",
+        "info": "Breadcrumb parent for project pages, e.g. Our Work"
+      },
+      {
+        "type": "page",
+        "id": "seo_services_page",
+        "label": "Services listing page",
+        "info": "Breadcrumb parent for service pages"
+      },
+      {
+        "type": "url",
+        "id": "seo_linkedin_link",
+        "label": "LinkedIn profile",
+        "info": "Added to your organisation's profile links alongside the social media settings"
+      }
+    ]
   }
 ]

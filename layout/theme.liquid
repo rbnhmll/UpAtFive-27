@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="">
+    <meta name="theme-color" content="{{ settings.color_schemes.first.settings.background }}">
     <link rel="canonical" href="{{ canonical_url }}">
 
     {%- if settings.favicon != blank -%}
@@ -15,18 +15,37 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
+    {%- liquid
+      # SEO title and description. Metaobject pages (projects, services) use their own
+      # SEO fields when filled in, then their summary, so they never go without a
+      # description even if the SEO mapping isn't set up on the definition in admin.
+      assign seo_title = page_title
+      assign seo_description = page_description
+      if metaobject
+        if metaobject.seo_title != blank
+          assign seo_title = metaobject.seo_title.value
+        endif
+        if metaobject.seo_description != blank
+          assign seo_description = metaobject.seo_description.value
+        elsif seo_description == blank and metaobject.summary != blank
+          assign seo_description = metaobject.summary | metafield_text
+        endif
+      endif
+      assign seo_description = seo_description | strip_html | strip_newlines | strip | truncate: 160
+    -%}
     <title>
-      {{ page_title }}
+      {{ seo_title }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
       {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      {% comment %} {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%} {% endcomment %}
     </title>
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
+    {% if seo_description != blank %}
+      <meta name="description" content="{{ seo_description | escape }}">
     {% endif %}
 
-    {% render 'meta-tags' %}
+    {% render 'meta-tags', title: seo_title, description: seo_description %}
+    {% render 'structured-data' %}
 
     <script type="module">
       import * as StandardEvents from 'https://cdn.shopify.com/storefront/standard-events.js';
