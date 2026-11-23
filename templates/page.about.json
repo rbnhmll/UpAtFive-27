@@ -71,14 +71,14 @@
         "heading_VEheYK": {
           "type": "heading",
           "settings": {
-            "heading": "About Up at Five",
+            "heading": "About Up at Five.",
             "heading_size": "h1"
           }
         },
         "text_WCfQwN": {
           "type": "text",
           "settings": {
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text": "<p><strong>Up at Five is Robin Hamill, which means you are connected with the source from step one.</strong></p><p>No handing you off to another team once the contract is signed. We work together directly, using real human intelligence and communication, so that your vision is never lost in translation.</p>",
             "text_style": "body"
           }
         },
