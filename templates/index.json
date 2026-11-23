@@ -90,7 +90,7 @@
         "metric_a1": {
           "type": "metric",
           "settings": {
-            "number": "10+",
+            "number": "9+",
             "label": "Years Shopify experience"
           }
         },
@@ -125,7 +125,7 @@
       "settings": {
         "title": "",
         "heading_size": "h1",
-        "number_size": "h0",
+        "number_size": "h1",
         "text_alignment": "left",
         "color_scheme": "",
         "padding_top": 36,

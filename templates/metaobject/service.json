@@ -13,7 +13,7 @@
       "type": "main-service-hero",
       "settings": {
         "eyebrow": "Services",
-        "heading_size": "hxl",
+        "heading_size": "h0",
         "text_alignment": "left",
         "show_icon": true,
         "icon_size": 56,
