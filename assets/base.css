@@ -3678,3 +3678,12 @@ details-disclosure > details {
     scroll-behavior: smooth;
   }
 }
+
+/* Balanced heading wrapping: spreads words evenly across lines so headings don't end
+   with a single orphaned word, at every screen size. Browsers without support wrap
+   normally. Use [br] in a heading for a deliberate break. */
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5,
+.hxl, .hxxl {
+  text-wrap: balance;
+}
