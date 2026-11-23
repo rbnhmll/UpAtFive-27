@@ -8,7 +8,7 @@
   <div {% render 'project-section-attrs', class: 'project-gallery', use_project_accent: false %}>
     <div class="page-width">
       {%- unless section.settings.title == blank -%}
-        <h2 class="project-section__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+        <h2 class="project-section__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title | replace: '[br]', '<br>' }}</h2>
       {%- endunless -%}
       <ul
         class="project-gallery__grid list-unstyled{% if section.settings.feature_first %} project-gallery__grid--feature-first{% endif %}"

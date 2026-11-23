@@ -75,7 +75,7 @@
                     class="image-with-text__heading inline-richtext {{ block.settings.heading_size }}{% if block.settings.accent_strong %} accent-strong{% endif %}"
                     {{ block.shopify_attributes }}
                   >
-                    {{ block.settings.heading }}
+                    {{ block.settings.heading | replace: '[br]', '<br>' }}
                   </h2>
                 {%- when 'caption' -%}
                   <p

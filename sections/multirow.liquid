@@ -82,7 +82,7 @@
               {%- endif -%}
               {%- if block.settings.heading -%}
                 <h2 class="image-with-text__heading {{ section.settings.heading_size }} rte">
-                  {{ block.settings.heading }}
+                  {{ block.settings.heading | replace: '[br]', '<br>' }}
                 </h2>
               {%- endif -%}
               {%- if block.settings.text -%}

@@ -10,7 +10,7 @@
     <div class="page-width">
       <div class="project-related__header">
         {%- unless section.settings.title == blank -%}
-          <h2 class="project-section__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+          <h2 class="project-section__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title | replace: '[br]', '<br>' }}</h2>
         {%- endunless -%}
         {%- if section.settings.view_all_link != blank and section.settings.view_all_label != blank -%}
           <a href="{{ section.settings.view_all_link }}" class="link animate-arrow project-related__view-all">

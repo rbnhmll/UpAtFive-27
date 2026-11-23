@@ -15,7 +15,7 @@
   <div {% render 'project-section-attrs', class: 'metrics project-metrics', use_project_accent: false %}>
     <div class="page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       {%- unless section.settings.title == blank -%}
-        <h2 class="metrics__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+        <h2 class="metrics__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title | replace: '[br]', '<br>' }}</h2>
       {%- endunless -%}
       <ul
         class="metrics__list list-unstyled metrics__list--{{ section.settings.text_alignment }}"

@@ -24,7 +24,7 @@
     {%- if section.settings.title != blank or section.settings.text != blank -%}
       <div class="project-grid__header project-grid__header--{{ section.settings.heading_alignment }}">
         {%- unless section.settings.title == blank -%}
-          <h2 class="project-grid__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+          <h2 class="project-grid__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title | replace: '[br]', '<br>' }}</h2>
         {%- endunless -%}
         {%- unless section.settings.text == blank -%}
           <div class="project-grid__text rte">{{ section.settings.text }}</div>

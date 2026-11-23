@@ -24,7 +24,7 @@
   >
     {%- unless section.settings.title == blank -%}
       <h2 class="metrics__title inline-richtext {{ section.settings.heading_size }}">
-        {{ section.settings.title }}
+        {{ section.settings.title | replace: '[br]', '<br>' }}
       </h2>
     {%- endunless -%}
 

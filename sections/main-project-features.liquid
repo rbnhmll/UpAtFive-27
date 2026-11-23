@@ -8,7 +8,7 @@
   <div {% render 'project-section-attrs', class: 'project-features', use_project_accent: section.settings.use_project_accent %}>
     <div class="page-width">
       {%- unless section.settings.title == blank -%}
-        <h2 class="project-section__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+        <h2 class="project-section__title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.title | replace: '[br]', '<br>' }}</h2>
       {%- endunless -%}
 
       <ol class="project-features__list list-unstyled{% if section.settings.alternate %} project-features__list--alternate{% endif %}{% if section.settings.media_position == 'right' %} project-features__list--media-right{% endif %}" role="list">

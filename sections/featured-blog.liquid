@@ -64,7 +64,7 @@
             data-cascade
           {% endif %}
         >
-          {{ section.settings.heading }}
+          {{ section.settings.heading | replace: '[br]', '<br>' }}
         </h2>
 
         {%- if show_projects -%}

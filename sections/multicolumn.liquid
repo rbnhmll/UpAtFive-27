@@ -65,7 +65,7 @@
     {%- unless section.settings.title == blank -%}
       <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
         <h2 class="title inline-richtext {{ section.settings.heading_size }}">
-          {{ section.settings.title }}
+          {{ section.settings.title | replace: '[br]', '<br>' }}
         </h2>
         {%- if section.settings.button_label != blank and show_mobile_slider -%}
           <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">
@@ -171,10 +171,10 @@
                   <h3 class="inline-richtext">
                     {%- if card_linked -%}
                       <a href="{{ block.settings.link }}" class="multicolumn-card__link full-unstyled-link">
-                        {{- block.settings.title -}}
+                        {{- block.settings.title | replace: '[br]', '<br>' -}}
                       </a>
                     {%- else -%}
-                      {{ block.settings.title }}
+                      {{ block.settings.title | replace: '[br]', '<br>' }}
                     {%- endif -%}
                   </h3>
                 {%- endif -%}
