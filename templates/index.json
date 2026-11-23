@@ -342,8 +342,8 @@
         "column_kVHb3j": {
           "type": "column",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title": "Shopify themes",
+            "text": "<p>Theme setup, custom themes, custom functionality. Whatever you business needs, we are well versed.</p>",
             "link_label": "",
             "link": "",
             "override_color_scheme": false,
@@ -353,41 +353,8 @@
         "column_9t9aAR": {
           "type": "column",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": "",
-            "override_color_scheme": false,
-            "color_scheme": ""
-          }
-        },
-        "column_PfiR6h": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": "",
-            "override_color_scheme": false,
-            "color_scheme": ""
-          }
-        },
-        "column_GWqyGH": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
-            "link_label": "",
-            "link": "",
-            "override_color_scheme": false,
-            "color_scheme": ""
-          }
-        },
-        "column_mbF6QL": {
-          "type": "column",
-          "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title": "Shopify apps",
+            "text": "<p>When your needs are ahead of the bunch, you need custom solutions. We can help you make your vision a reality.</p>",
             "link_label": "",
             "link": "",
             "override_color_scheme": false,
@@ -397,7 +364,40 @@
         "column_BNpWzm": {
           "type": "column",
           "settings": {
-            "title": "Column",
+            "title": "Shopify UI Extensions",
+            "text": "<p>When you don't need a full-blown app, UI Shopify extensions fill the gap. We can help with that.</p>",
+            "link_label": "",
+            "link": "",
+            "override_color_scheme": false,
+            "color_scheme": ""
+          }
+        },
+        "column_PfiR6h": {
+          "type": "column",
+          "settings": {
+            "title": "Bug busting",
+            "text": "<p>Bugs can happen, but they shouldn't bring down your shop. We love rooting out issues, and providing robust solutions.</p>",
+            "link_label": "",
+            "link": "",
+            "override_color_scheme": false,
+            "color_scheme": ""
+          }
+        },
+        "column_GWqyGH": {
+          "type": "column",
+          "settings": {
+            "title": "Accessibility",
+            "text": "<p>Web accessibility is not just about reducing your liability. It's also about providing the best shopping experience for the greatest number of shoppers.</p>",
+            "link_label": "",
+            "link": "",
+            "override_color_scheme": false,
+            "color_scheme": ""
+          }
+        },
+        "column_mbF6QL": {
+          "type": "column",
+          "settings": {
+            "title": "Security",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
             "link": "",
@@ -409,10 +409,10 @@
       "block_order": [
         "column_kVHb3j",
         "column_9t9aAR",
+        "column_BNpWzm",
         "column_PfiR6h",
         "column_GWqyGH",
-        "column_mbF6QL",
-        "column_BNpWzm"
+        "column_mbF6QL"
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
