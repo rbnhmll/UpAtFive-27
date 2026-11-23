@@ -24,7 +24,7 @@
         "heading_wBnFQG": {
           "type": "heading",
           "settings": {
-            "heading": "Small shop<strong>.</strong> Big impact<strong>.</strong>",
+            "heading": "Small shop<strong>.</strong>[br]Big impact<strong>.</strong>",
             "heading_size": "hxxl",
             "heading_tag": "h2",
             "accent_strong": true
