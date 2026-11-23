@@ -258,6 +258,9 @@
             "text": "<p>Tell us about your goals, or what needs fixing.</p>",
             "link_label": "",
             "link": "",
+            "corner_text": "01",
+            "corner_position": "right",
+            "corner_style": "small",
             "override_color_scheme": true,
             "color_scheme": "scheme-3"
           }
@@ -269,6 +272,9 @@
             "text": "<p>Detailed and transparent scope, timeline and price. No surprises.</p>",
             "link_label": "",
             "link": "",
+            "corner_text": "02",
+            "corner_position": "right",
+            "corner_style": "small",
             "override_color_scheme": true,
             "color_scheme": "scheme-5"
           }
@@ -280,6 +286,9 @@
             "text": "<p>Feedback early and often, with room to be nimble.</p>",
             "link_label": "",
             "link": "",
+            "corner_text": "03",
+            "corner_position": "right",
+            "corner_style": "small",
             "override_color_scheme": true,
             "color_scheme": "scheme-2"
           }
@@ -379,6 +388,9 @@
             "text": "<p>Theme setup, custom themes, custom functionality. Whatever your business needs, we are well-versed.</p>",
             "link_label": "",
             "link": "shopify://metaobjects/service/custom-shopify-themes",
+            "corner_text": "",
+            "corner_position": "right",
+            "corner_style": "small",
             "override_color_scheme": false,
             "color_scheme": ""
           }
@@ -390,6 +402,9 @@
             "text": "<p>When your needs are ahead of the bunch, you need custom solutions. We can help you make your vision a reality.</p>",
             "link_label": "",
             "link": "shopify://metaobjects/service/custom-shopify-app",
+            "corner_text": "",
+            "corner_position": "right",
+            "corner_style": "small",
             "override_color_scheme": false,
             "color_scheme": ""
           }
@@ -401,6 +416,9 @@
             "text": "<p>When you don't need a full-blown app, Shopify UI extensions fill the gap. We can help with that.</p>",
             "link_label": "",
             "link": "shopify://metaobjects/service/shopify-ui-extention",
+            "corner_text": "",
+            "corner_position": "right",
+            "corner_style": "small",
             "override_color_scheme": false,
             "color_scheme": ""
           }
@@ -412,6 +430,9 @@
             "text": "<p>Accessibility is more than reducing your liability. It's about providing the best experience for the greatest number of people.</p>",
             "link_label": "",
             "link": "shopify://metaobjects/service/accessibility-remediation",
+            "corner_text": "",
+            "corner_position": "right",
+            "corner_style": "small",
             "override_color_scheme": false,
             "color_scheme": ""
           }
@@ -423,6 +444,9 @@
             "text": "<p>Bugs can happen, but they shouldn't erode trust in your shop. We love rooting out challenging issues, and providing robust solutions.</p>",
             "link_label": "",
             "link": "",
+            "corner_text": "",
+            "corner_position": "right",
+            "corner_style": "small",
             "override_color_scheme": false,
             "color_scheme": ""
           }
@@ -434,6 +458,9 @@
             "text": "<p>Trust is the most important thing to your customers. Let them shop in full confidence by reducing your attack surfaces.</p>",
             "link_label": "",
             "link": "shopify://metaobjects/service/security",
+            "corner_text": "",
+            "corner_position": "right",
+            "corner_style": "small",
             "override_color_scheme": false,
             "color_scheme": ""
           }
