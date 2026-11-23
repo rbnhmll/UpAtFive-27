@@ -1,3 +1,4 @@
+{%- render 'section-anchor' -%}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 
@@ -134,6 +135,16 @@
       ],
       "default": "2",
       "label": "t:sections.main-list-collections.settings.columns_mobile.label"
+    },
+    {
+      "type": "header",
+      "content": "In-page navigation"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Section ID",
+      "info": "Optional. Link to this section with #your-id (e.g. #services). Use a unique ID per page."
     }
   ]
 }

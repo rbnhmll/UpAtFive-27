@@ -1,3 +1,4 @@
+{%- render 'section-anchor' -%}
 <div class="{% if section.settings.include_margins %}page-width{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
   {%- for block in section.blocks -%}
     {% render block %}
@@ -15,6 +16,16 @@
       "id": "include_margins",
       "default": true,
       "label": "t:sections.apps.settings.include_margins.label"
+    },
+    {
+      "type": "header",
+      "content": "In-page navigation"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Section ID",
+      "info": "Optional. Link to this section with #your-id (e.g. #services). Use a unique ID per page."
     }
   ],
   "blocks": [

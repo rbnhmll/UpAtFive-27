@@ -1,3 +1,4 @@
+{%- render 'section-anchor' -%}
 {{ 'section-main-page.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
@@ -59,6 +60,16 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "header",
+      "content": "In-page navigation"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Section ID",
+      "info": "Optional. Link to this section with #your-id (e.g. #services). Use a unique ID per page."
     }
   ]
 }

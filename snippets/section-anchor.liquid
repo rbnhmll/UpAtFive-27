@@ -1,0 +1,16 @@
+{% doc %}
+  In-page navigation anchor for the current section. Outputs an empty anchor at the top
+  of the section when its "Section ID" setting is filled in, so links like `#services`
+  scroll here. The ID is cleaned up (spaces become hyphens, a leading # is dropped).
+
+  Rendered at the top of every section; uses `section.settings.anchor_id`.
+
+  @example
+  {% render 'section-anchor' %}
+{% enddoc %}
+{%- liquid
+  assign anchor = section.settings.anchor_id | strip | remove_first: '#' | handleize
+-%}
+{%- if anchor != blank -%}
+  <span id="{{ anchor }}" class="section-anchor" aria-hidden="true"></span>
+{%- endif -%}

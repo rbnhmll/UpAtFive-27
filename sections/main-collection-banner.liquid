@@ -1,3 +1,4 @@
+{%- render 'section-anchor' -%}
 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
 {{ 'component-collection-hero.css' | asset_url | stylesheet_tag }}
 
@@ -71,6 +72,16 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "In-page navigation"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Section ID",
+      "info": "Optional. Link to this section with #your-id (e.g. #services). Use a unique ID per page."
     }
   ]
 }

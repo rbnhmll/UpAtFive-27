@@ -1,3 +1,4 @@
+{%- render 'section-anchor' -%}
 {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
@@ -6,6 +7,18 @@
 
 {% schema %}
 {
+  "settings": [
+    {
+      "type": "header",
+      "content": "In-page navigation"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Section ID",
+      "info": "Optional. Link to this section with #your-id (e.g. #services). Use a unique ID per page."
+    }
+  ],
   "name": "t:sections.quick-order-list.name",
   "limit": 1,
   "enabled_on": {

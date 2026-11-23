@@ -3660,3 +3660,17 @@ details-disclosure > details {
 .accent-strong b {
   color: rgb(var(--color-accent, var(--color-button)));
 }
+
+/* In-page navigation anchors (snippets/section-anchor.liquid). The anchor takes no
+   space; scroll-margin keeps the section clear of the sticky header when jumped to. */
+.section-anchor {
+  display: block;
+  height: 0;
+  scroll-margin-top: calc(var(--header-height, 0px) + 2rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:has(.section-anchor) {
+    scroll-behavior: smooth;
+  }
+}

@@ -1,3 +1,4 @@
+{%- render 'section-anchor' -%}
 {{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
 
 <article class="article-template">
@@ -294,6 +295,18 @@
 
 {% schema %}
 {
+  "settings": [
+    {
+      "type": "header",
+      "content": "In-page navigation"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Section ID",
+      "info": "Optional. Link to this section with #your-id (e.g. #services). Use a unique ID per page."
+    }
+  ],
   "name": "t:sections.main-article.name",
   "tag": "section",
   "class": "section",
