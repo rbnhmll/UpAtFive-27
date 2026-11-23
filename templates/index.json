@@ -373,24 +373,24 @@
             "color_scheme": ""
           }
         },
-        "column_PfiR6h": {
-          "type": "column",
-          "settings": {
-            "title": "Bug busting",
-            "text": "<p>Bugs can happen, but they shouldn't bring down your shop. We love rooting out issues, and providing robust solutions.</p>",
-            "link_label": "",
-            "link": "",
-            "override_color_scheme": false,
-            "color_scheme": ""
-          }
-        },
         "column_GWqyGH": {
           "type": "column",
           "settings": {
             "title": "Accessibility",
-            "text": "<p>Web accessibility is not just about reducing your liability. It's also about providing the best shopping experience for the greatest number of shoppers.</p>",
+            "text": "<p>Accessibility is about more than reducing your liability. It's about providing the best experience for the greatest number of people.</p>",
             "link_label": "",
             "link": "shopify://metaobjects/service/accessibility-remediation",
+            "override_color_scheme": false,
+            "color_scheme": ""
+          }
+        },
+        "column_PfiR6h": {
+          "type": "column",
+          "settings": {
+            "title": "Bug busting",
+            "text": "<p>Bugs can happen, but they shouldn't erode trust in your shop. We love rooting out issues, and providing robust solutions.</p>",
+            "link_label": "",
+            "link": "",
             "override_color_scheme": false,
             "color_scheme": ""
           }
@@ -399,7 +399,7 @@
           "type": "column",
           "settings": {
             "title": "Security",
-            "text": "<p>Trust is the most important thing to your customers. Let them shop in full confidence byt tightening up your security, and reducing your attack surface.</p>",
+            "text": "<p>Trust is the most important thing to your customers. Let them shop in full confidence by reducing your attack surface.</p>",
             "link_label": "",
             "link": "shopify://metaobjects/service/security",
             "override_color_scheme": false,
@@ -411,8 +411,8 @@
         "column_kVHb3j",
         "column_9t9aAR",
         "column_BNpWzm",
-        "column_PfiR6h",
         "column_GWqyGH",
+        "column_PfiR6h",
         "column_mbF6QL"
       ],
       "name": "t:sections.multicolumn.presets.name",

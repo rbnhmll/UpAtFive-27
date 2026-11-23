@@ -17,21 +17,29 @@
         "link_list_Et7AB8": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick links",
-            "menu": "footer"
+            "heading": "Shopify",
+            "menu": "footer-shopify-2027"
           }
         },
         "link_list_dqfh6C": {
           "type": "link_list",
           "settings": {
             "heading": "Our Expertise",
-            "menu": "main-menu"
+            "menu": "footer-expertise-2027"
+          }
+        },
+        "text_D68DJp": {
+          "type": "text",
+          "settings": {
+            "heading": "",
+            "subtext": ""
           }
         }
       },
       "block_order": [
         "link_list_Et7AB8",
-        "link_list_dqfh6C"
+        "link_list_dqfh6C",
+        "text_D68DJp"
       ],
       "settings": {
         "color_scheme": "scheme-4",
@@ -43,6 +51,10 @@
         "enable_language_selector": false,
         "payment_enable": false,
         "show_policy": false,
+        "tagline": "Built with intention in B.C. Canada",
+        "show_partner_badge": true,
+        "partner_badge_link": "",
+        "partner_badge_height": 24,
         "margin_top": 0,
         "padding_top": 32,
         "padding_bottom": 32
