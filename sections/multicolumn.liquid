@@ -106,7 +106,18 @@
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
           >
-            <div class="multicolumn-card content-container{% if block.settings.override_color_scheme %} multicolumn-card--scheme color-{{ block.settings.color_scheme }}{% endif %}">
+            {%- liquid
+              # Whole-card link: the title (or the link label when there's no title) is the
+              # real link, and its ::after stretches over the card. Screen readers get a short,
+              # meaningful link name instead of the whole card's content.
+              assign card_linked = false
+              if section.settings.card_link and block.settings.link != blank
+                if block.settings.title != blank or block.settings.link_label != blank
+                  assign card_linked = true
+                endif
+              endif
+            -%}
+            <div class="multicolumn-card content-container{% if block.settings.override_color_scheme %} multicolumn-card--scheme color-{{ block.settings.color_scheme }}{% endif %}{% if card_linked %} multicolumn-card--linked{% endif %}">
               {%- if block.settings.image != blank -%}
                 {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
                   {% assign spaced_image = true %}
@@ -151,12 +162,37 @@
               {%- endif -%}
               <div class="multicolumn-card__info">
                 {%- if block.settings.title != blank -%}
-                  <h3 class="inline-richtext">{{ block.settings.title }}</h3>
+                  <h3 class="inline-richtext">
+                    {%- if card_linked -%}
+                      <a href="{{ block.settings.link }}" class="multicolumn-card__link full-unstyled-link">
+                        {{- block.settings.title -}}
+                      </a>
+                    {%- else -%}
+                      {{ block.settings.title }}
+                    {%- endif -%}
+                  </h3>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
                   <div class="rte">{{ block.settings.text }}</div>
                 {%- endif -%}
-                {%- if block.settings.link_label != blank -%}
+                {%- if card_linked and block.settings.title != blank -%}
+                  {%- if block.settings.link_label != blank -%}
+                    {%- comment -%} Visual cue only: the title link already covers the card. {%- endcomment -%}
+                    <span class="link animate-arrow multicolumn-card__cue" aria-hidden="true">
+                      {{- block.settings.link_label | escape -}}
+                      <span class="svg-wrapper"
+                        ><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span
+                      >
+                    </span>
+                  {%- endif -%}
+                {%- elsif card_linked -%}
+                  <a href="{{ block.settings.link }}" class="link animate-arrow multicolumn-card__link">
+                    {{- block.settings.link_label | escape -}}
+                    <span class="svg-wrapper"
+                      ><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span
+                    >
+                  </a>
+                {%- elsif block.settings.link_label != blank -%}
                   <a
                     class="link animate-arrow"
                     {% if block.settings.link == blank %}
@@ -311,6 +347,13 @@
       ],
       "default": "adapt",
       "label": "t:sections.multicolumn.settings.image_ratio.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_link",
+      "default": false,
+      "label": "Make whole card clickable",
+      "info": "Columns with a link become one large click target. The column's link label still shows as a visual cue."
     },
     {
       "type": "header",

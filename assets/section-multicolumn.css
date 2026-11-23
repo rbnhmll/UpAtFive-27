@@ -280,3 +280,58 @@
     margin-bottom: calc(var(--text-boxes-border-width) * -1);
   }
 }
+
+/* Whole-card link -----------------------------------------------------------
+   The title link's ::after covers the card, so the whole card is clickable while
+   the accessible link name stays short (just the title). */
+.multicolumn-card--linked {
+  position: relative;
+  cursor: pointer;
+}
+
+.multicolumn-card--linked .multicolumn-card__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Links inside the body text stay clickable above the overlay. */
+.multicolumn-card--linked .rte a {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hover: underline the title and nudge the arrow, as a regular link would. */
+.multicolumn-card--linked:hover .multicolumn-card__link {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+.multicolumn-card--linked:hover .multicolumn-card__cue .icon-wrap {
+  transform: translateX(0.4rem);
+}
+
+.multicolumn-card--linked .multicolumn-card__cue .icon-wrap {
+  display: inline-block;
+  transition: transform var(--duration-short) ease;
+}
+
+/* Keyboard focus: outline the whole card instead of just the title. */
+.multicolumn-card--linked .multicolumn-card__link:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Drawn inside the card so it isn't clipped by the slider or hidden by
+   neighbouring cards when the column gap is 0. */
+.multicolumn-card--linked:has(.multicolumn-card__link:focus-visible) {
+  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
+  outline-offset: -0.4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .multicolumn-card--linked .multicolumn-card__cue .icon-wrap {
+    transition: none;
+  }
+}
