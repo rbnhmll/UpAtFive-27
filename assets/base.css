@@ -249,8 +249,12 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   z-index: 2;
 }
 
+/* Text selection: the scheme's accent colour (or the main accent, for schemes without
+   one) behind the site's default (dark) text colour. The text colour is fixed rather than the scheme's own, so selections stay
+   readable on dark schemes where light text on the light accent would fail contrast. */
 ::selection {
-  background-color: rgba(var(--color-foreground), 0.2);
+  background-color: rgb(var(--color-selection, var(--color-accent, var(--color-button))));
+  color: rgb(var(--color-default-text, var(--color-foreground)));
 }
 
 .text-body {

@@ -80,6 +80,10 @@
 
       {% for scheme in settings.color_schemes -%}
         {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
+        {%- if forloop.first %}
+          {%- assign default_text_color = scheme.settings.text -%}
+          {%- assign default_accent_color = scheme.settings.accent -%}
+        {%- endif %}
         {% if forloop.index == 1 -%}
           :root,
         {%- endif %}
@@ -109,6 +113,14 @@
         --color-button: {{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }};
         {%- assign accent = scheme.settings.accent | default: scheme.settings.button %}
         --color-accent: {{ accent.red }},{{ accent.green }},{{ accent.blue }};
+        {%- comment -%}
+          Text selection uses the scheme's own accent; schemes without one borrow the first
+          scheme's accent (not the button colour, which can match the text and hide it).
+        {%- endcomment -%}
+        {%- assign selection = scheme.settings.accent | default: default_accent_color %}
+        {%- if selection != blank %}
+        --color-selection: {{ selection.red }},{{ selection.green }},{{ selection.blue }};
+        {%- endif %}
         --color-button-text: {{ scheme.settings.button_label.red }},{{ scheme.settings.button_label.green }},{{ scheme.settings.button_label.blue }};
         --color-secondary-button: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
         --color-secondary-button-text: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
@@ -126,6 +138,9 @@
       }
 
       :root {
+        /* The first colour scheme's text colour, used where a fixed, site-wide text colour
+           is needed regardless of the local scheme (e.g. text selection on the accent). */
+        --color-default-text: {{ default_text_color.red }},{{ default_text_color.green }},{{ default_text_color.blue }};
         --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
         --font-body-style: {{ settings.type_body_font.style }};
         --font-body-weight: {{ settings.type_body_font.weight }};
