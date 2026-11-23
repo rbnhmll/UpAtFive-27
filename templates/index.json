@@ -12,28 +12,48 @@
     "rich_text_CJFzft": {
       "type": "rich-text",
       "blocks": {
+        "subheading_ChEHgx": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Independent Shopify agency",
+            "text_size": "h4",
+            "show_dash": true,
+            "accent_strong": false
+          }
+        },
         "heading_wBnFQG": {
           "type": "heading",
           "settings": {
-            "heading": "Go beyond growth<strong>.</strong> Ignite transformation<strong>.</strong>",
+            "heading": "Small shop<strong>.</strong> Big impact<strong>.</strong>",
             "heading_size": "hxxl",
             "accent_strong": true
+          }
+        },
+        "column_break_hpaPMy": {
+          "type": "column_break",
+          "settings": {
+            "show_divider": false,
+            "column_ratio": "60-40",
+            "vertical_alignment": "bottom",
+            "column_gap": 80
           }
         }
       },
       "block_order": [
-        "heading_wBnFQG"
+        "subheading_ChEHgx",
+        "heading_wBnFQG",
+        "column_break_hpaPMy"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "desktop_content_position": "left",
         "content_alignment": "left",
-        "color_scheme": "",
+        "color_scheme": "scheme-2",
         "full_width": true,
         "show_border_top": false,
         "show_border_bottom": false,
         "padding_top": 40,
-        "padding_bottom": 52,
+        "padding_bottom": 20,
         "anchor_id": ""
       }
     },
@@ -59,7 +79,7 @@
         "button_nWazyt": {
           "type": "button",
           "settings": {
-            "button_label": "See How",
+            "button_label": "See how we work",
             "button_link": "#approach",
             "button_style_secondary": false,
             "button_arrow": true,
@@ -79,7 +99,7 @@
       "settings": {
         "desktop_content_position": "left",
         "content_alignment": "left",
-        "color_scheme": "",
+        "color_scheme": "scheme-2",
         "full_width": true,
         "show_border_top": false,
         "show_border_bottom": false,
@@ -94,8 +114,8 @@
         "metric_a1": {
           "type": "metric",
           "settings": {
-            "number": "9+",
-            "label": "Years Shopify experience"
+            "number": "9 years",
+            "label": "Shopify experience"
           }
         },
         "metric_a2": {
@@ -131,7 +151,7 @@
         "heading_size": "h1",
         "number_size": "h1",
         "text_alignment": "left",
-        "color_scheme": "",
+        "color_scheme": "scheme-2",
         "padding_top": 36,
         "padding_bottom": 36,
         "anchor_id": ""
@@ -174,7 +194,7 @@
         "subheading_MeyMU7": {
           "type": "subheading",
           "settings": {
-            "subheading": "Our approach",
+            "subheading": "How we work",
             "text_size": "h4",
             "show_dash": true,
             "accent_strong": false
@@ -183,7 +203,7 @@
         "heading_NfVKFj": {
           "type": "heading",
           "settings": {
-            "heading": "We approach transformation in three ways<strong>.</strong>",
+            "heading": "Transparency of vision from first meet to final hand-off<strong>.</strong>",
             "heading_size": "h1",
             "accent_strong": true
           }
@@ -194,11 +214,12 @@
             "show_divider": false,
             "column_ratio": "67-33",
             "vertical_alignment": "center",
-            "column_gap": 24
+            "column_gap": 64
           }
         },
         "text_aeYdkF": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "<p>Leverage our services in any one of these areas or combine them for greater effectiveness.</p>",
             "accent_strong": false
@@ -230,8 +251,8 @@
         "column_8dTqQb": {
           "type": "column",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title": "Brief",
+            "text": "<p>Tell us about your goals, or what needs fixing.</p>",
             "link_label": "Learn more",
             "link": "#",
             "override_color_scheme": true,
@@ -241,8 +262,8 @@
         "column_WcNViC": {
           "type": "column",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title": "Proposal",
+            "text": "<p>Detailed and transparent scope, timeline and price. No surprises.</p>",
             "link_label": "Learn more",
             "link": "#",
             "override_color_scheme": true,
@@ -252,8 +273,8 @@
         "column_8Dz7Xk": {
           "type": "column",
           "settings": {
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title": "Build",
+            "text": "<p>Feedback early and often, with room to be nimble.</p>",
             "link_label": "Learn more",
             "link": "#",
             "override_color_scheme": true,
@@ -283,7 +304,7 @@
         "color_scheme": "",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
-        "padding_top": 36,
+        "padding_top": 0,
         "padding_bottom": 36,
         "anchor_id": ""
       }
@@ -294,7 +315,7 @@
         "subheading_HJ8Nfj": {
           "type": "subheading",
           "settings": {
-            "subheading": "Our practices",
+            "subheading": "Our expertise",
             "text_size": "h4",
             "show_dash": true,
             "accent_strong": false
@@ -303,7 +324,7 @@
         "heading_9tUCaC": {
           "type": "heading",
           "settings": {
-            "heading": "Six practices. One seamless journey<strong>.</strong>",
+            "heading": "Six concentrations<strong>.</strong> One shared goal<strong>.</strong>",
             "heading_size": "h1",
             "accent_strong": true
           }
@@ -313,14 +334,14 @@
           "settings": {
             "show_divider": false,
             "column_ratio": "50-50",
-            "vertical_alignment": "center",
+            "vertical_alignment": "bottom",
             "column_gap": 144
           }
         },
         "text_DKKLCb": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "text": "<p>Every client's needs are different. A consult can help us narrow down which areas we can best support your business goals.</p>",
             "accent_strong": false
           }
         }
@@ -351,7 +372,7 @@
           "type": "column",
           "settings": {
             "title": "Shopify themes",
-            "text": "<p>Theme setup, custom themes, custom functionality. Whatever you business needs, we are well versed.</p>",
+            "text": "<p>Theme setup, custom themes, custom functionality. Whatever your business needs, we are well-versed.</p>",
             "link_label": "",
             "link": "shopify://metaobjects/service/custom-shopify-themes",
             "override_color_scheme": false,
@@ -373,7 +394,7 @@
           "type": "column",
           "settings": {
             "title": "Shopify UI Extensions",
-            "text": "<p>When you don't need a full-blown app, UI Shopify extensions fill the gap. We can help with that.</p>",
+            "text": "<p>When you don't need a full-blown app, Shopify UI extensions fill the gap. We can help with that.</p>",
             "link_label": "",
             "link": "shopify://metaobjects/service/shopify-ui-extention",
             "override_color_scheme": false,
@@ -384,7 +405,7 @@
           "type": "column",
           "settings": {
             "title": "Accessibility",
-            "text": "<p>Accessibility is about more than reducing your liability. It's about providing the best experience for the greatest number of people.</p>",
+            "text": "<p>Accessibility is more than reducing your liability. It's about providing the best experience for the greatest number of people.</p>",
             "link_label": "",
             "link": "shopify://metaobjects/service/accessibility-remediation",
             "override_color_scheme": false,
@@ -394,8 +415,8 @@
         "column_PfiR6h": {
           "type": "column",
           "settings": {
-            "title": "Bug busting",
-            "text": "<p>Bugs can happen, but they shouldn't erode trust in your shop. We love rooting out issues, and providing robust solutions.</p>",
+            "title": "QA & Bugs",
+            "text": "<p>Bugs can happen, but they shouldn't erode trust in your shop. We love rooting out challenging issues, and providing robust solutions.</p>",
             "link_label": "",
             "link": "",
             "override_color_scheme": false,
@@ -406,7 +427,7 @@
           "type": "column",
           "settings": {
             "title": "Security",
-            "text": "<p>Trust is the most important thing to your customers. Let them shop in full confidence by reducing your attack surface.</p>",
+            "text": "<p>Trust is the most important thing to your customers. Let them shop in full confidence by reducing your attack surfaces.</p>",
             "link_label": "",
             "link": "shopify://metaobjects/service/security",
             "override_color_scheme": false,
@@ -450,9 +471,9 @@
         "heading_reCbgi": {
           "type": "heading",
           "settings": {
-            "heading": "When you're good.We're gone.",
+            "heading": "What is this section for? Decide.",
             "heading_size": "h1",
-            "accent_strong": false
+            "accent_strong": true
           }
         },
         "text_zrWLcn": {
@@ -489,8 +510,8 @@
         "full_width": true,
         "show_border_top": true,
         "show_border_bottom": true,
-        "padding_top": 40,
-        "padding_bottom": 52,
+        "padding_top": 100,
+        "padding_bottom": 100,
         "anchor_id": ""
       }
     },
@@ -509,7 +530,7 @@
         "heading_FUkWQF": {
           "type": "heading",
           "settings": {
-            "heading": "Proof, not promises<strong>.</strong>",
+            "heading": "Real results in the wild<strong>.</strong>",
             "heading_size": "h1",
             "accent_strong": true
           }
@@ -707,7 +728,7 @@
         "heading_VBKMW9": {
           "type": "heading",
           "settings": {
-            "heading": "Get in touch",
+            "heading": "Let's talk",
             "heading_size": "h1",
             "accent_strong": false
           }
@@ -724,7 +745,7 @@
         "text_4FnVp4": {
           "type": "text",
           "settings": {
-            "text": "<p>Ready to talk about how we can transform your business together? Start the conversation.</p>",
+            "text": "<p>Interested in exploring how we can support the growth of your business? Start the conversation.</p>",
             "accent_strong": false
           }
         },

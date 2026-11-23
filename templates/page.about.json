@@ -1,0 +1,194 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "padding_top": 28,
+        "padding_bottom": 28,
+        "anchor_id": ""
+      }
+    },
+    "rich_text_L3ziwV": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_dBH7Eh": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Up at Five",
+            "text_size": "h4",
+            "show_dash": true,
+            "accent_strong": false
+          }
+        },
+        "heading_tekjXj": {
+          "type": "heading",
+          "settings": {
+            "heading": "About<strong>.</strong>",
+            "heading_size": "hxxl",
+            "accent_strong": true
+          }
+        },
+        "text_6z8RKz": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Up at Five is owned by Robin Hamill. All projects are consulted on and delivered by him alone or with a trusted network of specialists.</p>",
+            "accent_strong": false
+          }
+        }
+      },
+      "block_order": [
+        "subheading_dBH7Eh",
+        "heading_tekjXj",
+        "text_6z8RKz"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "show_border_top": true,
+        "show_border_bottom": true,
+        "padding_top": 40,
+        "padding_bottom": 52,
+        "anchor_id": ""
+      }
+    },
+    "image_with_text_AVMRNK": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_VEheYK": {
+          "type": "heading",
+          "settings": {
+            "heading": "About Up at Five",
+            "heading_size": "h1"
+          }
+        },
+        "text_WCfQwN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_mgheYE": {
+          "type": "button",
+          "settings": {
+            "button_label": "Work with us",
+            "button_link": "shopify://pages/contact-us",
+            "button_style_secondary": false,
+            "button_arrow": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_VEheYK",
+        "text_WCfQwN",
+        "button_mgheYE"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "height": "adapt",
+        "desktop_image_width": "small",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "anchor_id": ""
+      }
+    },
+    "rich_text_7yyHTg": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_FaAXW6": {
+          "type": "subheading",
+          "settings": {
+            "subheading": "Allies",
+            "text_size": "h4",
+            "show_dash": true,
+            "accent_strong": false
+          }
+        },
+        "heading_eEidAM": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Network<strong>.</strong>",
+            "heading_size": "hxxl",
+            "accent_strong": true
+          }
+        },
+        "column_break_9pPT9e": {
+          "type": "column_break",
+          "settings": {
+            "show_divider": true,
+            "column_ratio": "50-50",
+            "vertical_alignment": "bottom",
+            "column_gap": 80
+          }
+        },
+        "text_khhit3": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Up at Five is a small agency, but with years of experience in the Shopify space we have developed connections with some of the most talented people in the industry; designers, photographers, and SEO experts.</p><p>Being small doesn't mean being limited.&nbsp;Come see what we can do together</p>",
+            "accent_strong": false
+          }
+        },
+        "button_YPLV6g": {
+          "type": "button",
+          "settings": {
+            "button_label": "Let's talk",
+            "button_link": "shopify://pages/contact-us",
+            "button_style_secondary": false,
+            "button_arrow": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false,
+            "button_arrow_2": false
+          }
+        }
+      },
+      "block_order": [
+        "subheading_FaAXW6",
+        "heading_eEidAM",
+        "column_break_9pPT9e",
+        "text_khhit3",
+        "button_YPLV6g"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "scheme-4",
+        "full_width": true,
+        "show_border_top": true,
+        "show_border_bottom": true,
+        "padding_top": 40,
+        "padding_bottom": 52,
+        "anchor_id": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_L3ziwV",
+    "image_with_text_AVMRNK",
+    "rich_text_7yyHTg"
+  ]
+}

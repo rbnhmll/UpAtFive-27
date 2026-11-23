@@ -166,7 +166,7 @@
           "button_label": "#e4f6ff",
           "secondary_button_label": "#020912",
           "shadow": "#020912",
-          "accent": ""
+          "accent": "#ffdfb8"
         }
       },
       "scheme-3": {
@@ -202,7 +202,7 @@
           "button_label": "#ffdfb8",
           "secondary_button_label": "#020912",
           "shadow": "#020912",
-          "accent": "#E4F6FF"
+          "accent": "#e4f6ff"
         }
       }
     }
