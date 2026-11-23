@@ -33,9 +33,9 @@
         "link_list_7GiyLD": {
           "type": "link_list",
           "settings": {
-            "heading": "About",
+            "heading": "About<strong>.</strong>",
             "menu": "footer-about-2027",
-            "accent_strong": false
+            "accent_strong": true
           }
         }
       },
