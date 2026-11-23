@@ -42,7 +42,7 @@
         "text_tYBJyD": {
           "type": "text",
           "settings": {
-            "text": "<p>As Chameleons, we are transformation experts who immerse and embed into your business, bringing leadership, execution, and team recruitment that energize change from within.</p><p><strong>Chameleons blend in, so you stand out.</strong></p>",
+            "text": "<p>Shopify development and digital optimization for growing brands.</p>",
             "accent_strong": false
           }
         },
@@ -99,8 +99,8 @@
         "metric_a2": {
           "type": "metric",
           "settings": {
-            "number": "100+",
-            "label": "Metric name"
+            "number": "7+",
+            "label": "Client time zones"
           }
         },
         "metric_a3": {

@@ -51,7 +51,7 @@
         "enable_country_selector": false,
         "enable_language_selector": false,
         "show_contact_button": true,
-        "contact_button_label": "Let's chat",
+        "contact_button_label": "Let's talk",
         "contact_button_link": "shopify://pages/contact-us",
         "contact_button_style_secondary": false,
         "margin_bottom": 0,

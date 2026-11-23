@@ -17,22 +17,25 @@
         "link_list_Et7AB8": {
           "type": "link_list",
           "settings": {
-            "heading": "Shopify",
-            "menu": "footer-shopify-2027"
+            "heading": "Shopify<strong>.</strong>",
+            "menu": "footer-shopify-2027",
+            "accent_strong": true
           }
         },
         "link_list_dqfh6C": {
           "type": "link_list",
           "settings": {
-            "heading": "Our Expertise",
-            "menu": "footer-expertise-2027"
+            "heading": "Our Expertise<strong>.</strong>",
+            "menu": "footer-expertise-2027",
+            "accent_strong": true
           }
         },
         "text_D68DJp": {
           "type": "text",
           "settings": {
             "heading": "",
-            "subtext": ""
+            "subtext": "",
+            "accent_strong": false
           }
         }
       },
