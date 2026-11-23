@@ -26,6 +26,7 @@
           "settings": {
             "heading": "Small shop<strong>.</strong> Big impact<strong>.</strong>",
             "heading_size": "hxxl",
+            "heading_tag": "h2",
             "accent_strong": true
           }
         },
@@ -52,7 +53,7 @@
         "full_width": true,
         "show_border_top": false,
         "show_border_bottom": false,
-        "padding_top": 40,
+        "padding_top": 80,
         "padding_bottom": 20,
         "anchor_id": ""
       }
@@ -205,6 +206,7 @@
           "settings": {
             "heading": "Transparency of vision from first meet to final hand-off<strong>.</strong>",
             "heading_size": "h1",
+            "heading_tag": "h2",
             "accent_strong": true
           }
         },
@@ -326,6 +328,7 @@
           "settings": {
             "heading": "Six concentrations<strong>.</strong> One shared goal<strong>.</strong>",
             "heading_size": "h1",
+            "heading_tag": "h2",
             "accent_strong": true
           }
         },
@@ -473,6 +476,7 @@
           "settings": {
             "heading": "What is this section for? Decide.",
             "heading_size": "h1",
+            "heading_tag": "h2",
             "accent_strong": true
           }
         },
@@ -532,6 +536,7 @@
           "settings": {
             "heading": "Real results in the wild<strong>.</strong>",
             "heading_size": "h1",
+            "heading_tag": "h2",
             "accent_strong": true
           }
         },
@@ -730,6 +735,7 @@
           "settings": {
             "heading": "Let's talk",
             "heading_size": "h1",
+            "heading_tag": "h2",
             "accent_strong": false
           }
         },
