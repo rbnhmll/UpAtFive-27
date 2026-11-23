@@ -51,7 +51,7 @@
               {%- endif -%}
             {%- when 'heading' -%}
               <h2
-                class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if block.settings.accent_strong %} accent-strong{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -62,7 +62,7 @@
               </h2>
             {%- when 'subheading' -%}
               <h3
-                class="rich-text__subheading inline-richtext {{ block.settings.text_size }}{% if block.settings.show_dash %} rich-text__subheading--dash{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="rich-text__subheading inline-richtext {{ block.settings.text_size }}{% if block.settings.show_dash %} rich-text__subheading--dash{% endif %}{% if block.settings.accent_strong %} accent-strong{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -84,7 +84,7 @@
               </p>
             {%- when 'text' -%}
               <div
-                class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="rich-text__text rte{% if block.settings.accent_strong %} accent-strong{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
@@ -332,6 +332,13 @@
           ],
           "default": "h1",
           "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "accent_strong",
+          "default": false,
+          "label": "Use accent color for bold text",
+          "info": "Bold text in this block uses the color scheme's accent color"
         }
       ]
     },
@@ -364,6 +371,13 @@
           "default": false,
           "label": "Show leading dash",
           "info": "Uses the color scheme's accent color"
+        },
+        {
+          "type": "checkbox",
+          "id": "accent_strong",
+          "default": false,
+          "label": "Use accent color for bold text",
+          "info": "Bold text in this block uses the color scheme's accent color"
         }
       ]
     },
@@ -426,6 +440,13 @@
           "id": "text",
           "default": "t:sections.rich-text.blocks.text.settings.text.default",
           "label": "t:sections.rich-text.blocks.text.settings.text.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "accent_strong",
+          "default": false,
+          "label": "Use accent color for bold text",
+          "info": "Bold text in this block uses the color scheme's accent color"
         }
       ]
     },

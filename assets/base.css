@@ -3653,3 +3653,10 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* Accent bold text: add `accent-strong` to any rich text container to colour its
+   bold text with the colour scheme's accent (falls back to the button colour). */
+.accent-strong strong,
+.accent-strong b {
+  color: rgb(var(--color-accent, var(--color-button)));
+}
