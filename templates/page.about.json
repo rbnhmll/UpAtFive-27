@@ -42,7 +42,7 @@
         "text_6z8RKz": {
           "type": "text",
           "settings": {
-            "text": "<p>Up at Five is owned by Robin Hamill. All projects are consulted on and delivered by him alone or with a trusted network of specialists.</p>",
+            "text": "{{ page.content }}",
             "accent_strong": false
           }
         }
@@ -72,7 +72,7 @@
           "type": "heading",
           "settings": {
             "heading": "About Up at Five<strong>.</strong>",
-            "heading_size": "h1",
+            "heading_size": "h0",
             "accent_strong": true
           }
         },
@@ -101,7 +101,8 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
-        "height": "adapt",
+        "image": "shopify://shop_images/robin.png",
+        "height": "small",
         "desktop_image_width": "small",
         "layout": "text_first",
         "image_behavior": "none",
