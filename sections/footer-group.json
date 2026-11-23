@@ -30,11 +30,11 @@
             "accent_strong": true
           }
         },
-        "text_D68DJp": {
-          "type": "text",
+        "link_list_7GiyLD": {
+          "type": "link_list",
           "settings": {
-            "heading": "",
-            "subtext": "",
+            "heading": "About",
+            "menu": "footer-about-2027",
             "accent_strong": false
           }
         }
@@ -42,7 +42,7 @@
       "block_order": [
         "link_list_Et7AB8",
         "link_list_dqfh6C",
-        "text_D68DJp"
+        "link_list_7GiyLD"
       ],
       "settings": {
         "color_scheme": "scheme-4",
@@ -60,7 +60,8 @@
         "partner_badge_height": 24,
         "margin_top": 0,
         "padding_top": 32,
-        "padding_bottom": 32
+        "padding_bottom": 32,
+        "anchor_id": ""
       }
     }
   },
