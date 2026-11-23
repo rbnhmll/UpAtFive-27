@@ -33,7 +33,8 @@
         "show_border_top": false,
         "show_border_bottom": false,
         "padding_top": 40,
-        "padding_bottom": 52
+        "padding_bottom": 52,
+        "anchor_id": ""
       }
     },
     "rich_text_tGFn8P": {
@@ -59,7 +60,7 @@
           "type": "button",
           "settings": {
             "button_label": "See How",
-            "button_link": "",
+            "button_link": "#approach",
             "button_style_secondary": false,
             "button_arrow": true,
             "button_label_2": "",
@@ -83,7 +84,8 @@
         "show_border_top": false,
         "show_border_bottom": false,
         "padding_top": 0,
-        "padding_bottom": 52
+        "padding_bottom": 52,
+        "anchor_id": ""
       }
     },
     "metrics_Kq7mPx": {
@@ -131,7 +133,8 @@
         "text_alignment": "left",
         "color_scheme": "",
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "anchor_id": ""
       }
     },
     "image_banner_QGiBQ9": {
@@ -161,7 +164,8 @@
         "color_scheme": "scheme-1",
         "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
-        "show_text_below": true
+        "show_text_below": true,
+        "anchor_id": ""
       }
     },
     "rich_text_K4JRxB": {
@@ -216,7 +220,8 @@
         "show_border_top": false,
         "show_border_bottom": false,
         "padding_top": 40,
-        "padding_bottom": 52
+        "padding_bottom": 52,
+        "anchor_id": "approach"
       }
     },
     "multicolumn_97cCXG": {
@@ -279,7 +284,8 @@
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "anchor_id": ""
       }
     },
     "rich_text_h8WXpL": {
@@ -334,7 +340,8 @@
         "show_border_top": false,
         "show_border_bottom": false,
         "padding_top": 40,
-        "padding_bottom": 52
+        "padding_bottom": 52,
+        "anchor_id": ""
       }
     },
     "multicolumn_4Xiy9f": {
@@ -433,7 +440,8 @@
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 0,
-        "padding_bottom": 100
+        "padding_bottom": 100,
+        "anchor_id": ""
       }
     },
     "rich_text_teA8dU": {
@@ -482,7 +490,8 @@
         "show_border_top": true,
         "show_border_bottom": true,
         "padding_top": 40,
-        "padding_bottom": 52
+        "padding_bottom": 52,
+        "anchor_id": ""
       }
     },
     "rich_text_iMPNbT": {
@@ -543,7 +552,8 @@
         "show_border_top": false,
         "show_border_bottom": false,
         "padding_top": 40,
-        "padding_bottom": 52
+        "padding_bottom": 52,
+        "anchor_id": ""
       }
     },
     "featured_blog_YYHjDT": {
@@ -578,7 +588,8 @@
         "project_link_field": "store_url",
         "project_industry_field": "industry",
         "padding_top": 0,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "anchor_id": ""
       }
     },
     "logo_grid_a7BgxW": {
@@ -686,7 +697,8 @@
         "name_field": "name",
         "link_field": "url",
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 36,
+        "anchor_id": ""
       }
     },
     "rich_text_e4BDKy": {
@@ -745,7 +757,8 @@
         "show_border_top": true,
         "show_border_bottom": true,
         "padding_top": 40,
-        "padding_bottom": 52
+        "padding_bottom": 52,
+        "anchor_id": ""
       }
     }
   },
