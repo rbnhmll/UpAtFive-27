@@ -173,6 +173,7 @@
       "block_order": [
         "text_qyddgM"
       ],
+      "disabled": true,
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "image": "shopify://shop_images/apps-for-life.jpg",
@@ -255,8 +256,8 @@
           "settings": {
             "title": "Brief",
             "text": "<p>Tell us about your goals, or what needs fixing.</p>",
-            "link_label": "Learn more",
-            "link": "#",
+            "link_label": "",
+            "link": "",
             "override_color_scheme": true,
             "color_scheme": "scheme-3"
           }
@@ -266,8 +267,8 @@
           "settings": {
             "title": "Proposal",
             "text": "<p>Detailed and transparent scope, timeline and price. No surprises.</p>",
-            "link_label": "Learn more",
-            "link": "#",
+            "link_label": "",
+            "link": "",
             "override_color_scheme": true,
             "color_scheme": "scheme-5"
           }
@@ -277,8 +278,8 @@
           "settings": {
             "title": "Build",
             "text": "<p>Feedback early and often, with room to be nimble.</p>",
-            "link_label": "Learn more",
-            "link": "#",
+            "link_label": "",
+            "link": "",
             "override_color_scheme": true,
             "color_scheme": "scheme-2"
           }
@@ -483,7 +484,7 @@
         "text_zrWLcn": {
           "type": "text",
           "settings": {
-            "text": "<p>As much as possible, it is our mission to make you the keeper of your own domain, so you can continue to build your business.&nbsp;This means building everything in such a way that you can self manage, so we can step away and let you ride into the runset.</p>",
+            "text": "<p>As much as possible, it is our mission to make you the keeper of your own domain, so you can continue to build your business.&nbsp;This means building everything in such a way that you can self manage, so we can step away and let you ride into the sunset.</p>",
             "accent_strong": false
           }
         },
