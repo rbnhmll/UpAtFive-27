@@ -140,7 +140,7 @@
         "cta_button": {
           "type": "button",
           "settings": {
-            "button_label": "Let's chat",
+            "button_label": "Let's talk",
             "button_link": "/contact-us",
             "button_style_secondary": false,
             "button_arrow": true,
