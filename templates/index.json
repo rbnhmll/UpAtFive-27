@@ -668,9 +668,10 @@
       ],
       "name": "Logo grid",
       "settings": {
-        "title": "You're in good company.",
+        "title": "You're in good company<strong>.</strong>",
         "heading_size": "h1",
         "heading_alignment": "center",
+        "accent_strong": true,
         "columns_desktop": 3,
         "columns_mobile": 2,
         "logo_height": 60,
