@@ -129,8 +129,8 @@
         "metric_a3": {
           "type": "metric",
           "settings": {
-            "number": "100+",
-            "label": "Metric name"
+            "number": "6",
+            "label": "Concentrations"
           }
         },
         "metric_a4": {
