@@ -407,3 +407,45 @@
 .center .multicolumn-card--corner-right:not(.multicolumn-card--corner-on-image) .multicolumn-card__info > h3 {
   padding-left: 5rem;
 }
+
+/* Heading → text spacing ------------------------------------------------------
+   --multicolumn-title-gap is set per section from the "Space between heading and
+   text" setting. */
+.multicolumn-card__info > h3 + .rte {
+  margin-top: var(--multicolumn-title-gap, 1rem);
+}
+
+/* Push text to bottom: cards fill the row height and the text (plus anything
+   after it) drops to the bottom, so descriptions line up across a row. The
+   heading's bottom margin keeps the chosen gap as a minimum. */
+.multicolumn-list--text-bottom .multicolumn-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.multicolumn-list--text-bottom .multicolumn-card__image-wrapper {
+  flex-shrink: 0;
+}
+
+.multicolumn-list--text-bottom .multicolumn-card__info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.multicolumn-list--text-bottom .multicolumn-card__info > h3 {
+  margin-bottom: var(--multicolumn-title-gap, 1rem);
+}
+
+.multicolumn-list--text-bottom .multicolumn-card__info > h3 + .rte {
+  margin-top: auto;
+}
+
+.multicolumn-list--text-bottom .multicolumn-card__info > .link {
+  align-self: flex-start;
+}
+
+.multicolumn-list--text-bottom .center .multicolumn-card__info > .link {
+  align-self: center;
+}
