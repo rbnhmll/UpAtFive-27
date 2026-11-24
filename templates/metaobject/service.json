@@ -51,8 +51,8 @@
         "heading_size": "h1",
         "view_all_label": "View all work",
         "view_all_link": "/pages/our-work",
-        "limit": 3,
-        "columns": 3,
+        "limit": 4,
+        "columns": 4,
         "text_alignment": "left",
         "image_ratio": "landscape",
         "show_industry": true,
@@ -81,6 +81,7 @@
           "settings": {
             "heading": "Let's build something great together<strong>.</strong>",
             "heading_size": "h0",
+            "heading_tag": "h2",
             "accent_strong": true
           }
         },
