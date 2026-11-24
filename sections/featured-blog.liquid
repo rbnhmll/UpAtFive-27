@@ -1,4 +1,12 @@
 {%- render 'section-anchor' -%}
+{%- liquid
+  # Cards are H3 under the section's H2; H2 when the section has no heading,
+  # so the page outline never jumps from H1 to H3.
+  assign card_heading_tag = 'h3'
+  if section.settings.heading == blank
+    assign card_heading_tag = 'h2'
+  endif
+-%}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-article-card.css' | asset_url | stylesheet_tag }}
@@ -107,6 +115,7 @@
               {% endif %}
             >
               {% render 'project-card',
+              heading_tag: card_heading_tag,
                 project: project,
                 title_key: title_key,
                 image_key: image_key,

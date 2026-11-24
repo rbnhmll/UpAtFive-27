@@ -13,6 +13,7 @@
   @param {string} [image_ratio] - `landscape`, `wide`, `square` or `portrait`. Defaults to `landscape`.
   @param {boolean} [show_image] - Whether to show the image. Defaults to `false`.
   @param {boolean} [show_excerpt] - Whether to show the summary. Defaults to `false`.
+  @param {string} [heading_tag] - `h2` or `h3` (default). Use `h2` when the section shows no heading of its own, so the page outline doesn't skip a level.
 {% enddoc %}
 
 {%- if project and project != empty -%}
@@ -88,13 +89,19 @@
           {%- endfor -%}
         </ul>
       {%- endif -%}
-      <h3 class="project-card__title h3">
+      {%- liquid
+        assign card_heading_tag = 'h3'
+        if heading_tag == 'h2'
+          assign card_heading_tag = 'h2'
+        endif
+      -%}
+      <{{ card_heading_tag }} class="project-card__title h3">
         {%- if url != blank -%}
           <a href="{{ url }}" class="full-unstyled-link">{{ title | escape }}</a>
         {%- else -%}
           {{ title | escape }}
         {%- endif -%}
-      </h3>
+      </{{ card_heading_tag }}>
       {%- if show_excerpt and excerpt != blank -%}
         <p class="project-card__excerpt">{{ excerpt | strip_html | truncatewords: 30 }}</p>
       {%- endif -%}
