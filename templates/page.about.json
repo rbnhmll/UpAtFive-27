@@ -27,6 +27,7 @@
           "settings": {
             "subheading": "Up at Five",
             "text_size": "h4",
+            "subheading_tag": "h3",
             "show_dash": true,
             "accent_strong": false
           }
@@ -36,6 +37,7 @@
           "settings": {
             "heading": "About<strong>.</strong>",
             "heading_size": "hxxl",
+            "heading_tag": "h1",
             "accent_strong": true
           }
         },
@@ -176,6 +178,7 @@
           "settings": {
             "subheading": "Allies",
             "text_size": "h4",
+            "subheading_tag": "h3",
             "show_dash": true,
             "accent_strong": false
           }
@@ -185,6 +188,7 @@
           "settings": {
             "heading": "Our Allies<strong>.</strong>",
             "heading_size": "hxxl",
+            "heading_tag": "h2",
             "accent_strong": true
           }
         },
