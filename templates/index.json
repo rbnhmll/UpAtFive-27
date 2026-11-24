@@ -792,7 +792,7 @@
             "button_label": "Contact Us",
             "button_link": "shopify://pages/contact-us",
             "button_style_secondary": false,
-            "button_arrow": false,
+            "button_arrow": true,
             "button_label_2": "",
             "button_link_2": "",
             "button_style_secondary_2": false,
