@@ -15,7 +15,8 @@
       "settings": {
         "full_width": true,
         "padding_top": 20,
-        "padding_bottom": 0
+        "padding_bottom": 0,
+        "anchor_id": ""
       }
     },
     "rich_text_WQU7GE": {
@@ -26,20 +27,25 @@
           "settings": {
             "subheading": "Contact Us",
             "text_size": "h4",
-            "show_dash": true
+            "subheading_tag": "h1",
+            "show_dash": true,
+            "accent_strong": false
           }
         },
         "heading_WdcbjP": {
           "type": "heading",
           "settings": {
             "heading": "Get in touch.",
-            "heading_size": "h0"
+            "heading_size": "h0",
+            "heading_tag": "h2",
+            "accent_strong": false
           }
         },
         "text_3yyUwV": {
           "type": "text",
           "settings": {
-            "text": "<p>Ready to talk about what transformation can do for your business, or just looking for more information? Start here.</p>"
+            "text": "<p>Ready to talk about what transformation can do for your business, or just looking for more information? Start here.</p>",
+            "accent_strong": false
           }
         },
         "column_break_UybyBC": {
@@ -67,7 +73,8 @@
         "show_border_top": true,
         "show_border_bottom": true,
         "padding_top": 40,
-        "padding_bottom": 52
+        "padding_bottom": 52,
+        "anchor_id": ""
       }
     },
     "form": {
@@ -90,10 +97,12 @@
         "timeline_options": "As soon as possible\n1–3 months\n3–6 months\n6+ months\nFlexible",
         "select_placeholder": "Select one",
         "label_message": "Tell us about your project",
+        "required_note": "Required field",
         "require_message": false,
         "color_scheme": "scheme-1",
         "padding_top": 100,
-        "padding_bottom": 100
+        "padding_bottom": 100,
+        "anchor_id": ""
       }
     }
   },
