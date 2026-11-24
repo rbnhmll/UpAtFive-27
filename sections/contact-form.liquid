@@ -52,6 +52,9 @@
           </li>
         </ul>
       {%- endif -%}
+      <p class="contact__required-note caption">
+        <span aria-hidden="true">*</span> {{ section.settings.required_note | default: 'Required field' | escape }}
+      </p>
       <div class="contact__fields">
         <div class="field">
           <input
@@ -385,6 +388,13 @@
       "id": "label_message",
       "default": "Tell us about your project",
       "label": "Message label"
+    },
+    {
+      "type": "text",
+      "id": "required_note",
+      "default": "Required field",
+      "label": "Required field note",
+      "info": "Shown above the form to explain the * on required fields"
     },
     {
       "type": "checkbox",

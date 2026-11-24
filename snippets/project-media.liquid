@@ -8,17 +8,35 @@
 {% enddoc %}
 {%- if media != blank -%}
   {%- if media.media_type == 'video' -%}
-    {{
-      media
-      | video_tag:
-        autoplay: true,
-        loop: true,
-        muted: true,
-        playsinline: true,
-        controls: false,
-        class: class,
-        image_size: '1500x'
-    }}
+    {%- comment -%}
+      Not autoplayed in HTML: project-video.js starts it unless the visitor prefers
+      reduced motion, and the button lets anyone pause it.
+    {%- endcomment -%}
+    <script src="{{ 'project-video.js' | asset_url }}" defer="defer"></script>
+    <project-video class="project-video">
+      {{
+        media
+        | video_tag:
+          loop: true,
+          muted: true,
+          playsinline: true,
+          controls: false,
+          preload: 'metadata',
+          class: class,
+          image_size: '1500x'
+      }}
+      <button
+        type="button"
+        class="project-video__toggle"
+        aria-label="Pause video"
+        data-pause-label="Pause video"
+        data-play-label="Play video"
+        hidden
+      >
+        <svg class="project-video__icon project-video__icon--pause" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><rect x="3" y="2" width="3.5" height="12" rx="1"/><rect x="9.5" y="2" width="3.5" height="12" rx="1"/></svg>
+        <svg class="project-video__icon project-video__icon--play" aria-hidden="true" focusable="false" viewBox="0 0 16 16"><path d="M4 2.5v11a1 1 0 0 0 1.5.86l9-5.5a1 1 0 0 0 0-1.72l-9-5.5A1 1 0 0 0 4 2.5Z"/></svg>
+      </button>
+    </project-video>
   {%- elsif media.media_type == 'image' or media.preview_image -%}
     {%- liquid
       assign image = media

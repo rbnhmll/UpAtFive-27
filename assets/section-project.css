@@ -59,6 +59,55 @@
   height: auto;
 }
 
+/* Background video + pause button (snippets/project-media.liquid). The wrapper
+   takes no box, so the video keeps filling its ratio container and the button
+   sits in that container's corner. */
+.project-video {
+  display: contents;
+}
+
+.project-video__toggle {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.4rem;
+  height: 4.4rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(var(--color-background), 0.9);
+  color: rgb(var(--color-foreground));
+  cursor: pointer;
+}
+
+.project-video__toggle[hidden] {
+  display: none;
+}
+
+.project-video__toggle:focus-visible {
+  outline: 0.2rem solid rgb(var(--color-foreground));
+  outline-offset: 0.2rem;
+}
+
+.project-video__icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  fill: currentColor;
+}
+
+.project-video__toggle .project-video__icon--play,
+.project-video__toggle.is-paused .project-video__icon--pause {
+  display: none;
+}
+
+.project-video__toggle.is-paused .project-video__icon--play {
+  display: block;
+}
+
 .project-ratio:not(.project-ratio--adapt) .project-ratio__item {
   position: absolute;
   inset: 0;

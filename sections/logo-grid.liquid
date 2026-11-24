@@ -46,6 +46,11 @@
             assign logo = client[logo_key].value
             assign client_name = client[name_key].value
             assign client_link = client[link_key].value
+            # Never leave a logo (often the only content of a link) without a name.
+            assign logo_alt = logo.alt | default: client_name
+            if logo_alt == blank
+              assign logo_alt = client.system.handle | replace: '-', ' ' | capitalize
+            endif
             assign logo_scale = block.settings.scale | divided_by: 100.0
           -%}
           <li
@@ -71,8 +76,11 @@
                   widths: '150, 300, 450, 600',
                   sizes: '(min-width: 750px) 20vw, 40vw',
                   loading: 'lazy',
-                  alt: client_name
+                  alt: logo_alt
               }}
+              {%- if client_link != blank and section.settings.open_new_tab -%}
+                <span class="visually-hidden"> (opens in a new tab)</span>
+              {%- endif -%}
               {%- if client_link != blank -%}
                 </a>
               {%- endif -%}
