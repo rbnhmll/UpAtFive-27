@@ -15,14 +15,14 @@
   <div {% render 'project-section-attrs', class: 'service-body' %}>
     <div class="page-width">
       <div class="service-body__grid{% unless show_deliverables %} service-body__grid--body-only{% endunless %}{% if section.settings.deliverables_position == 'left' %} service-body__grid--aside-left{% endif %}">
-        {%- if service.body != blank -%}
+        {%- if service.description != blank -%}
           <div class="service-body__content{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
             {%- if section.settings.body_heading != blank -%}
               <h2 class="service-body__heading project-dash {{ section.settings.heading_size }}">
                 <span>{{ section.settings.body_heading | escape }}</span>
               </h2>
             {%- endif -%}
-            <div class="service-body__text rte">{{ service.body | metafield_tag }}</div>
+            <div class="service-body__text rte">{{ service.description | metafield_tag }}</div>
           </div>
         {%- endif -%}
 
