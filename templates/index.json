@@ -17,6 +17,7 @@
           "settings": {
             "subheading": "Independent Shopify agency",
             "text_size": "h4",
+            "subheading_tag": "h3",
             "show_dash": true,
             "accent_strong": false
           }
@@ -26,7 +27,7 @@
           "settings": {
             "heading": "Small shop<strong>.</strong>[br]Big impact<strong>.</strong>",
             "heading_size": "hxxl",
-            "heading_tag": "h2",
+            "heading_tag": "h1",
             "accent_strong": true
           }
         },
@@ -198,6 +199,7 @@
           "settings": {
             "subheading": "How we work",
             "text_size": "h4",
+            "subheading_tag": "h2",
             "show_dash": true,
             "accent_strong": false
           }
@@ -207,7 +209,7 @@
           "settings": {
             "heading": "It starts with a hello<strong>.</strong>",
             "heading_size": "h1",
-            "heading_tag": "h2",
+            "heading_tag": "h3",
             "accent_strong": true
           }
         },
@@ -330,6 +332,7 @@
           "settings": {
             "subheading": "Our expertise",
             "text_size": "h4",
+            "subheading_tag": "h2",
             "show_dash": true,
             "accent_strong": false
           }
@@ -339,7 +342,7 @@
           "settings": {
             "heading": "Six concentrations<strong>.</strong> One shared goal<strong>.</strong>",
             "heading_size": "h1",
-            "heading_tag": "h2",
+            "heading_tag": "h3",
             "accent_strong": true
           }
         },
@@ -374,7 +377,7 @@
         "full_width": true,
         "show_border_top": false,
         "show_border_bottom": false,
-        "padding_top": 40,
+        "padding_top": 100,
         "padding_bottom": 52,
         "anchor_id": ""
       }
@@ -558,6 +561,7 @@
           "settings": {
             "subheading": "Case studies",
             "text_size": "h4",
+            "subheading_tag": "h2",
             "show_dash": true,
             "accent_strong": false
           }
@@ -567,7 +571,7 @@
           "settings": {
             "heading": "Real results in the wild<strong>.</strong>",
             "heading_size": "h1",
-            "heading_tag": "h2",
+            "heading_tag": "h3",
             "accent_strong": true
           }
         },
