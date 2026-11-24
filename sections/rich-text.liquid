@@ -63,7 +63,8 @@
                 {{ block.settings.heading | replace: '[br]', '<br>' }}
               </{{ heading_tag }}>
             {%- when 'subheading' -%}
-              <h3
+              {%- assign subheading_tag = block.settings.subheading_tag | default: 'h3' -%}
+              <{{ subheading_tag }}
                 class="rich-text__subheading inline-richtext {{ block.settings.text_size }}{% if block.settings.show_dash %} rich-text__subheading--dash{% endif %}{% if block.settings.accent_strong %} accent-strong{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
                 {% if settings.animations_reveal_on_scroll %}
@@ -72,7 +73,7 @@
                 {% endif %}
               >
                 <span>{{ block.settings.subheading | replace: '[br]', '<br>' }}</span>
-              </h3>
+              </{{ subheading_tag }}>
             {%- when 'caption' -%}
               <p
                 class="rich-text__caption {{ block.settings.text_style }} {{ block.settings.text_style }}--{{ block.settings.text_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -390,6 +391,21 @@
           ],
           "default": "h3",
           "label": "Text size"
+        },
+        {
+          "type": "select",
+          "id": "subheading_tag",
+          "options": [
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "h6", "label": "H6" },
+            { "value": "p", "label": "Paragraph (not a heading)" }
+          ],
+          "default": "h3",
+          "label": "Heading level",
+          "info": "For SEO and screen readers. Pick the level that fits the page outline; size is set separately above."
         },
         {
           "type": "checkbox",
