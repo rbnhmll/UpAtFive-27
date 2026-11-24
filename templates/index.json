@@ -205,7 +205,7 @@
         "heading_NfVKFj": {
           "type": "heading",
           "settings": {
-            "heading": "It starts with a hello<strong>.</strong>[br]It ends with you winning<strong>.</strong>",
+            "heading": "It starts with a hello<strong>.</strong>",
             "heading_size": "h1",
             "heading_tag": "h2",
             "accent_strong": true
@@ -216,15 +216,14 @@
           "settings": {
             "show_divider": false,
             "column_ratio": "67-33",
-            "vertical_alignment": "center",
+            "vertical_alignment": "bottom",
             "column_gap": 64
           }
         },
         "text_aeYdkF": {
           "type": "text",
-          "disabled": true,
           "settings": {
-            "text": "<p>Leverage our services in any one of these areas or combine them for greater effectiveness.</p>",
+            "text": "<p>Clear human communication from start to finish. Fully centred on your goals.</p>",
             "accent_strong": false
           }
         }
